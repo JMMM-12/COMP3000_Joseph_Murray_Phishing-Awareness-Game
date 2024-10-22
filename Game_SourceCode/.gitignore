@@ -1,0 +1,22 @@
+# Unity
+Build/
+build/
+bin/
+obj/
+UserSettings/
+Packages/*
+!Packages/manifest.json
+!Packages/packages.lock
+Logs/
+Library/
+Temp/
+.vsconfig
+*.user
+*.vscode
+*.vs
+*.suo
+*.cache
+*.log
+*.dll
+*.exe
+*.config
