@@ -1,0 +1,13 @@
+# ASP.NET Core
+bin/
+obj/
+PublishProfiles/
+*.user
+*.vscode
+*.vs
+*.suo
+*.cache
+*.log
+*.dll
+*.exe
+*.config
