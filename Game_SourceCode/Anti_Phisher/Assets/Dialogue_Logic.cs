@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 
-public class Dialogue_Logic : MonoBehaviour
+public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue changes upon player input
 {
     public Text dialogueText; //Holds the reference to GameObject text field
     private string filePath = "Assets/Dialogue_Texts/Level1.txt"; //Defines the filepath for the stored dialogue texts
@@ -48,16 +48,15 @@ public class Dialogue_Logic : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 1 || Input.anyKey == true) //Checks if player touch is detected (anyKey input for testing purposes)
+        if (Input.touchCount == 1 || Input.anyKeyDown == true) //Checks if player touch is detected (anyKeyDown input for testing purposes)
         {
             Debug.Log("Input Detected");
-            if (currentDialogueIndex <= dialoguesLength - 1) //Checks if the current dialogue index exceeds the total number of dialogues
+            if (currentDialogueIndex <= dialoguesLength - 1) //Checks if the current dialogue index is lower than the total number of dialogues
             {
                 dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the next dialogue
                 Debug.Log("Dialogue after retrieval was: " + dialogue);
                 if (dialogue != null) //Checks if the dialogue is null
                 {
-                    Debug.Log("Dialogue Was not Null");
                     currentDialogueIndex++;
                     dialogueText.text = dialogue; //Changes the on-screen text to the retrieved dialogue
                 }
