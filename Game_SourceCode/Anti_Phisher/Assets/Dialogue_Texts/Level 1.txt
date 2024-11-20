@@ -1,0 +1,8 @@
+Dialogue 1 (Smiling) – Let's start with the basics of phishing
+Dialogue 2 (Smiling) – Our first topic is...
+Dialogue 3 (Excited) – Indicators!
+Dialogue 4 (Thinking) – Phishing foes can often make mistakes, and it's very important to find these mistakes so phishing foes can be stopped!
+Dialogue 5 (Thinking) - In the first level we will cover how phishing foes make silly spelling mistakes. Are you ready?
+Dialogue 6 (Thinking) - Phishing Foe can make silly spelling mistakes when writing.
+Dialogue 7 (Smiling) - Take a look at the text I show you above and try to find spelling mistakes. I believe in you!
+Dialogue 8 (Thinking) - Does this text have any spelling mistakes?
