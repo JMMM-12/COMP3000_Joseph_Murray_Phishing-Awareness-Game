@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using Unity.VisualScripting;
 
 public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue changes upon player input
 {
@@ -12,6 +13,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue changes 
     private int dialoguesLength;
     private int currentDialogueIndex;
     public bool dialogueEnded = false;
+
+    public GameObject TextBox; //Stores a reference to the Text Box GameObject
+
     void Start()
     { 
         dialogueText = GetComponent<Text>(); //Retrieves the Text object reference for this text (legacy) GameObject
@@ -72,6 +76,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue changes 
             {
                 dialogueEnded = true;
                 dialogueText.text = ""; //Clears the text once the dialogues have finished
+                TextBox.SetActive(false); //Deactivates the Text Box once dialogue has finished, removing its display from the screen
                 Debug.Log("Dialogue has Ended");
             }
         }
