@@ -729,6 +729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9891567bf240942a6ee2d8c52e117a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueText: {fileID: 0}
+  dialogueEnded: 0
+  TextBox: {fileID: 234892577}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
