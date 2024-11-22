@@ -138,6 +138,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         for (int i = 0; i < dialoguesToExtract.Length; i++) //Loops through each index in the file read contents
         {
             string extractedDialogue = dialoguesToExtract[i];
+            extractedDialogue = extractedDialogue.Substring(1);
             newDialogue[i] = extractedDialogue; //extracts the displayable dialogue content into a new array
         }
 
