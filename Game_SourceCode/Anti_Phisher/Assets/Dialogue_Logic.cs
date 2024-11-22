@@ -23,14 +23,17 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     public Sprite ChipExcited;
     public Sprite ChipThinking;
     private SpriteRenderer ChipSpriteRenderer;
+    private Transform ChipTransform;
 
 
     void Start()
     { 
         dialogueText = GetComponent<Text>(); //Retrieves the Text object reference for this text (legacy) GameObject
 
-        ChipSpriteRenderer = Chip.GetComponent<SpriteRenderer>(); //Retrieve a reference to Chip's Sprite Renderer component, for changing Chip's sprite
+        ChipSpriteRenderer = Chip.GetComponent<SpriteRenderer>(); //Retrieves a reference to Chip's Sprite Renderer component, for changing Chip's sprite
         
+        ChipTransform = Chip.GetComponent<Transform>(); //Retrieves a reference to Chip's Transform component, for changing Chip's in-game position
+
         try
         {
             Readdialogues = File.ReadAllLines(filePath); //Reads and stores the contents of the dialogue file (line-by-line)
@@ -99,6 +102,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
                 dialogueEnded = true;
                 dialogueText.text = ""; //Clears the text once the dialogues have finished
                 TextBox.SetActive(false); //Deactivates the Text Box once dialogue has finished, removing its display from the screen
+                MinimizeChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
                 Debug.Log("Dialogue has Ended");
             }
         }
@@ -163,6 +167,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
 
 
+
     void ChangeChipsModel(string[] indicators, int dialogueIndex, SpriteRenderer chipSpriteRenderer) //Changes Chip's SpriteRenderer Sprite value to match the required one specified for the dialogue
     {
         try
@@ -196,5 +201,15 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         {
             Debug.LogError(e.Message + "\n Chip's model change encountered an error");
         }
+    }
+
+
+
+
+    void MinimizeChipsModel (SpriteRenderer chipSpriteRenderer, Transform chipTransform) //Minimizes Chip's model to the corner of the screen
+    {
+        chipSpriteRenderer.sprite = ChipSmiling; //Sets Chip's Sprite to Smiling
+        chipTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //De-scales Chip to a smaller size
+        chipTransform.position = new Vector3(-17f, -7.5f, 0f); //Moves Chip to the corner of the screen
     }
 }
