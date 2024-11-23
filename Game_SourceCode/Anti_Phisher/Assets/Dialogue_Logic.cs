@@ -236,7 +236,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     {
         string displayDialogue;
 
-        for (int i = 0; i < dialogueToDisplay.Length; i++) //Lopps through every character in the dialogue to display
+        for (int i = 0; i < dialogueToDisplay.Length + 1; i++) //Lopps through every character in the dialogue to display
         {
             displayDialogue = dialogueToDisplay.Substring(0, i); //Creates a substring of the dialogue to display that crawls (increases) by 1 character every loop
             dialogueDisplay.text = displayDialogue; //Displays the dialogue at its current stage in the text crawl
