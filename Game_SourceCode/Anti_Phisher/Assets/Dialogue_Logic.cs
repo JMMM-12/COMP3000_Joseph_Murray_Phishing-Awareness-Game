@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text box, and Chip model changes upon player input
 {
@@ -15,6 +16,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     private int dialoguesLength;
     private int currentDialogueIndex;
     public bool dialogueEnded = false;
+    public float textCrawlDelay = 0.5f;
 
     public GameObject TextBox; //Stores a reference to the Text Box GameObject (Sprite Renderer)
 
@@ -66,7 +68,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         Debug.Log("Dialogue was Extracted, first dialogue is: " + dialogues[0]);
 
         dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the first dialogue
-        dialogueText.text = dialogue; //Changes the text to Chip's first dialogue
+        StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the display text to Chip's first dialogue, appearing as a text crawl (runs in a coroutine to prevent main thread blocking)
         ChangeChipsModel(chipModelIndicators, currentDialogueIndex, ChipSpriteRenderer);
         currentDialogueIndex++; //Increases the dialogue index, ensuring the next dialgoue retrieval sucessfuly retrieves the next dialogue
     }
@@ -85,7 +87,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
                 Debug.Log("Dialogue after retrieval was: " + dialogue);
                 if (dialogue != null) //Checks if the dialogue is null
                 {
-                    dialogueText.text = dialogue; //Changes the on-screen text to the retrieved dialogue
+                    StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the on-screen text to the retrieved dialogue
                     ChangeChipsModel(chipModelIndicators, currentDialogueIndex, ChipSpriteRenderer);
                     currentDialogueIndex++;
                 }
@@ -211,5 +213,21 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         chipSpriteRenderer.sprite = ChipSmiling; //Sets Chip's Sprite to Smiling
         chipTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //De-scales Chip to a smaller size
         chipTransform.position = new Vector3(-17f, -7.5f, 0f); //Moves Chip to the corner of the screen
+    }
+
+
+
+
+    IEnumerator DisplayDialogue (string dialogueToDisplay, Text dialogueDisplay, float delay) //Displays the dialogue character-by-character on screen to generate a text crawl effect
+    {
+        string displayDialogue;
+
+        for (int i = 0; i < dialogueToDisplay.Length; i++) //Lopps through every character in the dialogue to display
+        {
+            displayDialogue = dialogueToDisplay.Substring(0, i); //Creates a substring of the dialogue to display that crawls (increases) by 1 character every loop
+            dialogueDisplay.text = displayDialogue; //Displays the dialogue at its current stage in the text crawl
+            Debug.Log("Dialogue was attempted to be displayed");
+            yield return new WaitForSeconds(delay); //Pauses the coroutine for {delay} seconds, ensuring the text crawl is of an appropriate and consistent speed
+        }
     }
 }

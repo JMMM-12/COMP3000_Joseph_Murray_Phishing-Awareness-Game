@@ -731,6 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 0}
   dialogueEnded: 0
+  textCrawlDelay: 0.05
   TextBox: {fileID: 234892577}
   Chip: {fileID: 1121415106}
   ChipSmiling: {fileID: -4713603647935056149, guid: 44f86f85b5f874546af45cd5626abdf2, type: 3}
