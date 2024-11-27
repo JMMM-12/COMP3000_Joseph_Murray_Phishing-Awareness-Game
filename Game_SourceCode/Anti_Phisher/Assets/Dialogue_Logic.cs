@@ -72,19 +72,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         allDialoguesObj = JsonUtility.FromJson<AllDialogues>(Readdialogues.text); //Deserializes and assigns the dialogues JSON object into the C# class object for use
         Debug.Log("Dialogues were sucessfully deserialized");
 
-        if (allDialoguesObj == null)
-        {
-            Debug.LogError("allDialoguesObj was null");
-        }
-        else if (encounterDialoguesObj == null)
-        {
-            Debug.LogError("encounterDialoguesObj was null");
-        }
-        else if (dialogueObj == null)
-        {
-            Debug.LogError("dialogueObj was null");
-        }
-
 
         foreach (var d in allDialoguesObj.Tutorial.Start) //Loop to find the number of dialogues in the Tutorial Start sections
         {
@@ -118,9 +105,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         {
             Debug.Log("Input Detected");
 
-            if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
+            if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
             {
-                if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues
+                if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
                 {
                     dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the next dialogue
                     Debug.Log("Dialogue after retrieval was: " + dialogue);
@@ -139,21 +126,23 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
                 }
 
-                else
+                else if (dialogueText.text != dialogue) //Checks if all the dialogue has not been displayed i.e. the text crawl is still running - then the text crawl should stop and the full dialogue should be displayed
                 {
-                    dialogueEnded = true;
-                    dialogueText.text = ""; //Clears the text once the dialogues have finished
-                    TextBox.SetActive(false); //Deactivates the Text Box once dialogue has finished, removing its display from the screen
-                    MinimizeChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
-                    Debug.Log("Dialogue has Ended");
+                    StopCoroutine(TextCrawl); //Stops the text crawl coroutine
+                    dialogueText.text = dialogue; //displays the full dialogue to the player
+                    Debug.Log("Text Crawl was stopped and full dialogue was displayed ");
                 }
             }
 
-            else if (dialogueText.text != dialogue) //Checks if all the dialogue has not been displayed i.e. the text crawl is still running - then the text crawl should stop and the full dialogue should be displayed
+            else
             {
-                StopCoroutine(TextCrawl); //Stops the text crawl coroutine
-                dialogueText.text = dialogue; //displays the full dialogue to the player
-                Debug.Log("Text Crawl was stopped and full dialogue was displayed ");
+                dialogueEnded = true;
+                StopCoroutine(TextCrawl);
+                dialogueText.text = ""; //Clears the text once the dialogues have finished
+                TextBox.SetActive(false); //Deactivates the Text Box once dialogue has finished, removing its display from the screen
+                MinimizeChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
+                Debug.Log("Dialogue has Ended");
+                
             }
             
         }
