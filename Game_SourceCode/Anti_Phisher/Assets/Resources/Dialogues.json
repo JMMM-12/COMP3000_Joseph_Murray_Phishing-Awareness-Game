@@ -1,0 +1,41 @@
+{
+	"Tutorial": {
+		"Introduction": [
+		{"id": 1, "ChipModel": "S", "Text": "Hello there friend and welcome to Cyber World! It’s a pleasure to meet you!", "FeedbackType": "N"},
+		{"id": 2, "ChipModel": "S", "Text": "There's plenty you need to know before we begin.", "FeedbackType": "N"},
+		{"id": 3, "ChipModel": "T", "Text": "Are your ready to begin your journey to defeating the phishing foe?", "FeedbackType": "N"},
+		{"id": 4, "ChipModel": "E", "Text": "Excellent! Then let’s get started.", "FeedbackType": "N"}
+		],
+		
+		"PhishingBasics": [
+		{"id": 1, "ChipModel": "T", "Text": "Phishing foes are evil people who send phishing emails to other people (targets).", "FeedbackType": "N"},
+		{"id": 2, "ChipModel": "T", "Text": "These phishing emails are messages that try to steal something from their intended target or try to get their target to do something.", "FeedbackType": "N"},
+		{"id": 3, "ChipModel": "T", "Text": "Falling for these phishing emails is very easy and can have serious consequences.", "FeedbackType": "N"},
+		{"id": 4, "ChipModel": "T", "Text": "Therefore, it is very important to be able to recognize these nasty emails and take the right actions to protect against them.", "FeedbackType": "N"},
+		],
+		
+		"GameInstructions": [
+		{"id": 1, "ChipModel": "S", "Text": "Your mission is to defend against these phishing foes by recognizing and dealing with their ghastly emails.", "FeedbackType": "N"},
+		{"id": 2, "ChipModel": "T", "Text": "To do this, you must find all parts of the email that indicate a phishing attack and respond to it appropriately.", "FeedbackType": "N"},
+		{"id": 3, "ChipModel": "S", "Text": "You’ll learn about all the potential indicators and responses as you progress, so don’t worry if you’re not sure about this right away.", "FeedbackType": "N"},
+		{"id": 4, "ChipModel": "E", "Text": "I’ll be here to support you and guide you throughout your journey. I believe you can do it!", "FeedbackType": "N"},
+		],
+		
+		"TrialEncounter": [
+		{"id": 1, "ChipModel": "S", "Text": "Let’s begin with a simple email for you to start with.", "FeedbackType": "N"},
+		{"id": 2, "ChipModel": "S", "Text": "I’ll walk you through it step-by-step.", "FeedbackType": "N"},
+		{"id": 3, "ChipModel": "T", "Text": "One key indicator of a phishing attack is spelling mistakes. Keep your eyes peeled for these.", "FeedbackType": "N"},
+		{"id": 4, "ChipModel": "S", "Text": "First, you need to identify the indicators of the phishing email.", "FeedbackType": "N"},
+		{"id": 5, "ChipModel": "S", "Text": "To do this, simply press anywhere on the email to select the part you think is suspicious.", "FeedbackType": "N"},
+		{"id": 6, "ChipModel": "S", "Text": "Once done, press the ‘confirm’ button to continue.", "FeedbackType": "N"},
+		{"id": 7, "ChipModel": "S", "Text": "Good job! Secondly, you must respond to the email by selecting any of the available response options underneath the email.", "FeedbackType": "N"},
+		{"id": 8, "ChipModel": "E", "Text": "Nice work! You're getting the hang of it!", "FeedbackType": "N"},
+		{"id": 9, "ChipModel": "T", "Text": "At the end of each of these encounters, you will be given feedback on where you were right and where you went wrong.", "FeedbackType": "N"},
+		{"id": 10, "ChipModel": "S", "Text": "It's good to make mistakes, so don’t worry if this happens. It means you're learning!", "FeedbackType": "N"},
+		
+		
+	}
+
+
+
+}
