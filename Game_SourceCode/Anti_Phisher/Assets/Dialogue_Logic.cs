@@ -4,23 +4,25 @@ using System.IO;
 using System;
 using Unity.VisualScripting;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text box, and Chip model changes upon player input
 {
     public Text dialogueText; //Holds the reference to GameObject text field
-    private string filePath = "Assets/Dialogue_Texts/Level1.txt"; //Defines the filepath for the stored dialogue texts
-    private string[] Readdialogues;
+    private string fileName = "Dialogues"; //Defines the filename for the stored dialogue
+    private TextAsset Readdialogues;
     private string[] dialogues;
     private string[] chipModelIndicators;
     private string dialogue;
-    private int dialoguesLength;
-    private int currentDialogueIndex;
+    private int DialoguesCount;
+    private int currentDialogueIndex = 0;
     public bool dialogueEnded = false;
     public float textCrawlDelay = 0.5f;
     private Coroutine TextCrawl; //Holds the textcrawl couritine to reference when stopping execution
 
     public GameObject TextBox; //Stores a reference to the Text Box GameObject (Sprite Renderer)
 
+    //References to Chip's components and sprites
     public GameObject Chip; //Stored a reference to Chip's Model (GameObject)
     public Sprite ChipSmiling;
     public Sprite ChipExcited;
@@ -28,9 +30,19 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     private SpriteRenderer ChipSpriteRenderer;
     private Transform ChipTransform;
 
+    //Class objects for deserializing and handling JSON dialogue data
+    private AllDialogues allDialoguesObj;
+    private EncounterDialogues encounterDialoguesObj;
+    private Dialogue dialogueObj;
+
 
     void Start()
     { 
+        Readdialogues = new TextAsset();
+        allDialoguesObj = new AllDialogues();
+        encounterDialoguesObj = new EncounterDialogues();
+        dialogueObj = new Dialogue();
+
         dialogueText = GetComponent<Text>(); //Retrieves the Text object reference for this text (legacy) GameObject
 
         ChipSpriteRenderer = Chip.GetComponent<SpriteRenderer>(); //Retrieves a reference to Chip's Sprite Renderer component, for changing Chip's sprite
@@ -39,34 +51,57 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
         try
         {
-            Readdialogues = File.ReadAllLines(filePath); //Reads and stores the contents of the dialogue file (line-by-line)
+            Readdialogues = Resources.Load<TextAsset>(fileName); //Reads and stores the contents of the dialogue JSON file - does not need to be read again
         }
         catch (FileNotFoundException e)
         {
-            Debug.LogError(e.Message + "\nThe Level 1 Dialogue Texts file was not found");
+            Debug.LogError(e.Message + "\nThe Dialogues JSON file was not found");
         }
         catch (IOException e)
         {
-            Debug.LogError(e.Message + "\nThe Level 1 Dialogue Texts file could not be read");
+            Debug.LogError(e.Message + "\nThe Dialogues JSON file could not be read");
         }
         catch (Exception e)
         {
-            Debug.LogError(e.Message + "\nAn error occured when the Level 1 dialogue Text attempted to be read");
+            Debug.LogError(e.Message + "\nAn error occured when the Dialogues JSON file attempted to be read");
+        }
+        Debug.Log("Dialogues were sucessfully read");
+
+
+
+        allDialoguesObj = JsonUtility.FromJson<AllDialogues>(Readdialogues.text); //Deserializes and assigns the dialogues JSON object into the C# class object for use
+        Debug.Log("Dialogues were sucessfully deserialized");
+
+        if (allDialoguesObj == null)
+        {
+            Debug.LogError("allDialoguesObj was null");
+        }
+        else if (encounterDialoguesObj == null)
+        {
+            Debug.LogError("encounterDialoguesObj was null");
+        }
+        else if (dialogueObj == null)
+        {
+            Debug.LogError("dialogueObj was null");
         }
 
-        Debug.Log("Dialogues were sucessfully read. Second value in array: " + Readdialogues[1]);
 
-        dialoguesLength = Readdialogues.Length; //Finds the number of values in the dialogues array
-        Debug.Log("Dialogues Length is: " + dialoguesLength.ToString());
+        foreach (var d in allDialoguesObj.Tutorial.Start) //Loop to find the number of dialogues in the Tutorial Start sections
+        {
+            DialoguesCount++;
+        }
 
-        chipModelIndicators = new string[dialoguesLength]; //Initializes the 2D arrays
-        dialogues = new string[dialoguesLength];
+        //Initializes the 2D arrays to contain the current required number of dialogues
+        chipModelIndicators = new string[DialoguesCount];
+        dialogues = new string[DialoguesCount];
 
-        chipModelIndicators = ExtractChipModelIndicator(Readdialogues); //Extracts Chip's model indicators for changing Chip's model in aligment with the dialogue
-        Debug.Log("Chip Model indicators were extracted, first one is: " + chipModelIndicators[0]);
-
-        dialogues = ExtractDialogue(Readdialogues); //Extracts the dialogue text to display on screen, overwriting the dialogues array
-        Debug.Log("Dialogue was Extracted, first dialogue is: " + dialogues[0]);
+        int z = 0;
+        foreach (var d in allDialoguesObj.Tutorial.Start) //Loop to assign the Tutorial Start dialogues and chip model indicators to their respective arrays
+        {
+            dialogues[z] = d.DialogueText.ToString();
+            chipModelIndicators[z] = d.ChipModel.ToString();
+            z++;
+        }
 
         dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the first dialogue
         TextCrawl = StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the display text to Chip's first dialogue, appearing as a text crawl (runs in a coroutine to prevent main thread blocking)
@@ -85,7 +120,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
             if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
             {
-                if (currentDialogueIndex <= dialoguesLength - 1) //Checks if the current dialogue index is lower than the total number of dialogues
+                if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues
                 {
                     dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the next dialogue
                     Debug.Log("Dialogue after retrieval was: " + dialogue);
@@ -132,7 +167,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         string newDialogue = null;
         try
         {
-            newDialogue = dialogues[dialogueIndex]; //Retrieves and stored the next dialogue
+            newDialogue = dialogues[dialogueIndex]; //Retrieves and stores the next dialogue
         }
         catch (IndexOutOfRangeException e)
         {
@@ -146,39 +181,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         return newDialogue;
 
 
-    }
-
-
-
-
-    string[] ExtractDialogue(string[] dialoguesToExtract) //Extracts the displayable dialogue from the file read contents
-    {
-        string[] newDialogue = new string[dialoguesToExtract.Length];
-
-        for (int i = 0; i < dialoguesToExtract.Length; i++) //Loops through each index in the file read contents
-        {
-            string extractedDialogue = dialoguesToExtract[i];
-            extractedDialogue = extractedDialogue.Substring(1);
-            newDialogue[i] = extractedDialogue; //extracts the displayable dialogue content into a new array
-        }
-
-        return newDialogue;
-    }
-
-
-
-
-    string[] ExtractChipModelIndicator(string[] dialoguesToExtract) //Extracts Chip's model indicators from the file read contents
-    {
-        string[] indicators = new string[dialoguesToExtract.Length];
-
-        for (int i = 0;i < dialoguesToExtract.Length; i++)
-        {
-            string extractedDialogue = dialoguesToExtract[i]; //Stores the current read text file line in a new string
-            indicators[i] = extractedDialogue[0].ToString(); //Adds the first character of this new string (the indicator) to the indicators array
-        }
-
-        return indicators;
     }
 
 
@@ -243,4 +245,51 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             yield return new WaitForSeconds(delay); //Pauses the coroutine for {delay} seconds, ensuring the text crawl is of an appropriate and consistent speed
         }
     }
+
+
+}
+
+
+
+
+[System.Serializable]
+public class Dialogue //Contains a single dialogue (C# equivalent to a JSON object)
+{
+    public int id;
+    public string ChipModel;
+    public string Text;
+    public string DialogueText;
+    public string FeedbackType;
+}
+
+
+
+
+[System.Serializable]
+public class EncounterDialogues //Contains lists of dialogues for each part of an encounter - making up the dialogue for an entire encounter
+{
+    public List<Dialogue> Start;
+    public List<Dialogue> MidGame;
+    public List<Dialogue> End;
+}
+
+
+
+
+[System.Serializable]
+public class AllDialogues //Contains the entire game's dialogue values
+{
+    public EncounterDialogues Tutorial;
+}
+
+
+
+
+
+public enum EncounterState //Enums for tracking the state of the game's current encounter
+{
+    Beginning,
+    Middle,
+    Feedback,
+    Unknown
 }
