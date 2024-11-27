@@ -8,7 +8,7 @@
 		{"id": 1, "ChipModel": "T", "DialogueText": "Phishing foes are evil people who send phishing emails to other people (targets).", "FeedbackType": "N"},
 		{"id": 2, "ChipModel": "T", "DialogueText": "These phishing emails are messages that try to steal something from their intended target or try to get their target to do something.", "FeedbackType": "N"},
 		{"id": 3, "ChipModel": "T", "DialogueText": "Falling for these phishing emails is very easy and can have serious consequences.", "FeedbackType": "N"},
-		{"id": 4, "ChipModel": "T", "DialogueText": "Therefore, it is very important to be able to recognize these nasty emails and take the right actions to protect against them.", "FeedbackType": "N"}
+		{"id": 4, "ChipModel": "T", "DialogueText": "Therefore, it is very important to be able to recognize these nasty emails and take the right actions to protect against them.", "FeedbackType": "N"},
 		{"id": 1, "ChipModel": "S", "DialogueText": "Your mission is to defend against these phishing foes by recognizing and dealing with their ghastly emails.", "FeedbackType": "N"},
 		{"id": 2, "ChipModel": "T", "DialogueText": "To do this, you must find all parts of the email that indicate a phishing attack and respond to it appropriately.", "FeedbackType": "N"},
 		{"id": 3, "ChipModel": "S", "DialogueText": "You’ll learn about all the potential indicators and responses as you progress, so don’t worry if you’re not sure about this right away.", "FeedbackType": "N"},
