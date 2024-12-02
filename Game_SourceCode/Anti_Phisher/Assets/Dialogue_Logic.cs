@@ -116,6 +116,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             if (gameStateManager.dialogueActive == true) //Checks if the game's dialogue should be active
             {
                 Debug.Log("Dialogue is Active");
+                TextBox.SetActive(true);
                 if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
                 {
                     if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
