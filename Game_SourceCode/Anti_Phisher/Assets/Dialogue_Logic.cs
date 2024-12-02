@@ -5,6 +5,9 @@ using System;
 using Unity.VisualScripting;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text box, and Chip model changes upon player input
 {
@@ -16,7 +19,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     private string dialogue;
     private int DialoguesCount;
     private int currentDialogueIndex = 0;
-    public bool dialogueEnded = false;
     public float textCrawlDelay = 0.5f;
     private Coroutine TextCrawl; //Holds the textcrawl couritine to reference when stopping execution
 
@@ -32,15 +34,19 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
     //Class objects for deserializing and handling JSON dialogue data
     private AllDialogues allDialoguesObj;
-    private EncounterDialogues encounterDialoguesObj;
+    private EncounterDialogues currentEncounterDialogues;
     private Dialogue dialogueObj;
+
+    public GameStateManager gameStateManager;
+    public EncounterState encounterState; //Used for tracking the state of the current encounter
+    public int encounterNum; //Used for tracking the encounter the game is on
 
 
     void Start()
-    { 
+    {
         Readdialogues = new TextAsset();
         allDialoguesObj = new AllDialogues();
-        encounterDialoguesObj = new EncounterDialogues();
+        currentEncounterDialogues = new EncounterDialogues();
         dialogueObj = new Dialogue();
 
         dialogueText = GetComponent<Text>(); //Retrieves the Text object reference for this text (legacy) GameObject
@@ -68,32 +74,35 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         Debug.Log("Dialogues were sucessfully read");
 
 
-
         allDialoguesObj = JsonUtility.FromJson<AllDialogues>(Readdialogues.text); //Deserializes and assigns the dialogues JSON object into the C# class object for use
         Debug.Log("Dialogues were sucessfully deserialized");
 
+        currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum, allDialoguesObj); //Loads the dialogue for the current encounter
 
-        foreach (var d in allDialoguesObj.Tutorial.Start) //Loop to find the number of dialogues in the Tutorial Start sections
-        {
-            DialoguesCount++;
-        }
+        DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
 
-        //Initializes the 2D arrays to contain the current required number of dialogues
+        //Initializes the 2D arrays to contain the size for the required number of dialogues
         chipModelIndicators = new string[DialoguesCount];
         dialogues = new string[DialoguesCount];
 
-        int z = 0;
-        foreach (var d in allDialoguesObj.Tutorial.Start) //Loop to assign the Tutorial Start dialogues and chip model indicators to their respective arrays
+        AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
+
+        dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the next dialogue
+        Debug.Log("Dialogue after retrieval was: " + dialogue);
+        if (dialogue != null) //Checks if the dialogue is null
         {
-            dialogues[z] = d.DialogueText.ToString();
-            chipModelIndicators[z] = d.ChipModel.ToString();
-            z++;
+            TextCrawl = StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the on-screen text to the retrieved dialogue, appearing as a text crawl (runs in a coroutine to prevent main thread blocking)
+            ChangeChipsModel(chipModelIndicators, currentDialogueIndex, ChipSpriteRenderer);
+            currentDialogueIndex++;
+            Debug.Log("Next dialogue text crawl has begun");
         }
 
-        dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the first dialogue
-        TextCrawl = StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the display text to Chip's first dialogue, appearing as a text crawl (runs in a coroutine to prevent main thread blocking)
-        ChangeChipsModel(chipModelIndicators, currentDialogueIndex, ChipSpriteRenderer);
-        currentDialogueIndex++; //Increases the dialogue index, ensuring the next dialgoue retrieval sucessfuly retrieves the next dialogue
+        else
+        {
+            Debug.LogWarning("Dialogue Was Null");
+        }
+
+        gameStateManager.dialogueActive = true;
     }
 
 
@@ -104,47 +113,59 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         if (Input.touchCount == 1 || Input.anyKeyDown == true) //Checks if player touch is detected (anyKeyDown input for testing purposes)
         {
             Debug.Log("Input Detected");
-
-            if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
+            if (gameStateManager.dialogueActive == true) //Checks if the game's dialogue should be active
             {
-                if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
+                Debug.Log("Dialogue is Active");
+                if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
                 {
-                    dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the next dialogue
-                    Debug.Log("Dialogue after retrieval was: " + dialogue);
-                    if (dialogue != null) //Checks if the dialogue is null
+                    if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
                     {
-                        TextCrawl = StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the on-screen text to the retrieved dialogue
-                        ChangeChipsModel(chipModelIndicators, currentDialogueIndex, ChipSpriteRenderer);
-                        currentDialogueIndex++;
-                        Debug.Log("Next dialogue text crawl has begun");
+                        dialogue = retrieveNextDialogue(dialogues, currentDialogueIndex); //Retrieves the next dialogue
+                        Debug.Log("Dialogue after retrieval was: " + dialogue);
+                        if (dialogue != null) //Checks if the dialogue is null
+                        {
+                            TextCrawl = StartCoroutine(DisplayDialogue(dialogue, dialogueText, textCrawlDelay)); //Changes the on-screen text to the retrieved dialogue
+                            ChangeChipsModel(chipModelIndicators, currentDialogueIndex, ChipSpriteRenderer);
+                            currentDialogueIndex++;
+                            Debug.Log("Next dialogue text crawl has begun");
+                        }
+
+                        else
+                        {
+                            Debug.LogWarning("Dialogue Was Null");
+                        }
+
                     }
 
-                    else
+                    else if (dialogueText.text != dialogue) //Checks if all the dialogue has not been displayed i.e. the text crawl is still running
                     {
-                        Debug.LogWarning("Dialogue Was Null");
+                        StopCoroutine(TextCrawl); //Stops the text crawl coroutine
+                        dialogueText.text = dialogue; //displays the full dialogue to the player
+                        Debug.Log("Text Crawl was stopped and full dialogue was displayed");
                     }
-
                 }
 
-                else if (dialogueText.text != dialogue) //Checks if all the dialogue has not been displayed i.e. the text crawl is still running - then the text crawl should stop and the full dialogue should be displayed
+                else //If the dialogue has finished
                 {
-                    StopCoroutine(TextCrawl); //Stops the text crawl coroutine
-                    dialogueText.text = dialogue; //displays the full dialogue to the player
-                    Debug.Log("Text Crawl was stopped and full dialogue was displayed ");
+                    StopCoroutine(TextCrawl);
+                    dialogueText.text = ""; //Clears the on screen text
+                    TextBox.SetActive(false); //Deactivates the Text Box, removing its display from the screen
+                    MinimizeChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
+                    currentDialogueIndex = 0;
+                    DialoguesCount = 0;
+                    gameStateManager.dialogueActive = false; //Deactivates the dialogue until future requirement
+                    Debug.Log("Dialogue has Ended");
+                    UpdateGameState(); //Updates the state of the game, and loads new encounter dialogue once the encounter state has looped
+                    DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
+                    chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
+                    dialogues = new string[DialoguesCount];
+                    AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
                 }
             }
-
             else
             {
-                dialogueEnded = true;
-                StopCoroutine(TextCrawl);
-                dialogueText.text = ""; //Clears the text once the dialogues have finished
-                TextBox.SetActive(false); //Deactivates the Text Box once dialogue has finished, removing its display from the screen
-                MinimizeChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
-                Debug.Log("Dialogue has Ended");
-                
+                Debug.Log("Dialogue is inactive");
             }
-            
         }
     }
 
@@ -236,6 +257,132 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     }
 
 
+
+
+    EncounterDialogues LoadEncounterDialogues (int encounterNumber, AllDialogues allDialogues) //Loads an Encounter's dialogue based upon the game's current encounter state
+    {
+        EncounterDialogues encounterDialogues = new EncounterDialogues();
+        if (encounterNum == 0)
+        {
+            encounterDialogues = allDialogues.Tutorial;
+        }
+
+        return encounterDialogues;
+    }
+
+
+
+
+    void UpdateGameState() //Updates the state of the game's encounter for the next dialogue display, based upon the current encounter state
+    {
+        if (gameStateManager.encounterState == EncounterState.Beginning)
+        {
+            gameStateManager.encounterState = EncounterState.Middle;
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Middle)
+        {
+            gameStateManager.encounterState = EncounterState.Feedback;
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Feedback)
+        {
+            gameStateManager.encounterState = EncounterState.Beginning;
+            int newEncounterNum = gameStateManager.EncounterNum + 1;
+            gameStateManager.EncounterNum = newEncounterNum; //Increments to the next encounter's dialogue once the final dialogue part of the previous encounter has finished
+            currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum, allDialoguesObj); //Loads the next set of encounter dialogues
+        }
+    }
+
+
+
+
+    int CountDialogues(EncounterDialogues dialoguesToCount) //Find the number of dialogues that must be displayed, based upon the encounter state 
+    {
+        int count = 0;
+        if (gameStateManager.encounterState == EncounterState.Beginning)
+        {
+            foreach (var d in dialoguesToCount.Start) //Loop to find the number of dialogues in the Start section
+            {
+                count++;
+                Debug.Log("Dialogue was counted, current count: " + count.ToString());
+            }
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Middle)
+        {
+            foreach (var d in dialoguesToCount.MidGame)
+            {
+                count++;
+            }
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Feedback)
+        {
+            foreach (var d in dialoguesToCount.End)
+            {
+                count++;
+            }
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Inactive)
+        {
+            Debug.LogError("Game Encounters were inactive, but the Encounters still tried to start");
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Unknown)
+        {
+            Debug.LogError("GameState was Unknown");
+        }
+
+        return count;
+    }
+
+
+
+    void AssignDialogue() //Assigns the Dialogues and Chip Model Indicators arrays with the values from the encounter dialogues, based upon the game state
+    {
+        int z = 0;
+        if (gameStateManager.encounterState == EncounterState.Beginning)
+        {
+            foreach (var d in currentEncounterDialogues.Start) //Loop to assign the Tutorial Start dialogues and chip model indicators to their respective arrays
+            {
+                dialogues[z] = d.DialogueText.ToString();
+                chipModelIndicators[z] = d.ChipModel.ToString();
+                z++;
+            }
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Middle)
+        {
+            foreach (var d in currentEncounterDialogues.MidGame)
+            {
+                dialogues[z] = d.DialogueText.ToString();
+                chipModelIndicators[z] = d.ChipModel.ToString();
+                z++;
+            }
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Feedback)
+        {
+            foreach (var d in currentEncounterDialogues.End)
+            {
+                dialogues[z] = d.DialogueText.ToString();
+                chipModelIndicators[z] = d.ChipModel.ToString();
+                z++;
+            }
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Inactive)
+        {
+            Debug.LogError("Game Encounters were inactive, but the Encounters still tried to start");
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Unknown)
+        {
+            Debug.LogError("GameState was Unknown");
+        }
+    }
 }
 
 
@@ -269,16 +416,4 @@ public class EncounterDialogues //Contains lists of dialogues for each part of a
 public class AllDialogues //Contains the entire game's dialogue values
 {
     public EncounterDialogues Tutorial;
-}
-
-
-
-
-
-public enum EncounterState //Enums for tracking the state of the game's current encounter
-{
-    Beginning,
-    Middle,
-    Feedback,
-    Unknown
 }
