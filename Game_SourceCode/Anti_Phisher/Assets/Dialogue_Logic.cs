@@ -116,7 +116,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             if (gameStateManager.dialogueActive == true) //Checks if the game's dialogue should be active
             {
                 Debug.Log("Dialogue is Active");
-                TextBox.SetActive(true);
+                TextBox.SetActive(true); //Ensures the Text Box can return and is active during dialogue
+                RescaleChipsModel(ChipSpriteRenderer, ChipTransform); //Ensures Chip's can change to and remain its original size during dialogue
                 if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
                 {
                     if (dialogueText.text == dialogue) //Checks if all the dialogue has been displayed i.e. the text crawl has ended - then the next dialogue text crawl can start
@@ -148,19 +149,20 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
                 else //If the dialogue has finished
                 {
+                    gameStateManager.dialogueActive = false; //Deactivates the dialogue until future requirement
                     StopCoroutine(TextCrawl);
                     dialogueText.text = ""; //Clears the on screen text
                     TextBox.SetActive(false); //Deactivates the Text Box, removing its display from the screen
-                    MinimizeChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
+                    RescaleChipsModel(ChipSpriteRenderer, ChipTransform); //Minimizes Chip's model
                     currentDialogueIndex = 0;
                     DialoguesCount = 0;
-                    gameStateManager.dialogueActive = false; //Deactivates the dialogue until future requirement
                     Debug.Log("Dialogue has Ended");
                     UpdateGameState(); //Updates the state of the game, and loads new encounter dialogue once the encounter state has looped
                     DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
                     chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
                     dialogues = new string[DialoguesCount];
                     AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
+                    gameStateManager.dialogueActive = true;
                 }
             }
             else
@@ -235,11 +237,21 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
 
 
-    void MinimizeChipsModel (SpriteRenderer chipSpriteRenderer, Transform chipTransform) //Minimizes Chip's model to the corner of the screen
+    void RescaleChipsModel (SpriteRenderer chipSpriteRenderer, Transform chipTransform) //Rescales Chip's model based upon whether the dialogue is active
     {
-        chipSpriteRenderer.sprite = ChipSmiling; //Sets Chip's Sprite to Smiling
-        chipTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //De-scales Chip to a smaller size
-        chipTransform.position = new Vector3(-17f, -7.5f, 0f); //Moves Chip to the corner of the screen
+        if (gameStateManager.dialogueActive == true) //If dialogue is currently active, Chip's model should scale to its normal size
+        {
+            chipTransform.localScale = new Vector3(1.3541f, 1.3541f, 1.3541f); //Re-scales Chip to its default size
+            chipTransform.position = new Vector3(-10.62f, -2.48f, 0f); //Moves Chip to its original position
+        }
+
+        else //If dialogue is currently inactive, Chip's model should scale down to the corner of the screen
+        {
+            chipSpriteRenderer.sprite = ChipSmiling; //Sets Chip's Sprite to Smiling
+            chipTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //De-scales Chip to a smaller size
+            chipTransform.position = new Vector3(-17f, -7.5f, 0f); //Moves Chip to the corner of the screen
+        }
+        
     }
 
 
