@@ -287,6 +287,11 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             encounterDialogues = allDialoguesObj.Encounter1;
         }
 
+        else if (encounterNumber == 2)
+        {
+            encounterDialogues = allDialoguesObj.Encounter2;
+        }
+
         return encounterDialogues;
     }
 
@@ -450,4 +455,5 @@ public class AllDialogues //Contains the entire game's dialogue values
 {
     public EncounterDialogues Tutorial;
     public EncounterDialogues Encounter1;
+    public EncounterDialogues Encounter2;
 }
