@@ -24,13 +24,39 @@
 		{"id": 5, "ChipModel": "S", "DialogueText": "To do this, simply press anywhere on the email to select the part you think is suspicious.", "FeedbackType": "N"},
 		{"id": 6, "ChipModel": "S", "DialogueText": "Once done, press the ‘confirm’ button to continue.", "FeedbackType": "N"},
 		{"id": 7, "ChipModel": "S", "DialogueText": "Good job! Secondly, you must respond to the email by selecting any of the available response options underneath the email.", "FeedbackType": "N"},
-		{"id": 8, "ChipModel": "E", "DialogueText": "Nice work! You're getting the hang of it!", "FeedbackType": "N"},
+		{"id": 8, "ChipModel": "E", "DialogueText": "Nice work! You're getting the hang of it!", "FeedbackType": "N"}
 		],
 
 
 		"End": [
 		{"id": 1, "ChipModel": "T", "DialogueText": "At the end of each of these encounters, you will be given feedback on where you were right and where you went wrong.", "FeedbackType": "N"},
 		{"id": 2, "ChipModel": "S", "DialogueText": "It's good to make mistakes, so don’t worry if this happens. It means you're learning!", "FeedbackType": "N"}
+		]
+	},
+
+
+
+
+
+	"Encounter1": {
+		"Start": [
+		{"id": 1, "ChipModel": "S", "DialogueText": "Good job on the last encounter.", "FeedbackType": "N"},
+		{"id": 2, "ChipModel": "S", "DialogueText": "It can be a lot to take in at first, but we’ll gradually go through all of this throughout the game.", "FeedbackType": "N"},
+		{"id": 3, "ChipModel": "T", "DialogueText": "If you’d like to play the trial encounter again, then press the Replay button. However, if you’d like to begin your journey then press the Start button.", "FeedbackType": "N"},
+		{"id": 4, "ChipModel": "E", "DialogueText": "Great, I’ll waste no more of your time. Let’s get to it!", "FeedbackType": "N"},
+		{"id": 5, "ChipModel": "S", "DialogueText": "I’m going to give you a new email to tackle, like the last one.", "FeedbackType": "N"},
+		{"id": 6, "ChipModel": "S", "DialogueText": "Same as before, select the indicators and then choose a response.", "FeedbackType": "N"},
+		{"id": 7, "ChipModel": "S", "DialogueText": "Remember that spelling mistakes are a great indicator to check for! ", "FeedbackType": "N"}
+		],
+		
+
+		"MidGame": [
+		{"id": 1, "ChipModel": "S", "DialogueText": "Good work so far!", "FeedbackType": "N"}
+		],
+
+
+		"End": [
+			{"id": 1, "ChipModel": "S", "DialogueText": "Great Job", "FeedbackType": "N"}
 		]
 	}
 }
