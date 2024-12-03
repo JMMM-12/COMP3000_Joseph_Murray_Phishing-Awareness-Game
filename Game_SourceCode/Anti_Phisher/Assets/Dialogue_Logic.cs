@@ -79,7 +79,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         allDialoguesObj = JsonUtility.FromJson<AllDialogues>(Readdialogues.text); //Deserializes and assigns the dialogues JSON object into the C# class object for use
         Debug.Log("Dialogues were sucessfully deserialized");
 
-        currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum, allDialoguesObj); //Loads the dialogue for the current encounter
+        currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum); //Loads the dialogue for the current encounter
 
         DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
 
@@ -164,6 +164,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
                     chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
                     dialogues = new string[DialoguesCount];
                     AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
+                    gameStateManager.dialogueActive = true;
                 }
             }
             else
@@ -273,12 +274,17 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
 
 
-    EncounterDialogues LoadEncounterDialogues (int encounterNumber, AllDialogues allDialogues) //Loads an Encounter's dialogue based upon the game's current encounter state
+    EncounterDialogues LoadEncounterDialogues (int encounterNumber) //Loads an Encounter's dialogue based upon the game's current encounter state
     {
         EncounterDialogues encounterDialogues = new EncounterDialogues();
-        if (encounterNum == 0)
+        if (encounterNumber == 0)
         {
-            encounterDialogues = allDialogues.Tutorial;
+            encounterDialogues = allDialoguesObj.Tutorial;
+        }
+
+        else if (encounterNumber == 1)
+        {
+            encounterDialogues = allDialoguesObj.Encounter1;
         }
 
         return encounterDialogues;
@@ -304,7 +310,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             gameStateManager.encounterState = EncounterState.Beginning;
             int newEncounterNum = gameStateManager.EncounterNum + 1;
             gameStateManager.EncounterNum = newEncounterNum; //Increments to the next encounter's dialogue once the final dialogue part of the previous encounter has finished
-            currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum, allDialoguesObj); //Loads the next set of encounter dialogues
+            currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum); //Loads the next set of encounter dialogues
+            Debug.Log("Game State was Updated to the beginning of the next encounter");
         }
     }
 
@@ -442,4 +449,5 @@ public class EncounterDialogues //Contains lists of dialogues for each part of a
 public class AllDialogues //Contains the entire game's dialogue values
 {
     public EncounterDialogues Tutorial;
+    public EncounterDialogues Encounter1;
 }
