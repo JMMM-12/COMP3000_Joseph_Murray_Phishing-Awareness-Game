@@ -15,4 +15,4 @@ MonoBehaviour:
   gameState: 0
   encounterState: 0
   EncounterNum: 0
-  dialogueActive: 1
+  dialogueActive: 0

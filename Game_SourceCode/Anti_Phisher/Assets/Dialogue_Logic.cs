@@ -44,6 +44,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
     void Start()
     {
+        gameStateManager.gameState = GameState.Start;
+        gameStateManager.encounterState = EncounterState.Beginning;
         Readdialogues = new TextAsset();
         allDialoguesObj = new AllDialogues();
         currentEncounterDialogues = new EncounterDialogues();
@@ -162,7 +164,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
                     chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
                     dialogues = new string[DialoguesCount];
                     AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
-                    gameStateManager.dialogueActive = true;
                 }
             }
             else
@@ -395,6 +396,18 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         {
             Debug.LogError("GameState was Unknown");
         }
+    }
+
+
+
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Game is Quitting. Resetting the Game state");
+        gameStateManager.gameState = GameState.Closed;
+        gameStateManager.dialogueActive = false;
+        gameStateManager.encounterState = EncounterState.Inactive;
+        gameStateManager.EncounterNum = 0;
     }
 }
 
