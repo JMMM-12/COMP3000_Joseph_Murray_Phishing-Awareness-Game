@@ -67,9 +67,9 @@
 	"Encounter2": {
 		"Start": [
 		{"id": 1, "ChipModel": "S", "DialogueText": "Let’s have a go at another email.", "FeedbackType": "N"},
-		{"id": 1, "ChipModel": "S", "DialogueText": "Same thing as before, but this time the indicators might not be so obvious.", "FeedbackType": "N"},
-		{"id": 1, "ChipModel": "S", "DialogueText": "Give the email a really good read and go with what you think is right.", "FeedbackType": "N"},
-		{"id": 1, "ChipModel": "S", "DialogueText": "You’ve got this!", "FeedbackType": "N"}
+		{"id": 2, "ChipModel": "S", "DialogueText": "Same thing as before, but this time the indicators might not be so obvious.", "FeedbackType": "N"},
+		{"id": 3, "ChipModel": "S", "DialogueText": "Give the email a really good read and go with what you think is right.", "FeedbackType": "N"},
+		{"id": 4, "ChipModel": "S", "DialogueText": "You’ve got this!", "FeedbackType": "N"}
 		],
 		
 
