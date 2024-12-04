@@ -57,11 +57,11 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     {
         if (gameStateManager.encounterActive == true) //Checks if the encounter gameplay is active
         {
-            if (gameStateManager.encounterState == EncounterState.Indicators)
+            if (gameStateManager.encounterState == EncounterState.Indicators) //Checks the current encounter state
             {
                 if (emailDisplayed == false)
                 {
-                    emailContainerRenderer.sprite = indicatorContainer;
+                    emailContainerRenderer.sprite = indicatorContainer; //Performs different email content activations based upon the encounter state
                     SubjectTxt.SetActive(true);
                     SenderTxt.SetActive(true);
                     IntroductionTxt.SetActive(true);
@@ -77,10 +77,10 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
             else if (gameStateManager.encounterState == EncounterState.Response)
             {
-                if (emailDisplayed == false)
+                if (emailDisplayed == false) //Note - code will not be reached as long as emailDisplayed is still set as true from the last encounter state
                 {
                     emailContainerRenderer.sprite = responseContainer;
-                    SubjectTxt.SetActive(true);
+                    SubjectTxt.SetActive(true); //Note- the text SetActive code may be redundant as the text may remain active since the last encounter state
                     SenderTxt.SetActive(true);
                     IntroductionTxt.SetActive(true);
                     MainBodyTxt.SetActive(true);
