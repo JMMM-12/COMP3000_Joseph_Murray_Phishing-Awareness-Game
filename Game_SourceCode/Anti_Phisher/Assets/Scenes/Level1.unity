@@ -1139,6 +1139,16 @@ MonoBehaviour:
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   indicatorContainer: {fileID: 3242971930444535283, guid: f3a45ce9a06596f429ae545ff72cad56, type: 3}
   responseContainer: {fileID: 7716610864636354444, guid: 850b3759a60e57442bc61f943bc56be0, type: 3}
+  SubjectTxt: {fileID: 1417382042}
+  SenderTxt: {fileID: 331961235}
+  IntroductionTxt: {fileID: 328061980}
+  MainBodyTxt: {fileID: 1712601417}
+  LinkTxt: {fileID: 442709197}
+  EndTxt: {fileID: 1111671163}
+  FileTxt: {fileID: 5153994}
+  ReplyButton: {fileID: 2035072260}
+  DeleteButton: {fileID: 996067110}
+  ReportButton: {fileID: 1593700953}
 --- !u!1 &996067110
 GameObject:
   m_ObjectHideFlags: 0
