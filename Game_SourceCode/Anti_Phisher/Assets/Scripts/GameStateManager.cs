@@ -27,7 +27,10 @@ public enum EncounterState
 {
     Beginning,
     Middle,
+    Indicators,
+    Response,
     Feedback,
+    Rewards,
     Inactive,
     Unknown
 }
