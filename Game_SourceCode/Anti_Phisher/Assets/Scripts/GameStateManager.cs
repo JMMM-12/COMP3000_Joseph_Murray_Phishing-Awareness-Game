@@ -5,9 +5,11 @@ public class GameStateManager : ScriptableObject //Manages the state of the game
 {
     //Variables that can be retrieved and modified from other scripts
     public GameState gameState;
+    public DialogueStage dialogueStage;
     public EncounterState encounterState;
     public int EncounterNum;
     public bool dialogueActive;
+    public bool encounterActive;
 }
 
 
@@ -23,14 +25,20 @@ public enum GameState
 
 
 
-public enum EncounterState
+public enum DialogueStage
 {
     Beginning,
     Middle,
+    Feedback,
+    Unknown
+}
+
+
+
+public enum EncounterState
+{
     Indicators,
     Response,
     Feedback,
-    Rewards,
-    Inactive,
     Unknown
 }

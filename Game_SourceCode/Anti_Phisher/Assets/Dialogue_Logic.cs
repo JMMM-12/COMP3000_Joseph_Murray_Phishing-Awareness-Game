@@ -38,14 +38,14 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     private Dialogue dialogueObj;
 
     public GameStateManager gameStateManager;
-    public EncounterState encounterState; //Used for tracking the state of the current encounter
+    public DialogueStage dialogueStage; //Used for tracking the state of the current encounter
     public int encounterNum; //Used for tracking the encounter the game is on
 
 
     void Start()
     {
         gameStateManager.gameState = GameState.Start;
-        gameStateManager.encounterState = EncounterState.Beginning;
+        gameStateManager.dialogueStage = DialogueStage.Beginning;
         Readdialogues = new TextAsset();
         allDialoguesObj = new AllDialogues();
         currentEncounterDialogues = new EncounterDialogues();
@@ -300,19 +300,19 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
 
     void UpdateGameState() //Updates the state of the game's encounter for the next dialogue display, based upon the current encounter state
     {
-        if (gameStateManager.encounterState == EncounterState.Beginning)
+        if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
-            gameStateManager.encounterState = EncounterState.Middle;
+            gameStateManager.dialogueStage = DialogueStage.Middle;
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Middle)
+        else if (gameStateManager.dialogueStage == DialogueStage.Middle)
         {
-            gameStateManager.encounterState = EncounterState.Feedback;
+            gameStateManager.dialogueStage = DialogueStage.Feedback;
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Feedback)
+        else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
         {
-            gameStateManager.encounterState = EncounterState.Beginning;
+            gameStateManager.dialogueStage = DialogueStage.Beginning;
             int newEncounterNum = gameStateManager.EncounterNum + 1;
             gameStateManager.EncounterNum = newEncounterNum; //Increments to the next encounter's dialogue once the final dialogue part of the previous encounter has finished
             currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum); //Loads the next set of encounter dialogues
@@ -326,7 +326,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     int CountDialogues(EncounterDialogues dialoguesToCount) //Find the number of dialogues that must be displayed, based upon the encounter state 
     {
         int count = 0;
-        if (gameStateManager.encounterState == EncounterState.Beginning)
+        if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
             foreach (var d in dialoguesToCount.Start) //Loop to find the number of dialogues in the Start section
             {
@@ -335,7 +335,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             }
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Middle)
+        else if (gameStateManager.dialogueStage == DialogueStage.Middle)
         {
             foreach (var d in dialoguesToCount.MidGame)
             {
@@ -343,7 +343,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             }
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Feedback)
+        else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
         {
             foreach (var d in dialoguesToCount.End)
             {
@@ -351,12 +351,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             }
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Inactive)
-        {
-            Debug.LogError("Game Encounters were inactive, but the Encounters still tried to start");
-        }
-
-        else if (gameStateManager.encounterState == EncounterState.Unknown)
+        else if (gameStateManager.dialogueStage == DialogueStage.Unknown)
         {
             Debug.LogError("GameState was Unknown");
         }
@@ -369,7 +364,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
     void AssignDialogue() //Assigns the Dialogues and Chip Model Indicators arrays with the values from the encounter dialogues, based upon the game state
     {
         int z = 0;
-        if (gameStateManager.encounterState == EncounterState.Beginning)
+        if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
             foreach (var d in currentEncounterDialogues.Start) //Loop to assign the Tutorial Start dialogues and chip model indicators to their respective arrays
             {
@@ -379,7 +374,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             }
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Middle)
+        else if (gameStateManager.dialogueStage == DialogueStage.Middle)
         {
             foreach (var d in currentEncounterDialogues.MidGame)
             {
@@ -389,7 +384,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             }
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Feedback)
+        else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
         {
             foreach (var d in currentEncounterDialogues.End)
             {
@@ -399,12 +394,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
             }
         }
 
-        else if (gameStateManager.encounterState == EncounterState.Inactive)
-        {
-            Debug.LogError("Game Encounters were inactive, but the Encounters still tried to start");
-        }
-
-        else if (gameStateManager.encounterState == EncounterState.Unknown)
+        else if (gameStateManager.dialogueStage == DialogueStage.Unknown)
         {
             Debug.LogError("GameState was Unknown");
         }
@@ -418,7 +408,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         Debug.Log("Game is Quitting. Resetting the Game state");
         gameStateManager.gameState = GameState.Closed;
         gameStateManager.dialogueActive = false;
-        gameStateManager.encounterState = EncounterState.Inactive;
+        gameStateManager.dialogueStage = DialogueStage.Unknown;
         gameStateManager.EncounterNum = 0;
     }
 }

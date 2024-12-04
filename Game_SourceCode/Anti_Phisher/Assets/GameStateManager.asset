@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GameStateManager
   m_EditorClassIdentifier: 
   gameState: 0
+  dialogueStage: 0
   encounterState: 0
   EncounterNum: 0
   dialogueActive: 0
+  encounterActive: 0

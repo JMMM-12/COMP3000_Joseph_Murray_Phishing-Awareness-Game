@@ -1994,8 +1994,8 @@ MonoBehaviour:
   ChipSmiling: {fileID: -4713603647935056149, guid: 44f86f85b5f874546af45cd5626abdf2, type: 3}
   ChipExcited: {fileID: 7914054831802253391, guid: 2d1cfe3f3bd741f469e273b347d254b7, type: 3}
   ChipThinking: {fileID: -839363022963490085, guid: 3d987ec212178d241ac6b52078d23a04, type: 3}
-  gameStateManager: {fileID: 11400000, guid: 2758688fc8b17e448a794bdb92bd5b4b, type: 2}
-  encounterState: 0
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  dialogueStage: 0
   encounterNum: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
