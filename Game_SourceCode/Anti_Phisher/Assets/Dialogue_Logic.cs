@@ -250,8 +250,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         else //If dialogue is currently inactive, Chip's model should scale down to the corner of the screen
         {
             chipSpriteRenderer.sprite = ChipSmiling; //Sets Chip's Sprite to Smiling
-            chipTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //De-scales Chip to a smaller size
-            chipTransform.position = new Vector3(-17f, -7.5f, 0f); //Moves Chip to the corner of the screen
+            chipTransform.localScale = new Vector3(0.45f, 0.45f, 0.45f); //De-scales Chip to a smaller size
+            chipTransform.position = new Vector3(-18f, -8.5f, 0f); //Moves Chip to the corner of the screen
         }
         
     }
