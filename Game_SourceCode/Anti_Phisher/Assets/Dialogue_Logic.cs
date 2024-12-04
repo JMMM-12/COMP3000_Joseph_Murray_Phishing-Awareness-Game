@@ -9,7 +9,7 @@ using System.Linq;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
-public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text box, and Chip model changes upon player input
+public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue, text box, and Chip model changes upon player input
 {
     public Text dialogueText; //Holds the reference to GameObject text field
     private string fileName = "Dialogues"; //Defines the filename for the stored dialogue
@@ -159,12 +159,12 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
                     currentDialogueIndex = 0;
                     DialoguesCount = 0;
                     Debug.Log("Dialogue has Ended");
+                    gameStateManager.encounterActive = true; //Actives the encounter gameplay
                     UpdateGameState(); //Updates the state of the game, and loads new encounter dialogue once the encounter state has looped
                     DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
                     chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
                     dialogues = new string[DialoguesCount];
                     AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
-                    gameStateManager.dialogueActive = true;
                 }
             }
             else
@@ -303,6 +303,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dialogue, text bo
         if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
             gameStateManager.dialogueStage = DialogueStage.Middle;
+            gameStateManager.encounterState = EncounterState.Indicators;
         }
 
         else if (gameStateManager.dialogueStage == DialogueStage.Middle)

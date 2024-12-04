@@ -1046,6 +1046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 855913635}
   - component: {fileID: 855913634}
+  - component: {fileID: 855913636}
   m_Layer: 0
   m_Name: Email
   m_TagString: Untagged
@@ -1123,6 +1124,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &855913636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855913633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483be1f43497a5b4ca50686752640157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  indicatorContainer: {fileID: 3242971930444535283, guid: f3a45ce9a06596f429ae545ff72cad56, type: 3}
+  responseContainer: {fileID: 7716610864636354444, guid: 850b3759a60e57442bc61f943bc56be0, type: 3}
 --- !u!1 &996067110
 GameObject:
   m_ObjectHideFlags: 0
