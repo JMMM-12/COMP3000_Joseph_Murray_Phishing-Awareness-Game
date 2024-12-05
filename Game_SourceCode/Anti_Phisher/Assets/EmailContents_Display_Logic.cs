@@ -9,7 +9,7 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
     
     //For tracking the game states
     public GameStateManager gameStateManager;
-    private bool contentsShown;
+    private bool emailContentsLoaded;
 
     //For reading from and storing the email contents
     private TextAsset ReadEmails;
@@ -60,16 +60,21 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
     {
         if (gameStateManager.encounterActive == true) //Checks if the encounter gameplay is active
         {
-            if (contentsShown == false) //Checks if the contents for the current email have not already been shown
+            if (gameStateManager.encounterState == EncounterState.Indicators)
             {
-                DisplayEmailContents();
-                contentsShown = true;
+                if (gameStateManager.emailContentsDisplayed == false) //Checks if the contents for the current email have not already been shown
+                {
+                    LoadNextEmail();
+                    DisplayEmailContents();
+                    gameStateManager.emailContentsDisplayed = true;
+                }
             }
+            
         }
 
         else if (gameStateManager.encounterActive == false)
         {
-            contentsShown = false;
+            gameStateManager.emailContentsDisplayed = false;
         }
 
 
