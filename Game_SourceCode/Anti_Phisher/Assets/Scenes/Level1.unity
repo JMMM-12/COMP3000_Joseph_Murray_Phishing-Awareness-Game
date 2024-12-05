@@ -1047,6 +1047,7 @@ GameObject:
   - component: {fileID: 855913635}
   - component: {fileID: 855913634}
   - component: {fileID: 855913636}
+  - component: {fileID: 855913637}
   m_Layer: 0
   m_Name: Email
   m_TagString: Untagged
@@ -1149,6 +1150,26 @@ MonoBehaviour:
   ReplyButton: {fileID: 2035072260}
   DeleteButton: {fileID: 996067110}
   ReportButton: {fileID: 1593700953}
+--- !u!114 &855913637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855913633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def14006cdbfa05419e191c1289605d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  Subject: {fileID: 1417382044}
+  Sender: {fileID: 331961237}
+  Introduction: {fileID: 328061982}
+  MainBody: {fileID: 1712601419}
+  Link: {fileID: 442709199}
+  End: {fileID: 1111671165}
+  File: {fileID: 5153996}
 --- !u!1 &996067110
 GameObject:
   m_ObjectHideFlags: 0

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Email_Display_Logic.cs" />
     <Compile Include="Assets\Dialogue_Logic.cs" />
+    <Compile Include="Assets\EmailContents_Display_Logic.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\GameStateManager.cs" />
   </ItemGroup>
