@@ -1,0 +1,34 @@
+{
+	"Tutorial": {
+		"id": 1,
+		"Subject": "Bank Issue",
+		"Sender": "margaret@email.com",
+		"Introduction": "Hello there,",
+		"MainBody": "There has beeen an issue with your bankk, please send me your bank accounttt ddetails so I can deal with it.\nThis is not a phishing email.",
+		"Link": "None",
+		"End": "Thank you,\nMargaret",
+		"File": "No attached files"
+	},
+	
+	"Encounter1": {
+		"id": 2,
+		"Subject": "Game Subscription Payment",
+		"Sender": "john@email.com",
+		"Introduction": "Dear Player,\nGood day.",
+		"MainBody": "I reqquire your payment to your weekly game subscription. Reply to this email with your full name and address.",
+		"Link": "None",
+		"End": "Please send it as soon as possible.\nJohn doe",
+		"File": "No attached files"
+	},
+	
+	"Encounter2": {
+		"id": 3,
+		"Subject": "Extra Maths Session",
+		"Sender": "david@email.com",
+		"Introduction": "Hi Player,\nHow are you?",
+		"MainBody": "I would like to set up an extra math session for this weekend.\nLet me know what you think.",
+		"Link": "None",
+		"End": "David",
+		"File": "No attached files"
+	}
+}
