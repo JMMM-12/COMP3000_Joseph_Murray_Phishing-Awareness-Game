@@ -10,6 +10,8 @@ public class GameStateManager : ScriptableObject //Manages the state of the game
     public int EncounterNum;
     public bool dialogueActive;
     public bool encounterActive;
+    public bool emailDisplayed;
+    public bool emailContentsDisplayed;
 }
 
 

@@ -80,13 +80,6 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 if (emailDisplayed == false) //Note - code will not be reached as long as emailDisplayed is still set as true from the last encounter state
                 {
                     emailContainerRenderer.sprite = responseContainer;
-                    SubjectTxt.SetActive(true); //Note- the text SetActive code may be redundant as the text may remain active since the last encounter state
-                    SenderTxt.SetActive(true);
-                    IntroductionTxt.SetActive(true);
-                    MainBodyTxt.SetActive(true);
-                    LinkTxt.SetActive(true);
-                    EndTxt.SetActive(true);
-                    FileTxt.SetActive(true);
                     ReplyButton.SetActive(true);
                     DeleteButton.SetActive(true);
                     ReportButton.SetActive(true);

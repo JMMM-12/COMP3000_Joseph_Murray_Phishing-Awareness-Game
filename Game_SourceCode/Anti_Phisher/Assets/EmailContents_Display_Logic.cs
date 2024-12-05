@@ -108,13 +108,21 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
 
     void DisplayEmailContents()
     {
-        Subject.text = email.Subject;
-        Sender.text = email.Sender;
-        Introduction.text = email.Introduction;
-        MainBody.text = email.MainBody;
-        Link.text = email.Link;
-        End.text = email.End;
-        File.text = email.File;
+        try
+        {
+            Subject.text = email.Subject;
+            Sender.text = email.Sender;
+            Introduction.text = email.Introduction;
+            MainBody.text = email.MainBody;
+            Link.text = email.Link;
+            End.text = email.End;
+            File.text = email.File;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Email Contents could not be displayed to the screen. Likley becuase the text GameObjects are inactive: " + e);
+        }
+        
     }
 }
 
