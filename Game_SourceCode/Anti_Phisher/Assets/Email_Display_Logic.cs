@@ -23,8 +23,6 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject DeleteButton;
     public GameObject ReportButton;
 
-    bool emailDisplayed;
-
 
     void Start()
     {
@@ -47,7 +45,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         DeleteButton.SetActive(false);
         ReportButton.SetActive(false);
 
-        emailDisplayed = false;
+        gameStateManager.emailDisplayed = false;
     }
 
 
@@ -59,7 +57,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         {
             if (gameStateManager.encounterState == EncounterState.Indicators) //Checks the current encounter state
             {
-                if (emailDisplayed == false)
+                if (gameStateManager.emailDisplayed == false)
                 {
                     emailContainerRenderer.sprite = indicatorContainer; //Performs different email content activations based upon the encounter state
                     SubjectTxt.SetActive(true);
@@ -69,7 +67,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     LinkTxt.SetActive(true);
                     EndTxt.SetActive(true);
                     FileTxt.SetActive(true);
-                    emailDisplayed = true;
+                    gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Indicator state were activated");
                 }
                 
@@ -77,13 +75,13 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
             else if (gameStateManager.encounterState == EncounterState.Response)
             {
-                if (emailDisplayed == false) //Note - code will not be reached as long as emailDisplayed is still set as true from the last encounter state
+                if (gameStateManager.emailDisplayed == false)
                 {
                     emailContainerRenderer.sprite = responseContainer;
                     ReplyButton.SetActive(true);
                     DeleteButton.SetActive(true);
                     ReportButton.SetActive(true);
-                    emailDisplayed = true;
+                    gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Response state were activated");
                 }
                 
@@ -91,7 +89,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
             else if (gameStateManager.encounterState == EncounterState.Feedback)
             {
-                if (emailDisplayed == true)
+                if (gameStateManager.emailDisplayed == true)
                 {
                     emailContainerRenderer.sprite = null;
                     emailContainerRenderer.sprite = null;
@@ -105,7 +103,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
-                    emailDisplayed = false;
+                    gameStateManager.emailDisplayed = false;
                     Debug.Log("Email Contents were deactivated as part of the Feedback state");
                 }
                 
@@ -113,7 +111,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
             else if (gameStateManager.encounterState == EncounterState.Unknown)
             {
-                if (emailDisplayed == true)
+                if (gameStateManager.emailDisplayed == true)
                 {
                     emailContainerRenderer.sprite = null;
                     emailContainerRenderer.sprite = null;
@@ -127,7 +125,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
-                    emailDisplayed = false;
+                    gameStateManager.emailDisplayed = false;
                     Debug.LogWarning("Encounter State was Unknown. Email Contents were deactivated");
                 }
                 
@@ -136,18 +134,22 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
         else if (gameStateManager.encounterActive == false) //Checks if the encounter gameplay is inactive
         {
-            emailContainerRenderer.sprite = null;
-            SubjectTxt.SetActive(false);
-            SenderTxt.SetActive(false);
-            IntroductionTxt.SetActive(false);
-            MainBodyTxt.SetActive(false);
-            LinkTxt.SetActive(false);
-            EndTxt.SetActive(false);
-            FileTxt.SetActive(false);
-            ReplyButton.SetActive(false);
-            DeleteButton.SetActive(false);
-            ReportButton.SetActive(false);
-            emailDisplayed = false;
+            if (gameStateManager.emailDisplayed == true)
+            {
+                emailContainerRenderer.sprite = null;
+                SubjectTxt.SetActive(false);
+                SenderTxt.SetActive(false);
+                IntroductionTxt.SetActive(false);
+                MainBodyTxt.SetActive(false);
+                LinkTxt.SetActive(false);
+                EndTxt.SetActive(false);
+                FileTxt.SetActive(false);
+                ReplyButton.SetActive(false);
+                DeleteButton.SetActive(false);
+                ReportButton.SetActive(false);
+                gameStateManager.emailDisplayed = false;
+            }
+            
         }
     }
 }
