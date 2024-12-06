@@ -63,7 +63,9 @@
   <ItemGroup>
     <Compile Include="Assets\EndClick.cs" />
     <Compile Include="Assets\Email_Display_Logic.cs" />
+    <Compile Include="Assets\ReplyClick.cs" />
     <Compile Include="Assets\GameQuit_Logic.cs" />
+    <Compile Include="Assets\DeleteClick.cs" />
     <Compile Include="Assets\LinkClick.cs" />
     <Compile Include="Assets\Scripts\SelectionData.cs" />
     <Compile Include="Assets\MainbodyClick.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Assets\SubjectClick.cs" />
     <Compile Include="Assets\ChangeState.cs" />
     <Compile Include="Assets\FileClick.cs" />
+    <Compile Include="Assets\ReportClick.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

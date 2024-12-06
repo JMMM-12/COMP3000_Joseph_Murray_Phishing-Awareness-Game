@@ -1505,6 +1505,7 @@ GameObject:
   - component: {fileID: 996067114}
   - component: {fileID: 996067113}
   - component: {fileID: 996067112}
+  - component: {fileID: 996067115}
   m_Layer: 5
   m_Name: Delete_Button
   m_TagString: Untagged
@@ -1614,6 +1615,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996067110}
   m_CullTransparentMesh: 1
+--- !u!114 &996067115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996067110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689a5b475abdea2458c4fa5e38f1bba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  deleteButton: {fileID: 0}
 --- !u!1 &1111671163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,6 +1919,7 @@ GameObject:
   - component: {fileID: 1593700957}
   - component: {fileID: 1593700956}
   - component: {fileID: 1593700955}
+  - component: {fileID: 1593700958}
   m_Layer: 5
   m_Name: Report_Button
   m_TagString: Untagged
@@ -2012,6 +2029,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593700953}
   m_CullTransparentMesh: 1
+--- !u!114 &1593700958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593700953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b907952c8a2814abaa75f1d0e2ace8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  reportButton: {fileID: 0}
 --- !u!1 &1712601417
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,6 +2233,7 @@ GameObject:
   - component: {fileID: 2035072264}
   - component: {fileID: 2035072263}
   - component: {fileID: 2035072262}
+  - component: {fileID: 2035072265}
   m_Layer: 5
   m_Name: Reply_Button
   m_TagString: Untagged
@@ -2310,6 +2343,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035072260}
   m_CullTransparentMesh: 1
+--- !u!114 &2035072265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035072260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9487ab2415415cf4391f8072b57ce0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  replyButton: {fileID: 0}
 --- !u!1 &2095825322
 GameObject:
   m_ObjectHideFlags: 0
