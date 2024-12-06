@@ -27,6 +27,16 @@ public class LinkClick : MonoBehaviour, IPointerClickHandler //Tracks when the l
 
                 }
             }
+
+            else if (gameStateManager.encounterState == EncounterState.Response) //Checks if the encounter is in the response state
+            {
+                if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
+                {
+                    selectionData.responseSelection.linkOpened = true;
+                    Debug.Log("Response - Link was opened");
+                    gameStateManager.encounterState = EncounterState.Feedback;
+                }
+            }
         }
 
     }

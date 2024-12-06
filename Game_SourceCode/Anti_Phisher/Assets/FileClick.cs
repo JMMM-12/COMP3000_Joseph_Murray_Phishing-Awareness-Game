@@ -27,6 +27,16 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
 
                 }
             }
+
+            else if (gameStateManager.encounterState == EncounterState.Response) //Checks if the encounter is in the response state
+            {
+                if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
+                {
+                    selectionData.responseSelection.fileDownloaded = true;
+                    Debug.Log("Response - File was downloaded");
+                    gameStateManager.encounterState = EncounterState.Feedback;
+                }
+            }
         }
 
     }
