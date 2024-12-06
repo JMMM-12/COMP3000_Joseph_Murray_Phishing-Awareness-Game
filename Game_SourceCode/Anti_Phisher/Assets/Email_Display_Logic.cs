@@ -46,7 +46,6 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         DeleteButton.SetActive(false);
         ReportButton.SetActive(false);
         IndicatorsConfirmButton.SetActive(false);
-
         gameStateManager.emailDisplayed = false;
     }
 
@@ -70,6 +69,9 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     EndTxt.SetActive(true);
                     FileTxt.SetActive(true);
                     IndicatorsConfirmButton.SetActive(true);
+                    ReplyButton.SetActive(false);
+                    DeleteButton.SetActive(false);
+                    ReportButton.SetActive(false);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Indicator state were activated");
                 }
