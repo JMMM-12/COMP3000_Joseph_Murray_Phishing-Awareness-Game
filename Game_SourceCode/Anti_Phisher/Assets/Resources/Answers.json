@@ -1,0 +1,61 @@
+{
+	"Tutorial": {
+		"Indicators": {
+			"Subject": false,
+			"Sender": false,
+			"Introduction": false,
+			"MainBody": true,
+			"Link": false,
+			"End": false
+			"File": false
+		},
+		
+		"Response": {
+			"OpenLink": false,
+			"OpenFile": false,
+			"Reply": false,
+			"Delete": true,
+			"Report": true
+		}
+	},
+	
+	"Encounter1": {
+		"Indicators": {
+			"Subject": false,
+			"Sender": true,
+			"Introduction": false,
+			"MainBody": true,
+			"Link": false,
+			"End": true,
+			"File": false
+		},
+		
+		"Response": {
+			"OpenLink": false,
+			"OpenFile": false,
+			"Reply": false,
+			"Delete": true,
+			"Report": true
+		}
+	},
+	
+	"Encounter2": {
+		"Indicators": {
+			"Subject": false,
+			"Sender": false,
+			"Introduction": false,
+			"MainBody": false,
+			"Link": false,
+			"End": false,
+			"File": false
+		},
+		
+		"Response": {
+			"OpenLink": false,
+			"OpenFile": false,
+			"Reply": true,
+			"Delete": false,
+			"Report": false
+		}
+	}
+}
