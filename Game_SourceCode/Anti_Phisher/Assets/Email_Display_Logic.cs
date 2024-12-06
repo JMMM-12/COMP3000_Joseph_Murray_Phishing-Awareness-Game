@@ -111,6 +111,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReportButton.SetActive(false);
                     IndicatorsConfirmButton.SetActive(false);
                     gameStateManager.emailDisplayed = false;
+                    gameStateManager.emailContentsDisplayed = false;
                     Debug.Log("Email Contents were deactivated as part of the Feedback state");
                 }
                 
@@ -134,6 +135,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReportButton.SetActive(false);
                     IndicatorsConfirmButton.SetActive(false);
                     gameStateManager.emailDisplayed = false;
+                    gameStateManager.emailContentsDisplayed = false;
                     Debug.LogWarning("Encounter State was Unknown. Email Contents were deactivated");
                 }
                 
@@ -157,6 +159,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 ReportButton.SetActive(false);
                 IndicatorsConfirmButton.SetActive(false);
                 gameStateManager.emailDisplayed = false;
+                gameStateManager.emailContentsDisplayed = false;
             }
             
         }
