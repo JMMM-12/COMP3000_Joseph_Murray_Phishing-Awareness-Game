@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SenderClick : MonoBehaviour, IPointerClickHandler //Tracks when the sender indicator is clicked on and changes the selection value accordingly
+public class IntroductionClick : MonoBehaviour, IPointerClickHandler //Tracks when the introduction indicator is clicked on and changes the selection value accordingly
 {
     public GameStateManager gameStateManager;
     public SelectionData selectionData;
@@ -14,15 +14,15 @@ public class SenderClick : MonoBehaviour, IPointerClickHandler //Tracks when the
             {
                 if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
                 {
-                    if (selectionData.indicatorSelection.senderSelected == false) //Checks that the sender value is not already selected
+                    if (selectionData.indicatorSelection.introductionSelected == false) //Checks that the introduction value is not already selected
                     {
-                        selectionData.indicatorSelection.senderSelected = true; //Marks the sender as selected
-                        Debug.Log("Sender text was selected");
+                        selectionData.indicatorSelection.introductionSelected = true; //Marks the introduction as selected
+                        Debug.Log("Introduction text was selected");
                     }
                     else
                     {
-                        selectionData.indicatorSelection.senderSelected = false; //Marks the sender as unselected
-                        Debug.Log("Sender text was deselected");
+                        selectionData.indicatorSelection.introductionSelected = false; //Marks the introduction as unselected
+                        Debug.Log("Introduction text was deselected");
                     }
 
                 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SenderClick : MonoBehaviour, IPointerClickHandler //Tracks when the sender indicator is clicked on and changes the selection value accordingly
+public class EndClick : MonoBehaviour, IPointerClickHandler //Tracks when the end indicator is clicked on and changes the selection value accordingly
 {
     public GameStateManager gameStateManager;
     public SelectionData selectionData;
@@ -14,15 +14,15 @@ public class SenderClick : MonoBehaviour, IPointerClickHandler //Tracks when the
             {
                 if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
                 {
-                    if (selectionData.indicatorSelection.senderSelected == false) //Checks that the sender value is not already selected
+                    if (selectionData.indicatorSelection.endSelected == false) //Checks if the end value is not already selected
                     {
-                        selectionData.indicatorSelection.senderSelected = true; //Marks the sender as selected
-                        Debug.Log("Sender text was selected");
+                        selectionData.indicatorSelection.endSelected = true; //Marks the end indicator as selected
+                        Debug.Log("End text was selected");
                     }
                     else
                     {
-                        selectionData.indicatorSelection.senderSelected = false; //Marks the sender as unselected
-                        Debug.Log("Sender text was deselected");
+                        selectionData.indicatorSelection.endSelected = false; //Marks the end indicator as unselected
+                        Debug.Log("End text was deselected");
                     }
 
                 }
