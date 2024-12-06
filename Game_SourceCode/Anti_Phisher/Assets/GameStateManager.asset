@@ -18,5 +18,5 @@ MonoBehaviour:
   EncounterNum: 0
   dialogueActive: 0
   encounterActive: 0
-  emailDisplayed: 1
-  emailContentsDisplayed: 1
+  emailDisplayed: 0
+  emailContentsDisplayed: 0
