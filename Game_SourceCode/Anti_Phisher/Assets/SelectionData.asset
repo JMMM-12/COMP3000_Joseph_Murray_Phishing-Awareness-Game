@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682203beec572334d8a08f031f67e3ed, type: 3}
+  m_Name: SelectionData
+  m_EditorClassIdentifier: 
+  indicatorSelection:
+    subjectSelected: 0
+    senderSelected: 0
+    introductionSelected: 0
+    mainbodySelected: 0
+    linkSelected: 0
+    endSelected: 0
+    fileSelected: 0
+  responseSelection:
+    emailReply: 0
+    emailDeleted: 0
+    emailReported: 0
+    linkOpened: 0
+    fileDownloaded: 0
