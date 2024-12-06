@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Email_Display_Logic.cs" />
+    <Compile Include="Assets\GameQuit_Logic.cs" />
     <Compile Include="Assets\Scripts\SelectionData.cs" />
     <Compile Include="Assets\Dialogue_Logic.cs" />
     <Compile Include="Assets\SenderClick.cs" />

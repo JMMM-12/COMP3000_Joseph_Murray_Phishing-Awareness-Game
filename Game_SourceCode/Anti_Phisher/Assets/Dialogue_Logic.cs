@@ -400,20 +400,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             Debug.LogError("GameState was Unknown");
         }
     }
-
-
-
-
-    private void OnApplicationQuit()
-    {
-        Debug.Log("Game is Quitting. Resetting the Game state");
-        gameStateManager.gameState = GameState.Closed;
-        gameStateManager.encounterActive = false;
-        gameStateManager.dialogueActive = false;
-        gameStateManager.encounterState = EncounterState.Unknown;
-        gameStateManager.dialogueStage = DialogueStage.Unknown;
-        gameStateManager.EncounterNum = 0;
-    }
 }
 
 
