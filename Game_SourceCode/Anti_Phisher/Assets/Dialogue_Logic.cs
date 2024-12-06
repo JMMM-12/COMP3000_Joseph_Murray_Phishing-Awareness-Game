@@ -114,10 +114,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
     {
         if (Input.touchCount == 1 || Input.anyKeyDown == true) //Checks if player touch is detected (anyKeyDown input for testing purposes)
         {
-            Debug.Log("Input Detected");
             if (gameStateManager.dialogueActive == true) //Checks if the game's dialogue should be active
             {
-                Debug.Log("Dialogue is Active");
                 TextBox.SetActive(true); //Ensures the Text Box can return and is active during dialogue
                 RescaleChipsModel(ChipSpriteRenderer, ChipTransform); //Ensures Chip's can change to and remain its original size during dialogue
                 if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
@@ -166,10 +164,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
                     dialogues = new string[DialoguesCount];
                     AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
                 }
-            }
-            else
-            {
-                Debug.Log("Dialogue is inactive");
             }
         }
     }
