@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size and position of the indicator image objects (for highlighting indicators) to that of the related indicator text object
 {
     public GameStateManager gameStateManager;
+    public GameData gameData;
 
     //Declares all the involved text and image indicator GameObjects
     public GameObject subjectTxt;
@@ -26,12 +27,13 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
     private RectTransform TxtTransform;
     private RectTransform ImgTransform;
 
-    private Color transparentImage = new Color(0f, 0f, 0f, 0f);
+    private Color transparentImage;
 
 
     private void Start()
     {
         gameStateManager.highlightersReady = false;
+        transparentImage = gameData.transparentColor;
     }
 
 
