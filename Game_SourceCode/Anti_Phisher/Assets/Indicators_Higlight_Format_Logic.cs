@@ -1,10 +1,11 @@
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size and position of the indicator image objects (for highlighting indicators) to that of the related indicator text object
 {
     public GameStateManager gameStateManager;
-    bool highlightersMatched; //for tracking if the indicator highlighting images are matched with the text's size and position
+    bool highlightersReady; //for tracking if the indicator highlighting images are matched with the text's size and position
 
     //Declares all the involved text and image indicator GameObjects
     public GameObject subjectTxt;
@@ -26,10 +27,12 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
     private RectTransform TxtTransform;
     private RectTransform ImgTransform;
 
+    private Color transparentImage = new Color(0f, 0f, 0f, 0f);
+
 
     private void Start()
     {
-        highlightersMatched = false;
+        highlightersReady = false;
     }
 
 
@@ -42,10 +45,11 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
             {
                 if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
                 {
-                    if (highlightersMatched == false) //Checks that the indicators highlight images have not already been matched with the text
+                    if (highlightersReady == false) //Checks that the indicators highlight images have not already been matched with the text
                     {
                         MatchImageToText();
-                        highlightersMatched = true;
+                        SetImagesAsTransparent();
+                        highlightersReady = true;
                     }
                 }
             }
@@ -53,7 +57,7 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
 
         else
         {
-            highlightersMatched = false;
+            highlightersReady = false;
         }
     }
 
@@ -103,5 +107,16 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
         ImgTransform = fileImg.GetComponent<RectTransform>();
         ImgTransform.sizeDelta = TxtTransform.sizeDelta;
         ImgTransform.position = TxtTransform.position;
+    }
+
+    public void SetImagesAsTransparent() //Sets the image objects to transparent to start (since they will start unselected)
+    {
+        subjectImg.color = transparentImage;
+        senderImg.color = transparentImage;
+        introductionImg.color = transparentImage;
+        mainbodyImg.color = transparentImage;
+        linkImg.color = transparentImage;
+        endImg.color = transparentImage;
+        fileImg.color = transparentImage;
     }
 }
