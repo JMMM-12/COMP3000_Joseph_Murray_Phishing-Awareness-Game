@@ -12,6 +12,7 @@ public class GameStateManager : ScriptableObject //Manages the state of the game
     public bool encounterActive;
     public bool emailDisplayed;
     public bool emailContentsDisplayed;
+    public bool highlightersReady;
 }
 
 
