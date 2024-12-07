@@ -78,6 +78,7 @@
     <Compile Include="Assets\IntroductionClick.cs" />
     <Compile Include="Assets\SubjectClick.cs" />
     <Compile Include="Assets\ChangeState.cs" />
+    <Compile Include="Assets\Scripts\GameData.cs" />
     <Compile Include="Assets\FileClick.cs" />
     <Compile Include="Assets\ReportClick.cs" />
   </ItemGroup>
