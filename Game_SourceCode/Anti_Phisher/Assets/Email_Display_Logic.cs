@@ -31,6 +31,9 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject EndImg;
     public GameObject FileImg;
 
+    private int textOffset = 70;
+    private RectTransform textRectTransform;
+
 
     void Start()
     {
@@ -84,6 +87,10 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     LinkTxt.SetActive(true);
                     EndTxt.SetActive(true);
                     FileTxt.SetActive(true);
+                    if (gameStateManager.EncounterNum != 0)
+                    {
+                        MoveText();
+                    }
                     IndicatorsConfirmButton.SetActive(true);
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
@@ -106,6 +113,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 if (gameStateManager.emailDisplayed == false)
                 {
                     emailContainerRenderer.sprite = responseContainer;
+                    MoveText();
                     IndicatorsConfirmButton.SetActive(false);
                     SubjectImg.SetActive(false);
                     SenderImg.SetActive(false);
@@ -213,6 +221,48 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 gameStateManager.emailContentsDisplayed = false;
             }
             
+        }
+    }
+
+
+
+
+    void MoveText() //Moves the text to fit with the email container
+    {
+        if (gameStateManager.encounterState == EncounterState.Indicators)
+        {
+            textRectTransform = SubjectTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            textRectTransform = SenderTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            textRectTransform = IntroductionTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            textRectTransform = MainBodyTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            textRectTransform = LinkTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            textRectTransform = EndTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            textRectTransform = FileTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+        }
+
+        else if (gameStateManager.encounterState == EncounterState.Response)
+        {
+            textRectTransform = SubjectTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            textRectTransform = SenderTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            textRectTransform = IntroductionTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            textRectTransform = MainBodyTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            textRectTransform = LinkTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            textRectTransform = EndTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            textRectTransform = FileTxt.GetComponent<RectTransform>();
+            textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
         }
     }
 }

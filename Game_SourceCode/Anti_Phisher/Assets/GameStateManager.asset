@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8057799a5f4bec940972b2b46409c4f4, type: 3}
   m_Name: GameStateManager
   m_EditorClassIdentifier: 
-  gameState: 0
-  dialogueStage: 0
-  encounterState: 0
+  gameState: 3
+  dialogueStage: 3
+  encounterState: 3
   EncounterNum: 0
   dialogueActive: 0
   encounterActive: 0
