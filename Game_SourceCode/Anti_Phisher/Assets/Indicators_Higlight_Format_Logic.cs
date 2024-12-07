@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size and position of the indicator image objects (for highlighting indicators) to that of the related indicator text object
 {
     public GameStateManager gameStateManager;
-    bool highlightersReady; //for tracking if the indicator highlighting images are matched with the text's size and position
 
     //Declares all the involved text and image indicator GameObjects
     public GameObject subjectTxt;
@@ -32,7 +31,7 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
 
     private void Start()
     {
-        highlightersReady = false;
+        gameStateManager.highlightersReady = false;
     }
 
 
@@ -45,19 +44,24 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
             {
                 if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
                 {
-                    if (highlightersReady == false) //Checks that the indicators highlight images have not already been matched with the text
+                    if (gameStateManager.highlightersReady == false) //Checks that the indicators highlight images have not already been matched with the text
                     {
                         MatchImageToText();
                         SetImagesAsTransparent();
-                        highlightersReady = true;
+                        gameStateManager.highlightersReady = true;
                     }
                 }
+            }
+
+            else
+            {
+                gameStateManager.highlightersReady = false;
             }
         }
 
         else
         {
-            highlightersReady = false;
+            gameStateManager.highlightersReady = false;
         }
     }
 

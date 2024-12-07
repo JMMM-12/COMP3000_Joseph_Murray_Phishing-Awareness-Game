@@ -16,6 +16,7 @@ public class GameQuit_Logic : MonoBehaviour //Performs game state and selection 
         gameStateManager.EncounterNum = 0;
         gameStateManager.emailDisplayed = false;
         gameStateManager.emailContentsDisplayed = false;
+        gameStateManager.highlightersReady = false;
         selectionData.indicatorSelection = new IndicatorSelection();
         selectionData.responseSelection = new ResponseSelection();
     }
