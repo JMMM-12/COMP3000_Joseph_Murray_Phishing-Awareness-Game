@@ -24,6 +24,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject ReportButton;
     public GameObject IndicatorsConfirmButton;
     public GameObject SubjectImg;
+    public GameObject SenderImg;
+    public GameObject IntroductionImg;
+    public GameObject MainBodyImg;
+    public GameObject LinkImg;
+    public GameObject EndImg;
+    public GameObject FileImg;
 
 
     void Start()
@@ -51,6 +57,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
         //Deactivates all the images upon game start
         SubjectImg.SetActive(false);
+        SenderImg.SetActive(false);
+        IntroductionImg.SetActive(false);
+        MainBodyImg.SetActive(false);
+        LinkImg.SetActive(false);
+        EndImg.SetActive(false);
+        FileImg.SetActive (false);
     }
 
 
@@ -77,6 +89,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
                     SubjectImg.SetActive(true);
+                    SenderImg.SetActive(true);
+                    IntroductionImg.SetActive(true);
+                    MainBodyImg.SetActive(true);
+                    LinkImg.SetActive(true);
+                    EndImg.SetActive(true);
+                    FileImg.SetActive(true);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Indicator state were activated");
                 }
@@ -90,6 +108,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     emailContainerRenderer.sprite = responseContainer;
                     IndicatorsConfirmButton.SetActive(false);
                     SubjectImg.SetActive(false);
+                    SenderImg.SetActive(false);
+                    IntroductionImg.SetActive(false);
+                    MainBodyImg.SetActive(false);
+                    LinkImg.SetActive(false);
+                    EndImg.SetActive(false);
+                    FileImg.SetActive(false);
                     ReplyButton.SetActive(true);
                     DeleteButton.SetActive(true);
                     ReportButton.SetActive(true);
@@ -113,6 +137,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     EndTxt.SetActive(false);
                     FileTxt.SetActive(false);
                     SubjectImg.SetActive(false);
+                    SenderImg.SetActive(false);
+                    IntroductionImg.SetActive(false);
+                    MainBodyImg.SetActive(false);
+                    LinkImg.SetActive(false);
+                    EndImg.SetActive(false);
+                    FileImg.SetActive(false);
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
@@ -138,6 +168,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     EndTxt.SetActive(false);
                     FileTxt.SetActive(false);
                     SubjectImg.SetActive(false);
+                    SenderImg.SetActive(false);
+                    IntroductionImg.SetActive(false);
+                    MainBodyImg.SetActive(false);
+                    LinkImg.SetActive(false);
+                    EndImg.SetActive(false);
+                    FileImg.SetActive(false);
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
@@ -163,6 +199,12 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 EndTxt.SetActive(false);
                 FileTxt.SetActive(false);
                 SubjectImg.SetActive(false);
+                SenderImg.SetActive(false);
+                IntroductionImg.SetActive(false);
+                MainBodyImg.SetActive(false);
+                LinkImg.SetActive(false);
+                EndImg.SetActive(false);
+                FileImg.SetActive(false);
                 ReplyButton.SetActive(false);
                 DeleteButton.SetActive(false);
                 ReportButton.SetActive(false);

@@ -68,6 +68,7 @@
     <Compile Include="Assets\DeleteClick.cs" />
     <Compile Include="Assets\LinkClick.cs" />
     <Compile Include="Assets\Scripts\SelectionData.cs" />
+    <Compile Include="Assets\Indicators_Higlight_Format_Logic.cs" />
     <Compile Include="Assets\MainbodyClick.cs" />
     <Compile Include="Assets\Dialogue_Logic.cs" />
     <Compile Include="Assets\SenderClick.cs" />
