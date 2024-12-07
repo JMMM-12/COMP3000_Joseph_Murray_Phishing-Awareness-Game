@@ -11,7 +11,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
     private SpriteRenderer emailContainerRenderer;
 
-    //Holds references to the emails text & button GameObjects
+    //Holds references to the emails text, button, and image GameObjects
     public GameObject SubjectTxt;
     public GameObject SenderTxt;
     public GameObject IntroductionTxt;
@@ -23,6 +23,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject DeleteButton;
     public GameObject ReportButton;
     public GameObject IndicatorsConfirmButton;
+    public GameObject SubjectImg;
 
 
     void Start()
@@ -47,6 +48,9 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         ReportButton.SetActive(false);
         IndicatorsConfirmButton.SetActive(false);
         gameStateManager.emailDisplayed = false;
+
+        //Deactivates all the images upon game start
+        SubjectImg.SetActive(false);
     }
 
 
@@ -72,6 +76,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
+                    SubjectImg.SetActive(true);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Indicator state were activated");
                 }
@@ -84,6 +89,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 {
                     emailContainerRenderer.sprite = responseContainer;
                     IndicatorsConfirmButton.SetActive(false);
+                    SubjectImg.SetActive(false);
                     ReplyButton.SetActive(true);
                     DeleteButton.SetActive(true);
                     ReportButton.SetActive(true);
@@ -106,6 +112,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     LinkTxt.SetActive(false);
                     EndTxt.SetActive(false);
                     FileTxt.SetActive(false);
+                    SubjectImg.SetActive(false);
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
@@ -130,6 +137,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     LinkTxt.SetActive(false);
                     EndTxt.SetActive(false);
                     FileTxt.SetActive(false);
+                    SubjectImg.SetActive(false);
                     ReplyButton.SetActive(false);
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
@@ -154,6 +162,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 LinkTxt.SetActive(false);
                 EndTxt.SetActive(false);
                 FileTxt.SetActive(false);
+                SubjectImg.SetActive(false);
                 ReplyButton.SetActive(false);
                 DeleteButton.SetActive(false);
                 ReportButton.SetActive(false);
