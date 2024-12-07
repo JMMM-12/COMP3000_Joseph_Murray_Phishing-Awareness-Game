@@ -25,6 +25,8 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
     public Text End;
     public Text File;
 
+    public GameObject LinkObj;
+
     void Start()
     {
         ReadEmails = new TextAsset();
@@ -64,7 +66,7 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
             {
                 if (gameStateManager.emailContentsDisplayed == false) //Checks if the contents for the current email have not already been shown
                 {
-                    LoadNextEmail();
+                    email = LoadNextEmail();
                     DisplayEmailContents();
                     gameStateManager.emailContentsDisplayed = true;
                 }
@@ -119,7 +121,14 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
             Sender.text = email.Sender;
             Introduction.text = email.Introduction;
             MainBody.text = email.MainBody;
-            Link.text = email.Link;
+            if (email.Link.ToString() != "None")
+            {
+                Link.text = email.Link;
+            }
+            else
+            {
+                LinkObj.SetActive(false);
+            }
             End.text = email.End;
             File.text = email.File;
         }
