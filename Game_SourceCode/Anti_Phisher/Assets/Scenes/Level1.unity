@@ -1206,8 +1206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474821e13cb6af64180e6d4aed8dcd37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStateManager: {fileID: 0}
-  selectionData: {fileID: 0}
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
 --- !u!1 &801197865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,5 +3100,5 @@ SceneRoots:
   - {fileID: 234892580}
   - {fileID: 855913635}
   - {fileID: 669931673}
-  - {fileID: 176420404}
   - {fileID: 751638064}
+  - {fileID: 176420404}
