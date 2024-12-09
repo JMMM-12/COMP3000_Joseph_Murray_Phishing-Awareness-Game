@@ -53,7 +53,8 @@ public class Answers_Checking : MonoBehaviour
             LoadNextAnswers(); //Loads the answers for the current scenario
             IndicatorsCheck(); //Checks all the selected indicators against the correct indicator answers, determining the indicator results
             ResponsesCheck(); //Checks all the selected responses against the correct response answers, determining the response results
-            IndicatorsGrading();
+            IndicatorsGrading(); //Checks the total, correct, and missed indicator counts to give the indicator results a grade
+            gameStateManager.feedbackState = FeedbackState.FeedbackDetermine; //Once indicator & response answers have been checked and the results have been calculated, the game starts determining the feedback to display
         }
     }
 
@@ -347,6 +348,112 @@ public class Answers_Checking : MonoBehaviour
 
 
         //Above answer checking & results calculating process for email reply response is repeated for all remaining response types
+        if (selectionData.responseSelection.emailDeleted == responseAnswers.Delete)
+        {
+            if (selectionData.responseSelection.emailDeleted == true)
+            {
+                encounterResults.responseResults.deleteResult = Result.TruePositive;
+                encounterResults.responseResults.responseCorrect = true;
+            }
+            else if (selectionData.responseSelection.emailDeleted == false)
+            {
+                encounterResults.responseResults.deleteResult = Result.TrueNegative;
+            }
+        }
+
+        else if (selectionData.responseSelection.emailDeleted != responseAnswers.Delete)
+        {
+            if (selectionData.responseSelection.emailDeleted == true)
+            {
+                encounterResults.responseResults.deleteResult = Result.FalsePositive;
+                encounterResults.responseResults.responseCorrect = false;
+            }
+            else if (selectionData.responseSelection.emailDeleted == false)
+            {
+                encounterResults.responseResults.deleteResult = Result.FalseNegative;
+            }
+        }
+
+
+        if (selectionData.responseSelection.emailReported == responseAnswers.Report)
+        {
+            if (selectionData.responseSelection.emailReported == true)
+            {
+                encounterResults.responseResults.reportResult = Result.TruePositive;
+                encounterResults.responseResults.responseCorrect = true;
+            }
+            else if (selectionData.responseSelection.emailReported == false)
+            {
+                encounterResults.responseResults.reportResult = Result.TrueNegative;
+            }
+        }
+
+        else if (selectionData.responseSelection.emailReported != responseAnswers.Report)
+        {
+            if (selectionData.responseSelection.emailReported == true)
+            {
+                encounterResults.responseResults.reportResult = Result.FalsePositive;
+                encounterResults.responseResults.responseCorrect = false;
+            }
+            else if (selectionData.responseSelection.emailReported == false)
+            {
+                encounterResults.responseResults.reportResult = Result.FalseNegative;
+            }
+        }
+
+
+        if (selectionData.responseSelection.linkOpened == responseAnswers.OpenLink)
+        {
+            if (selectionData.responseSelection.linkOpened == true)
+            {
+                encounterResults.responseResults.linkResult = Result.TruePositive;
+                encounterResults.responseResults.responseCorrect = true;
+            }
+            else if (selectionData.responseSelection.linkOpened == false)
+            {
+                encounterResults.responseResults.linkResult = Result.TrueNegative;
+            }
+        }
+
+        else if (selectionData.responseSelection.linkOpened != responseAnswers.OpenLink)
+        {
+            if (selectionData.responseSelection.linkOpened == true)
+            {
+                encounterResults.responseResults.linkResult = Result.FalsePositive;
+                encounterResults.responseResults.responseCorrect = false;
+            }
+            else if (selectionData.responseSelection.linkOpened == false)
+            {
+                encounterResults.responseResults.linkResult = Result.FalseNegative;
+            }
+        }
+
+
+        if (selectionData.responseSelection.fileDownloaded == responseAnswers.OpenFile)
+        {
+            if (selectionData.responseSelection.fileDownloaded == true)
+            {
+                encounterResults.responseResults.fileResult = Result.TruePositive;
+                encounterResults.responseResults.responseCorrect = true;
+            }
+            else if (selectionData.responseSelection.fileDownloaded == false)
+            {
+                encounterResults.responseResults.fileResult = Result.TrueNegative;
+            }
+        }
+
+        else if (selectionData.responseSelection.fileDownloaded != responseAnswers.OpenFile)
+        {
+            if (selectionData.responseSelection.fileDownloaded == true)
+            {
+                encounterResults.responseResults.fileResult = Result.FalsePositive;
+                encounterResults.responseResults.responseCorrect = false;
+            }
+            else if (selectionData.responseSelection.fileDownloaded == false)
+            {
+                encounterResults.responseResults.fileResult = Result.FalseNegative;
+            }
+        }
     }
 
 
@@ -355,22 +462,22 @@ public class Answers_Checking : MonoBehaviour
 
     public void IndicatorsGrading()
     {
-        if (encounterResults.indicatorResults.correctIndicators == encounterResults.indicatorResults.totalIndicators)
+        if (encounterResults.indicatorResults.correctIndicators == encounterResults.indicatorResults.totalIndicators) //Checks if the number of correct indicators is the same as the total indicators (the player has selected all the existing indicators)
         {
-            if (encounterResults.indicatorResults.correctIndicators == 0)
+            if (encounterResults.indicatorResults.correctIndicators == 0) //Checks if the number of correct indicators is 0, therefore the total indicators must also be 0 (there were no indicators for this encounter)
             {
                 encounterResults.indicatorResults.indicatorGrade = Grade.Unrequired;
             }
-            else
+            else //Otherwise there must be indicators for this scenario (the player correctly identifed all the indicators)
             {
                 encounterResults.indicatorResults.indicatorGrade = Grade.All;
             }
         }
-        else if (encounterResults.indicatorResults.correctIndicators < encounterResults.indicatorResults.totalIndicators && encounterResults.indicatorResults.correctIndicators != 0)
+        else if (encounterResults.indicatorResults.correctIndicators < encounterResults.indicatorResults.totalIndicators && encounterResults.indicatorResults.correctIndicators != 0) //Checks if the correct indicators is lower than the total indicators, but is not 0 (the player correctly identified some indicators and missed some indicators)
         {
             encounterResults.indicatorResults.indicatorGrade = Grade.Some;
         }
-        else
+        else //Otherwise the player must have missed all the potential indicators
         {
             encounterResults.indicatorResults.indicatorGrade = Grade.None;
         }
