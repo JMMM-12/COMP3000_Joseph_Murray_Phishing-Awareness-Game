@@ -40,7 +40,7 @@
 			"FeedbackText": "Good try. You didn't find any of the indicators, but we'll have a look at what you missed."
 		},
 		
-		"NoIndicatorsCorrect": {
+		"NoIndicatorsCorrectI": {
 			"ChipModel": "S",
 			"FeedbackText": "Good try. You didn't find any of the indicators and chose the wrong indicators, but we'll have a look at where you went wrong."
 		},
@@ -245,6 +245,6 @@
 		"DownloadFileIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "You chose to download the file, where the email was a phishing attack. Be careful of these troublesome files"
-		},
+		}
 	}
 }
