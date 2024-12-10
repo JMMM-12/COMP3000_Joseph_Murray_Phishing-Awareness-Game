@@ -1,250 +1,250 @@
 {
-	"IndicatorsGeneral": [
-		{
+	"IndicatorsGeneral": {
+		"Intro": {
 			"ChipModel": "S",
 			"FeedbackText": "Let's take a look at how you did for the indicators..."
 		},
 		
-		{
+		"AllIndicatorsCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "Amazing! You identified all the indicators perfectly!"
 		},
 		
-		{
+		"AllIndicatorsCorrectI": {
 			"ChipModel": "S",
 			"FeedbackText": "You managed to identify all the indicators, but there were some that were incorrect. Let's review these."
 		},
 		
-		{
+		"IndicatorsCorrectlyAvoided": {
 			"ChipModel": "E",
 			"FeedbackText": "Great Job! There were no indicators here, and you showed me that you knew this!"
 		},
 		
-		{
+		"IndicatorsIncorrectlyAvoided": {
 			"ChipModel": "S",
 			"FeedbackText": "Good attempt. You selected indicators for this encounter, however there weren't any"
 		},
 		
-		{
+		"SomeIndicatorsCorrect" : {
 			"ChipModel": "S",
 			"FeedbackText": "You've done a good job! however, there were some indicators you missed. Let's review them"
 		},
 		
-		{
+		"SomeIndicatorsCorrectI" : {
 			"ChipModel": "S",
 			"FeedbackText": "Good try. There were some indicators you missed, and some indicators you got wrong. Let's review them"
 		},
 		
-		{
+		"NoIndicatorsCorrect": {
 			"ChipModel": "S",
 			"FeedbackText": "Good try. You didn't find any of the indicators, but we'll have a look at what you missed."
 		},
 		
-		{
+		"NoIndicatorsCorrectI": {
 			"ChipModel": "S",
 			"FeedbackText": "Good try. You didn't find any of the indicators and chose the wrong indicators, but we'll have a look at where you went wrong."
 		},
 		
-		{
+		"Score": {
 			"ChipModel": "S",
 			"FeedbackText": "Your score was: "
 		}
-	],
-
-
-
-	"IndicatorsSpecific": [
-		{
+	},
+	
+	
+	
+	"IndicatorsSpecific": {
+		"SubjectCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's subject as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"SubjectIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's subject was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"SubjectMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's subject, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		},
-
-		{
+		
+		"SenderCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's sender as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"SenderIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's sender was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"SenderMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's sender, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		},
-
-		{
+		
+		"IntroductionCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's introduction text as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"IntroductionIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's introduction text was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"IntroductionMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's introduction text, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		},
-
-		{
+		
+		"MainBodyCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's main body text as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"MainBodyIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's main body text was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"MainBodyMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's main body text, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		},
-
-		{
+		
+		"LinkCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's link as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"LinkIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's link was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"LinkMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's link, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		},
-
-		{
+		
+		"EndCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's end text as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"EndIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's end text was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"EndMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's end text, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		},
-
-		{
+		
+		"FileCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You correctly identifed the email's file as a phishing indicator. Well done!"
 		},
-
-		{
+		
+		"FileIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "The email's file was not a phishing indicator. Remember to check for known indicators"
 		},
-
-		{
+		
+		"FileMissed": {
 			"ChipModel": "T",
 			"FeedbackText": "You missed the email's file, which was a phishing indicator. Keep a look out for these sneaky tricks!"
 		}
-	],
-
-
-
-	"ResponsesGeneral": [
-		{
+	},
+	
+	
+	
+	"ResponsesGeneral": {
+		"Intro": {
 			"ChipModel": "S",
 			"FeedbackText": "Let's take a look at how you did for your response..."
 		},
-
-		{
-			"ChipModel": "E",
+		
+		"ResponseCorrect": {
+			"ChipModel" : "E",
 			"FeedbackText": "Congratulations! Your chosen response was correct!"
 		},
-
-		{
-			"ChipModel": "T",
+		
+		"ResponseIncorrect": {
+			"ChipModel" : "T",
 			"FeedbackText": "Your chosen response was incorrect, but that's ok! We'll have a look at why and what response would have been most appropriate"
 		}
-	],
-
-
-
-	"ResponsesSpecific": [
-		{
+	},
+	
+	
+	
+	"ResponsesSpecific": {
+		"ReplyCorrect": {
 			"ChipModel": "S",
 			"FeedbackText": "You chose to reply to the email, which was acceptable given the email's contents. However, always proceed with caution."
 		},
-
-		{
+		
+		"ReplyIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "You chose to reply to the email. This is the wrong response, since it puts you and your information at risk."
 		},
-
-		{
+		
+		"ReplySuggest": {
 			"ChipModel": "T",
 			"FeedbackText": "An email reply would have acceptable for this email"
 		},
-
-		{
+		
+		"DeleteCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You chose to reply to delete the email, which is a good decision given the email's contents."
 		},
-
-		{
+		
+		"DeleteIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "You chose to delete the email. This is the wrong response, since the email was not harmful"
 		},
-
-		{
+		
+		"DeleteSuggest": {
 			"ChipModel": "T",
 			"FeedbackText": "Deleting the email would have been a suitable response"
 		},
-
-		{
+		
+		"ReportCorrect": {
 			"ChipModel": "E",
 			"FeedbackText": "You chose to reply to report the email, which is a is a fantastic decision given the email's contents. Well done!"
 		},
-
-		{
+		
+		"ReportIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "You chose to report the email, which was not required since the email was not harmful"
 		},
-
-		{
+		
+		"ReportSuggest": {
 			"ChipModel": "T",
 			"FeedbackText": "Reporting the email would have been the best response"
 		},
-
-		{
+		
+		"OpenLinkCorrect": {
 			"ChipModel": "S",
 			"FeedbackText": "You opened the link from this email. This was technically ok, but its always best to avoid opening email links wherever possible"
 		},
-
-		{
+		
+		"OpenLinkIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "You chose to open the link, where the email was a phishing attack. Be careful of these pesky links"
 		},
-
-		{
+		
+		"DownloadFileCorrect": {
 			"ChipModel": "S",
 			"FeedbackText": "You dowloaded the file from this email. This was technically ok, but its always best to avoid downloading email files wherever possible"
 		},
-
-		{
+		
+		"DownloadFileIncorrect": {
 			"ChipModel": "T",
 			"FeedbackText": "You chose to download the file, where the email was a phishing attack. Be careful of these troublesome files"
 		}
-	]
+	}
 }
