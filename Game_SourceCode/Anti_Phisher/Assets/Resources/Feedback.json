@@ -194,12 +194,12 @@
 		
 		"ReplySuggest": {
 			"ChipModel": "T",
-			"FeedbackText": "An email reply would have acceptable for this email"
+			"FeedbackText": "An email reply would have been acceptable for this email"
 		},
 		
 		"DeleteCorrect": {
 			"ChipModel": "E",
-			"FeedbackText": "You chose to reply to delete the email, which is a good decision given the email's contents."
+			"FeedbackText": "You chose to delete the email, which is a good decision given the email's contents."
 		},
 		
 		"DeleteIncorrect": {
@@ -214,7 +214,7 @@
 		
 		"ReportCorrect": {
 			"ChipModel": "E",
-			"FeedbackText": "You chose to reply to report the email, which is a is a fantastic decision given the email's contents. Well done!"
+			"FeedbackText": "You chose to report the email, which is a is a fantastic decision given the email's contents. Well done!"
 		},
 		
 		"ReportIncorrect": {
