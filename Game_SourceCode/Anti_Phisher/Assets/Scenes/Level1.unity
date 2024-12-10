@@ -404,6 +404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
+  fDialogues: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!4 &176420404
 Transform:
   m_ObjectHideFlags: 0

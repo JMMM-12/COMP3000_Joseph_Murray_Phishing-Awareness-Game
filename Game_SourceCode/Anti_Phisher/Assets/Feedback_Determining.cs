@@ -8,10 +8,10 @@ public class Feedback_Determining : MonoBehaviour
     private string fileName = "Feedback";
     private TextAsset readFeedback;
     public AllFeedback allFeedback;
-    private IndicatorsGeneral indicatorsGeneral;
-    private IndicatorsSpecific indicatorsSpecific;
-    private ResponsesGeneral responsesGeneral;
-    private ResponsesSpecific responsesSpecific;
+    private IndicatorsGeneral IndicatorsGeneral;
+    private IndicatorsSpecific IndicatorsSpecific;
+    private ResponsesGeneral ResponsesGeneral;
+    private ResponsesSpecific ResponsesSpecific;
     private Feedback feedback;
 
     public List<FeedbackDialogue> feedbackDialogues;
@@ -24,6 +24,10 @@ public class Feedback_Determining : MonoBehaviour
     void Start()
     {
         readFeedback = new TextAsset();
+        allFeedback = new AllFeedback();
+
+        feedbackDialogues = new List<FeedbackDialogue>();
+        fDialogues = new List<FDialogues>();
 
         try
         {
@@ -45,6 +49,7 @@ public class Feedback_Determining : MonoBehaviour
 
 
         allFeedback = JsonUtility.FromJson<AllFeedback>(readFeedback.text); //Deserializes the read JSON contents into a usable C# object
+        Debug.Log("Feedback contents were sucessfully deserialized");
     }
 
 
@@ -55,6 +60,31 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (gameStateManager.encounterState == EncounterState.Feedback && gameStateManager.feedbackState == FeedbackState.FeedbackDetermine) //Checks that the game is in the feedback determining stage of the feedback phase 
         {
+            if (allFeedback == null)
+            {
+                Debug.LogError("allFeedback is null");
+            }
+            else if (allFeedback.IndicatorsGeneral == null)
+            {
+                Debug.LogError("allFeedback > IndicatorsGeneral is null");
+            }
+            else if (allFeedback.IndicatorsGeneral.Intro == null)
+            {
+                Debug.LogError("allFeedback > IndicatorsGeneral > Intro is null");
+            }
+            else if (allFeedback.IndicatorsGeneral.Intro.ChipModel == null)
+            {
+                Debug.LogError("allFeedback > IndicatorsGeneral > Intro > ChipModel is null");
+            }
+            else if (allFeedback.IndicatorsGeneral.Intro.FeedbackText == null)
+            {
+                Debug.LogError("allFeedback > IndicatorsGeneral > Intro > FeedbackText is null");
+            }
+            else if(feedbackDialogues == null)
+            {
+                Debug.LogError("feedbackdialogues is null");
+            }
+
             DetermineIndicatorFeedback(); //Determines and assigns all the required feedback from the indicators results
             DetermineResponseFeedback(); //Determines and assigns all the required feedback from the response results
             foreach (var d in feedbackDialogues)
@@ -62,6 +92,7 @@ public class Feedback_Determining : MonoBehaviour
                 fDialogues.Add(new FDialogues(d.ChipModel, d.FeedbackText));
             }
             gameStateManager.feedbackState = FeedbackState.FeedbackDisplay;
+            Debug.Log("Feedback Determining moved to Feedback Display");
         }
     }
 
@@ -71,20 +102,20 @@ public class Feedback_Determining : MonoBehaviour
 
     public void DetermineIndicatorFeedback() //Determines the general and specific indicator feedback to display, adding them to the Feedback Dialogue List
     {
-        feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.Intro.ChipModel, allFeedback.indicatorsGeneral.Intro.FeedbackText)); //Adds the intro indicators feedback dialogue
+        feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.Intro.ChipModel, allFeedback.IndicatorsGeneral.Intro.FeedbackText)); //Adds the intro indicators feedback dialogue
 
 
         if (encounterResults.indicatorResults.indicatorGrade == Grade.All) //Checks if the indicators grade is All (the player identified all the indicators)
         {
             if (encounterResults.indicatorResults.indicatorsIncorrect == false) //Checks if no indicators were incorrectly identified (the player identified all the indicators without mistake)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.AllIndicatorsCorrect.ChipModel, allFeedback.indicatorsGeneral.AllIndicatorsCorrect.FeedbackText)); //Adds the corresponding feedback dialogue to the Feedback List
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.AllIndicatorsCorrect.ChipModel, allFeedback.IndicatorsGeneral.AllIndicatorsCorrect.FeedbackText)); //Adds the corresponding feedback dialogue to the Feedback List
                 DetermineCorrectIndicatorFeedback(); //Determines and assigns the feedback to display for each correct indicator result
             }
 
             else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //Checks if one or more indicators were incorrectly identified (the player identified all the indicators, but made mistakes)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.AllIndicatorsCorrectI.ChipModel, allFeedback.indicatorsGeneral.AllIndicatorsCorrectI.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.AllIndicatorsCorrectI.ChipModel, allFeedback.IndicatorsGeneral.AllIndicatorsCorrectI.FeedbackText));
                 DetermineCorrectIndicatorFeedback();
                 DetermineIncorrectIndicatorFeedback();
             }
@@ -95,14 +126,14 @@ public class Feedback_Determining : MonoBehaviour
         {
             if (encounterResults.indicatorResults.indicatorsIncorrect == false) //Checks if no indicators were incorrectly identified (the player identified some and missed some indicators, but did not incorrectly identify any indicators)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.SomeIndicatorsCorrect.ChipModel, allFeedback.indicatorsGeneral.SomeIndicatorsCorrect.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.SomeIndicatorsCorrect.ChipModel, allFeedback.IndicatorsGeneral.SomeIndicatorsCorrect.FeedbackText));
                 DetermineCorrectIndicatorFeedback();
                 DetermineMissedIndicatorFeedback();
             }
 
             else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //Checks if one or more indicators were incorrectly identified (the player identifed some, missed some, and incorrecetly identified some indicators)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.SomeIndicatorsCorrectI.ChipModel, allFeedback.indicatorsGeneral.SomeIndicatorsCorrectI.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.SomeIndicatorsCorrectI.ChipModel, allFeedback.IndicatorsGeneral.SomeIndicatorsCorrectI.FeedbackText));
                 DetermineCorrectIndicatorFeedback();
                 DetermineMissedIndicatorFeedback();
                 DetermineIncorrectIndicatorFeedback();
@@ -114,13 +145,13 @@ public class Feedback_Determining : MonoBehaviour
         {
             if (encounterResults.indicatorResults.indicatorsIncorrect == false) // (the player missed all the indicators, but did not incorrectly identify any)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.NoIndicatorsCorrect.ChipModel, allFeedback.indicatorsGeneral.NoIndicatorsCorrect.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.NoIndicatorsCorrect.ChipModel, allFeedback.IndicatorsGeneral.NoIndicatorsCorrect.FeedbackText));
                 DetermineMissedIndicatorFeedback();
             }
 
             else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //(the player missed all the indicators and incorrectly identified some)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.NoIndicatorsCorrectI.ChipModel, allFeedback.indicatorsGeneral.NoIndicatorsCorrectI.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.NoIndicatorsCorrectI.ChipModel, allFeedback.IndicatorsGeneral.NoIndicatorsCorrectI.FeedbackText));
                 DetermineMissedIndicatorFeedback();
                 DetermineIncorrectIndicatorFeedback();
             }
@@ -131,12 +162,12 @@ public class Feedback_Determining : MonoBehaviour
         {
             if (encounterResults.indicatorResults.indicatorsIncorrect == false) //(the player correctly avoided selecting any indicators when there weren't any)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.IndicatorsCorrectlyAvoided.ChipModel, allFeedback.indicatorsGeneral.IndicatorsCorrectlyAvoided.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.IndicatorsCorrectlyAvoided.ChipModel, allFeedback.IndicatorsGeneral.IndicatorsCorrectlyAvoided.FeedbackText));
             }
 
             else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //(the player incorrectly selected indicators when there weren't any)
             {
-                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.IndicatorsIncorrectlyAvoided.ChipModel, allFeedback.indicatorsGeneral.IndicatorsIncorrectlyAvoided.FeedbackText));
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsGeneral.IndicatorsIncorrectlyAvoided.ChipModel, allFeedback.IndicatorsGeneral.IndicatorsIncorrectlyAvoided.FeedbackText));
                 DetermineIncorrectIndicatorFeedback();
             }
         }
@@ -148,18 +179,18 @@ public class Feedback_Determining : MonoBehaviour
 
     public void DetermineResponseFeedback() //Determines the general and specific response feedback to display, adding them to the Feedback Dialogue List
     {
-        feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesGeneral.Intro.ChipModel, allFeedback.responsesGeneral.Intro.FeedbackText));
+        feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesGeneral.Intro.ChipModel, allFeedback.ResponsesGeneral.Intro.FeedbackText));
 
 
         if (encounterResults.responseResults.responseCorrect == true) //Checks if the player provided a correct response
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesGeneral.ResponseCorrect.ChipModel, allFeedback.responsesGeneral.ResponseCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesGeneral.ResponseCorrect.ChipModel, allFeedback.ResponsesGeneral.ResponseCorrect.FeedbackText));
             DetermineCorrectResponseFeedback();
         }
 
         else if (encounterResults.responseResults.responseCorrect == false) //Checks if the player provided an incorrect response
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesGeneral.ResponseIncorrect.ChipModel, allFeedback.responsesGeneral.ResponseIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesGeneral.ResponseIncorrect.ChipModel, allFeedback.ResponsesGeneral.ResponseIncorrect.FeedbackText));
             DetermineIncorrectResponseFeedback();
             SuggestResponseFeedback();
         }
@@ -173,37 +204,37 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.indicatorResults.subjectResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SubjectCorrect.ChipModel, allFeedback.indicatorsSpecific.SubjectCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.SubjectCorrect.ChipModel, allFeedback.IndicatorsSpecific.SubjectCorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.senderResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SenderCorrect.ChipModel, allFeedback.indicatorsSpecific.SenderCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.SenderCorrect.ChipModel, allFeedback.IndicatorsSpecific.SenderCorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.introductionResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.IntroductionCorrect.ChipModel, allFeedback.indicatorsSpecific.IntroductionCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.IntroductionCorrect.ChipModel, allFeedback.IndicatorsSpecific.IntroductionCorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.mainbodyResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.MainBodyCorrect.ChipModel, allFeedback.indicatorsSpecific.MainBodyCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.MainBodyCorrect.ChipModel, allFeedback.IndicatorsSpecific.MainBodyCorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.linkResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.LinkCorrect.ChipModel, allFeedback.indicatorsSpecific.LinkCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.LinkCorrect.ChipModel, allFeedback.IndicatorsSpecific.LinkCorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.endResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.EndCorrect.ChipModel, allFeedback.indicatorsSpecific.EndCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.EndCorrect.ChipModel, allFeedback.IndicatorsSpecific.EndCorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.fileResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.FileCorrect.ChipModel, allFeedback.indicatorsSpecific.FileCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.FileCorrect.ChipModel, allFeedback.IndicatorsSpecific.FileCorrect.FeedbackText));
         }
     }
 
@@ -215,37 +246,37 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.indicatorResults.subjectResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SubjectIncorrect.ChipModel, allFeedback.indicatorsSpecific.SubjectIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.SubjectIncorrect.ChipModel, allFeedback.IndicatorsSpecific.SubjectIncorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.senderResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SenderIncorrect.ChipModel, allFeedback.indicatorsSpecific.SenderIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.SenderIncorrect.ChipModel, allFeedback.IndicatorsSpecific.SenderIncorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.introductionResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.IntroductionIncorrect.ChipModel, allFeedback.indicatorsSpecific.IntroductionIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.IntroductionIncorrect.ChipModel, allFeedback.IndicatorsSpecific.IntroductionIncorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.mainbodyResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.MainBodyIncorrect.ChipModel, allFeedback.indicatorsSpecific.MainBodyIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.MainBodyIncorrect.ChipModel, allFeedback.IndicatorsSpecific.MainBodyIncorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.linkResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.LinkIncorrect.ChipModel, allFeedback.indicatorsSpecific.LinkIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.LinkIncorrect.ChipModel, allFeedback.IndicatorsSpecific.LinkIncorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.endResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.EndIncorrect.ChipModel, allFeedback.indicatorsSpecific.EndIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.EndIncorrect.ChipModel, allFeedback.IndicatorsSpecific.EndIncorrect.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.fileResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.FileIncorrect.ChipModel, allFeedback.indicatorsSpecific.FileIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.FileIncorrect.ChipModel, allFeedback.IndicatorsSpecific.FileIncorrect.FeedbackText));
         }
     }
 
@@ -257,37 +288,37 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.indicatorResults.subjectResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SubjectMissed.ChipModel, allFeedback.indicatorsSpecific.SubjectMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.SubjectMissed.ChipModel, allFeedback.IndicatorsSpecific.SubjectMissed.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.senderResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SenderMissed.ChipModel, allFeedback.indicatorsSpecific.SenderMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.SenderMissed.ChipModel, allFeedback.IndicatorsSpecific.SenderMissed.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.introductionResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.IntroductionMissed.ChipModel, allFeedback.indicatorsSpecific.IntroductionMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.IntroductionMissed.ChipModel, allFeedback.IndicatorsSpecific.IntroductionMissed.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.mainbodyResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.MainBodyMissed.ChipModel, allFeedback.indicatorsSpecific.MainBodyMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.MainBodyMissed.ChipModel, allFeedback.IndicatorsSpecific.MainBodyMissed.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.linkResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.LinkMissed.ChipModel, allFeedback.indicatorsSpecific.LinkMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.LinkMissed.ChipModel, allFeedback.IndicatorsSpecific.LinkMissed.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.endResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.EndMissed.ChipModel, allFeedback.indicatorsSpecific.EndMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.EndMissed.ChipModel, allFeedback.IndicatorsSpecific.EndMissed.FeedbackText));
         }
 
         if (encounterResults.indicatorResults.fileResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.FileMissed.ChipModel, allFeedback.indicatorsSpecific.FileMissed.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.IndicatorsSpecific.FileMissed.ChipModel, allFeedback.IndicatorsSpecific.FileMissed.FeedbackText));
         }
     }
 
@@ -299,27 +330,27 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.responseResults.linkResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.OpenLinkCorrect.ChipModel, allFeedback.responsesSpecific.OpenLinkCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.OpenLinkCorrect.ChipModel, allFeedback.ResponsesSpecific.OpenLinkCorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.fileResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DownloadFileCorrect.ChipModel, allFeedback.responsesSpecific.DownloadFileCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DownloadFileCorrect.ChipModel, allFeedback.ResponsesSpecific.DownloadFileCorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.replyResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReplyCorrect.ChipModel, allFeedback.responsesSpecific.ReplyCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReplyCorrect.ChipModel, allFeedback.ResponsesSpecific.ReplyCorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.deleteResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DeleteCorrect.ChipModel, allFeedback.responsesSpecific.DeleteCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DeleteCorrect.ChipModel, allFeedback.ResponsesSpecific.DeleteCorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.reportResult == Result.TruePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReportCorrect.ChipModel, allFeedback.responsesSpecific.ReportCorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReportCorrect.ChipModel, allFeedback.ResponsesSpecific.ReportCorrect.FeedbackText));
         }
     }
 
@@ -331,27 +362,27 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.responseResults.linkResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.OpenLinkIncorrect.ChipModel, allFeedback.responsesSpecific.OpenLinkIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.OpenLinkIncorrect.ChipModel, allFeedback.ResponsesSpecific.OpenLinkIncorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.fileResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DownloadFileIncorrect.ChipModel, allFeedback.responsesSpecific.DownloadFileIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DownloadFileIncorrect.ChipModel, allFeedback.ResponsesSpecific.DownloadFileIncorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.replyResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReplyIncorrect.ChipModel, allFeedback.responsesSpecific.ReplyIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReplyIncorrect.ChipModel, allFeedback.ResponsesSpecific.ReplyIncorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.deleteResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DeleteIncorrect.ChipModel, allFeedback.responsesSpecific.DeleteIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DeleteIncorrect.ChipModel, allFeedback.ResponsesSpecific.DeleteIncorrect.FeedbackText));
         }
 
         if (encounterResults.responseResults.reportResult == Result.FalsePositive)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReportIncorrect.ChipModel, allFeedback.responsesSpecific.ReportIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReportIncorrect.ChipModel, allFeedback.ResponsesSpecific.ReportIncorrect.FeedbackText));
         }
     }
 
@@ -363,17 +394,17 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.responseResults.replyResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReplySuggest.ChipModel, allFeedback.responsesSpecific.ReplyIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReplySuggest.ChipModel, allFeedback.ResponsesSpecific.ReplyIncorrect.FeedbackText));
         }
 
         else if (encounterResults.responseResults.deleteResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DeleteIncorrect.ChipModel, allFeedback.responsesSpecific.DeleteIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DeleteIncorrect.ChipModel, allFeedback.ResponsesSpecific.DeleteIncorrect.FeedbackText));
         }
 
         else if (encounterResults.responseResults.reportResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReportIncorrect.ChipModel, allFeedback.responsesSpecific.ReportIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReportIncorrect.ChipModel, allFeedback.ResponsesSpecific.ReportIncorrect.FeedbackText));
         }
     }
 }
@@ -386,10 +417,10 @@ public class Feedback_Determining : MonoBehaviour
 [System.Serializable]
 public class AllFeedback //Stores all the feedback data from the JSON Feedback file
 {
-    public IndicatorsGeneral indicatorsGeneral;
-    public IndicatorsSpecific indicatorsSpecific;
-    public ResponsesGeneral responsesGeneral;
-    public ResponsesSpecific responsesSpecific;
+    public IndicatorsGeneral IndicatorsGeneral;
+    public IndicatorsSpecific IndicatorsSpecific;
+    public ResponsesGeneral ResponsesGeneral;
+    public ResponsesSpecific ResponsesSpecific;
 }
 
 
