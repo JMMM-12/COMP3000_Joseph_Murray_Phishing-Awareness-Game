@@ -158,7 +158,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
                     gameStateManager.encounterActive = true; //Actives the encounter gameplay
                     UpdateGameState(); //Updates the state of the game, and loads new encounter dialogue once the encounter state has looped
                     dialoguesLoaded = false;
-                    
                 }
             }
         }
@@ -336,7 +335,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             int newEncounterNum = gameStateManager.EncounterNum + 1;
             gameStateManager.EncounterNum = newEncounterNum; //Increments to the next encounter's dialogue once the final dialogue part of the previous encounter has finished
             currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum); //Loads the next set of encounter dialogues
-            Debug.Log("Game State was Updated to the beginning of the next encounter");
+            gameStateManager.dialogueActive = true;
+            Debug.Log("Game State was Updated to the beginning of the next encounter & dialogue was reactivated");
         }
     }
 

@@ -87,10 +87,18 @@ public class Feedback_Determining : MonoBehaviour
 
             DetermineIndicatorFeedback(); //Determines and assigns all the required feedback from the indicators results
             DetermineResponseFeedback(); //Determines and assigns all the required feedback from the response results
-            foreach (var d in feedbackDialogues)
+
+            Debug.Log("Feedback Intro contents from read & deserialized file: " + allFeedback.IndicatorsGeneral.Intro.ChipModel + " And: " + allFeedback.IndicatorsGeneral.Intro.FeedbackText);
+            Debug.Log("Feedback Intro contents from feedback dialogues variable: " + allFeedback.IndicatorsGeneral.Intro.ChipModel + " And: " + allFeedback.IndicatorsGeneral.Intro.FeedbackText);
+
+            foreach (var d in feedbackDialogues) //Assign the feedback dialogues to a new object type for display
             {
+                Debug.Log("Feedback to be displayed: " + d.ChipModel + " And: " + d.FeedbackText);
                 fDialogues.Add(new FDialogues(d.ChipModel, d.FeedbackText));
             }
+
+            feedbackDialoguesAsset.feedbackDialogues = fDialogues; //Assigns the feedback dialogues to the global asset for display
+
             gameStateManager.feedbackState = FeedbackState.FeedbackDisplay;
             Debug.Log("Feedback Determining moved to Feedback Display");
         }
