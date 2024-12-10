@@ -402,17 +402,17 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (encounterResults.responseResults.replyResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReplySuggest.ChipModel, allFeedback.ResponsesSpecific.ReplyIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReplySuggest.ChipModel, allFeedback.ResponsesSpecific.ReplySuggest.FeedbackText));
         }
 
         else if (encounterResults.responseResults.deleteResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DeleteIncorrect.ChipModel, allFeedback.ResponsesSpecific.DeleteIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.DeleteSuggest.ChipModel, allFeedback.ResponsesSpecific.DeleteSuggest.FeedbackText));
         }
 
         else if (encounterResults.responseResults.reportResult == Result.FalseNegative)
         {
-            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReportIncorrect.ChipModel, allFeedback.ResponsesSpecific.ReportIncorrect.FeedbackText));
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.ResponsesSpecific.ReportSuggest.ChipModel, allFeedback.ResponsesSpecific.ReportSuggest.FeedbackText));
         }
     }
 }

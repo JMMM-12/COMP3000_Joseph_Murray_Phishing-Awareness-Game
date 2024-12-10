@@ -36,6 +36,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
 
     public GameStateManager gameStateManager;
     public FeedbackDialogues feedbackDialoguesAsset;
+    public SelectionData selectionData;
+    public EncounterResults encounterResults;
+    public FeedbackDialogues fDialogues;
 
     private bool dialoguesLoaded;
 
@@ -332,6 +335,17 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
         else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
         {
             gameStateManager.dialogueStage = DialogueStage.Beginning;
+            gameStateManager.encounterState = EncounterState.Unknown;
+            gameStateManager.feedbackState = FeedbackState.Inactive;
+            gameStateManager.encounterActive = false;
+            gameStateManager.emailDisplayed = false;
+            gameStateManager.emailContentsDisplayed = false;
+            gameStateManager.highlightersReady = false;
+            selectionData.indicatorSelection = new IndicatorSelection();
+            selectionData.responseSelection = new ResponseSelection();
+            encounterResults.indicatorResults = new IndicatorResults();
+            encounterResults.responseResults = new ResponseResults();
+            fDialogues.feedbackDialogues = new List<FDialogues>();
             int newEncounterNum = gameStateManager.EncounterNum + 1;
             gameStateManager.EncounterNum = newEncounterNum; //Increments to the next encounter's dialogue once the final dialogue part of the previous encounter has finished
             currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum); //Loads the next set of encounter dialogues

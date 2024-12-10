@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allFeedback:
-    indicatorsGeneral:
+    IndicatorsGeneral:
       Intro:
         ChipModel: 
         FeedbackText: 
@@ -1256,7 +1256,7 @@ MonoBehaviour:
       Score:
         ChipModel: 
         FeedbackText: 
-    indicatorsSpecific:
+    IndicatorsSpecific:
       SubjectCorrect:
         ChipModel: 
         FeedbackText: 
@@ -1320,7 +1320,7 @@ MonoBehaviour:
       FileMissed:
         ChipModel: 
         FeedbackText: 
-    responsesGeneral:
+    ResponsesGeneral:
       Intro:
         ChipModel: 
         FeedbackText: 
@@ -1330,7 +1330,7 @@ MonoBehaviour:
       ResponseIncorrect:
         ChipModel: 
         FeedbackText: 
-    responsesSpecific:
+    ResponsesSpecific:
       ReplyCorrect:
         ChipModel: 
         FeedbackText: 
@@ -3253,6 +3253,9 @@ MonoBehaviour:
   ChipThinking: {fileID: -839363022963490085, guid: 3d987ec212178d241ac6b52078d23a04, type: 3}
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   feedbackDialoguesAsset: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
+  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
+  fDialogues: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
