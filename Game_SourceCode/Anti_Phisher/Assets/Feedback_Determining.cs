@@ -99,6 +99,8 @@ public class Feedback_Determining : MonoBehaviour
 
             feedbackDialoguesAsset.feedbackDialogues = fDialogues; //Assigns the feedback dialogues to the global asset for display
 
+            feedbackDialogues = new List<FeedbackDialogue>();
+            fDialogues = new List<FDialogues>();
             gameStateManager.feedbackState = FeedbackState.FeedbackDisplay;
             Debug.Log("Feedback Determining moved to Feedback Display");
         }
