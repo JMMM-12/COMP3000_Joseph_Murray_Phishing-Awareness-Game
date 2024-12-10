@@ -41,6 +41,7 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
                     selectionData.responseSelection.fileDownloaded = true;
                     Debug.Log("Response - File was downloaded");
                     gameStateManager.encounterState = EncounterState.Feedback;
+                    gameStateManager.feedbackState = FeedbackState.AnswersCheck;
                 }
             }
         }

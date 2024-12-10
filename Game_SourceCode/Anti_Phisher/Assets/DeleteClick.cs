@@ -29,6 +29,7 @@ public class DeleteClick : MonoBehaviour //Buton logic to change the response se
         selectionData.responseSelection.emailDeleted = true;
         Debug.Log("Response - Email was deleted");
         gameStateManager.encounterState = EncounterState.Feedback;
+        gameStateManager.feedbackState = FeedbackState.AnswersCheck;
     }
 
 

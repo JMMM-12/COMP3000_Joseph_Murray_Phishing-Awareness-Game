@@ -30,6 +30,7 @@ public class ReplyClick : MonoBehaviour //Buton logic to change the response sel
         selectionData.responseSelection.emailReply = true;
         Debug.Log("Response - Email was replied to");
         gameStateManager.encounterState = EncounterState.Feedback;
+        gameStateManager.feedbackState = FeedbackState.AnswersCheck;
     }
 
     

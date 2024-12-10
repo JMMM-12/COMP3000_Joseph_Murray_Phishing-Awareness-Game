@@ -41,6 +41,7 @@ public class LinkClick : MonoBehaviour, IPointerClickHandler //Tracks when the l
                     selectionData.responseSelection.linkOpened = true;
                     Debug.Log("Response - Link was opened");
                     gameStateManager.encounterState = EncounterState.Feedback;
+                    gameStateManager.feedbackState = FeedbackState.AnswersCheck;
                 }
             }
         }

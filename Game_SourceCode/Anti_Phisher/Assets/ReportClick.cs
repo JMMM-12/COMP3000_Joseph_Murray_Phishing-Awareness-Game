@@ -29,5 +29,6 @@ public class ReportClick : MonoBehaviour
         selectionData.responseSelection.emailReported = true;
         Debug.Log("Response - Email was reported");
         gameStateManager.encounterState = EncounterState.Feedback;
+        gameStateManager.feedbackState = FeedbackState.AnswersCheck;
     }
 }
