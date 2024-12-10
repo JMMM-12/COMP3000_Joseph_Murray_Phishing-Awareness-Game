@@ -15,9 +15,11 @@ public class Feedback_Determining : MonoBehaviour
     private Feedback feedback;
 
     public List<FeedbackDialogue> feedbackDialogues;
+    private List<FDialogues> fDialogues;
 
     public GameStateManager gameStateManager;
     public EncounterResults encounterResults;
+    public FeedbackDialogues feedbackDialoguesAsset;
 
     void Start()
     {
@@ -55,8 +57,11 @@ public class Feedback_Determining : MonoBehaviour
         {
             DetermineIndicatorFeedback(); //Determines and assigns all the required feedback from the indicators results
             DetermineResponseFeedback(); //Determines and assigns all the required feedback from the response results
+            foreach (var d in feedbackDialogues)
+            {
+                fDialogues.Add(new FDialogues(d.ChipModel, d.FeedbackText));
+            }
             gameStateManager.feedbackState = FeedbackState.FeedbackDisplay;
-            gameStateManager.dialogueActive = true;
         }
     }
 

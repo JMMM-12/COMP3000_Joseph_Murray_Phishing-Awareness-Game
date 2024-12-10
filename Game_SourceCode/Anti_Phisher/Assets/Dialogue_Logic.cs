@@ -2,11 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
-using Unity.VisualScripting;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
 public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue, text box, and Chip model changes upon player input
@@ -38,8 +35,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
     private Dialogue dialogueObj;
 
     public GameStateManager gameStateManager;
-    public DialogueStage dialogueStage; //Used for tracking the state of the current encounter
-    public int encounterNum; //Used for tracking the encounter the game is on
+    public FeedbackDialogues feedbackDialoguesAsset;
+
+    private bool dialoguesLoaded;
 
 
     void Start()
@@ -49,7 +47,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
         Readdialogues = new TextAsset();
         allDialoguesObj = new AllDialogues();
         currentEncounterDialogues = new EncounterDialogues();
-        dialogueObj = new Dialogue();
+        dialoguesLoaded = false;
 
         dialogueText = GetComponent<Text>(); //Retrieves the Text object reference for this text (legacy) GameObject
 
@@ -112,9 +110,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
 
     void Update()
     {
-        if (Input.touchCount == 1 || Input.anyKeyDown == true) //Checks if player touch is detected (anyKeyDown input for testing purposes)
+        if (gameStateManager.dialogueActive == true) //Checks if the game's dialogue is active
         {
-            if (gameStateManager.dialogueActive == true) //Checks if the game's dialogue should be active
+            if (Input.touchCount == 1 || Input.anyKeyDown == true) //Checks if player touch is detected (anyKeyDown input for testing purposes)
             {
                 TextBox.SetActive(true); //Ensures the Text Box can return and is active during dialogue
                 RescaleChipsModel(ChipSpriteRenderer, ChipTransform); //Ensures Chip's can change to and remain its original size during dialogue
@@ -159,12 +157,44 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
                     Debug.Log("Dialogue has Ended");
                     gameStateManager.encounterActive = true; //Actives the encounter gameplay
                     UpdateGameState(); //Updates the state of the game, and loads new encounter dialogue once the encounter state has looped
+                    dialoguesLoaded = false;
+                    
+                }
+            }
+        }
+
+
+
+        else
+        {
+            if (dialoguesLoaded == false)
+            {
+                if (gameStateManager.encounterState == EncounterState.Feedback && gameStateManager.dialogueStage == DialogueStage.Feedback && gameStateManager.feedbackState == FeedbackState.FeedbackDisplay)
+                {
+                    foreach(var d in feedbackDialoguesAsset.feedbackDialogues)
+                    {
+                        currentEncounterDialogues.Feedback.Add(new Dialogue(d.ChipModel, d.FeedbackText));
+                    }
+
                     DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
                     chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
                     dialogues = new string[DialoguesCount];
                     AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
+                    dialoguesLoaded = true;
+                    gameStateManager.dialogueActive = true;
+                }
+
+                else if (gameStateManager.encounterState == EncounterState.Unknown && gameStateManager.dialogueStage == DialogueStage.Beginning && gameStateManager.feedbackState == FeedbackState.Inactive)
+                {
+                    DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
+                    chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
+                    dialogues = new string[DialoguesCount];
+                    AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
+                    dialoguesLoaded = true;
+                    gameStateManager.dialogueActive = true;
                 }
             }
+            
         }
     }
 
@@ -296,13 +326,8 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
     {
         if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
-            gameStateManager.dialogueStage = DialogueStage.Middle;
-            gameStateManager.encounterState = EncounterState.Indicators;
-        }
-
-        else if (gameStateManager.dialogueStage == DialogueStage.Middle)
-        {
             gameStateManager.dialogueStage = DialogueStage.Feedback;
+            gameStateManager.encounterState = EncounterState.Indicators;
         }
 
         else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
@@ -330,17 +355,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             }
         }
 
-        else if (gameStateManager.dialogueStage == DialogueStage.Middle)
-        {
-            foreach (var d in dialoguesToCount.MidGame)
-            {
-                count++;
-            }
-        }
-
         else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
         {
-            foreach (var d in dialoguesToCount.End)
+            foreach (var d in dialoguesToCount.Feedback)
             {
                 count++;
             }
@@ -369,19 +386,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             }
         }
 
-        else if (gameStateManager.dialogueStage == DialogueStage.Middle)
-        {
-            foreach (var d in currentEncounterDialogues.MidGame)
-            {
-                dialogues[z] = d.DialogueText.ToString();
-                chipModelIndicators[z] = d.ChipModel.ToString();
-                z++;
-            }
-        }
-
         else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
         {
-            foreach (var d in currentEncounterDialogues.End)
+            foreach (var d in currentEncounterDialogues.Feedback)
             {
                 dialogues[z] = d.DialogueText.ToString();
                 chipModelIndicators[z] = d.ChipModel.ToString();
@@ -404,9 +411,13 @@ public class Dialogue //Contains a single dialogue (C# equivalent to a JSON obje
 {
     public int id;
     public string ChipModel;
-    public string Text;
     public string DialogueText;
-    public string FeedbackType;
+
+    public Dialogue(string newModel, string newText)
+    {
+        ChipModel = newModel;
+        DialogueText = newText;
+    }
 }
 
 
@@ -416,8 +427,7 @@ public class Dialogue //Contains a single dialogue (C# equivalent to a JSON obje
 public class EncounterDialogues //Contains lists of dialogues for each part of an encounter - making up the dialogue for an entire encounter
 {
     public List<Dialogue> Start;
-    public List<Dialogue> MidGame;
-    public List<Dialogue> End;
+    public List<Dialogue> Feedback;
 }
 
 

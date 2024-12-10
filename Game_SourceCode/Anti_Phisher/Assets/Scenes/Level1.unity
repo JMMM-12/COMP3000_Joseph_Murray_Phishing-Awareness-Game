@@ -1370,6 +1370,7 @@ MonoBehaviour:
         FeedbackText: 
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
+  feedbackDialoguesAsset: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!1 &801197865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,9 +3249,8 @@ MonoBehaviour:
   ChipSmiling: {fileID: -4713603647935056149, guid: 44f86f85b5f874546af45cd5626abdf2, type: 3}
   ChipExcited: {fileID: 7914054831802253391, guid: 2d1cfe3f3bd741f469e273b347d254b7, type: 3}
   ChipThinking: {fileID: -839363022963490085, guid: 3d987ec212178d241ac6b52078d23a04, type: 3}
-  gameStateManager: {fileID: 0}
-  dialogueStage: 0
-  encounterNum: 0
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  feedbackDialoguesAsset: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

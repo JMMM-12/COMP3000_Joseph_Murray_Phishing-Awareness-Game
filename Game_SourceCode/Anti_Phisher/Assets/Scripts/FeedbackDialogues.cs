@@ -14,4 +14,10 @@ public class FDialogues
 {
     public string ChipModel;
     public string FeedbackText;
+
+    public FDialogues(string newModel, string newText)
+    {
+        ChipModel = newModel;
+        FeedbackText = newText;
+    }
 }

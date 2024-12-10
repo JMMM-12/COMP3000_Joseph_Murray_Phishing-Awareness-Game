@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\EndClick.cs" />
     <Compile Include="Assets\Email_Display_Logic.cs" />
+    <Compile Include="Assets\Scripts\FeedbackDialogues.cs" />
     <Compile Include="Assets\ReplyClick.cs" />
     <Compile Include="Assets\GameQuit_Logic.cs" />
     <Compile Include="Assets\Feedback_Determining.cs" />
