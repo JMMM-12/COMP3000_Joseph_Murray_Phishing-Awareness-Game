@@ -53,8 +53,10 @@ public class Feedback_Determining : MonoBehaviour
     {
         if (gameStateManager.encounterState == EncounterState.Feedback && gameStateManager.feedbackState == FeedbackState.FeedbackDetermine) //Checks that the game is in the feedback determining stage of the feedback phase 
         {
-            DetermineGeneralIndicatorFeedback();
-            DetermineSpecificIndicatorFeedback();
+            DetermineIndicatorFeedback(); //Determines and assigns all the required feedback from the indicators results
+            DetermineResponseFeedback(); //Determines and assigns all the required feedback from the response results
+            gameStateManager.feedbackState = FeedbackState.FeedbackDisplay;
+            gameStateManager.dialogueActive = true;
         }
     }
 
@@ -62,30 +64,76 @@ public class Feedback_Determining : MonoBehaviour
 
 
 
-    public void DetermineGeneralIndicatorFeedback() //Determines all the general feedback dialogue to display and adds it to the Feedback Dialogue List
+    public void DetermineIndicatorFeedback() //Determines the general and specific indicator feedback to display, adding them to the Feedback Dialogue List
     {
         feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.Intro.ChipModel, allFeedback.indicatorsGeneral.Intro.FeedbackText)); //Adds the intro indicators feedback dialogue
 
 
         if (encounterResults.indicatorResults.indicatorGrade == Grade.All) //Checks if the indicators grade is All (the player identified all the indicators)
         {
-            if (encounterResults.indicatorResults.indicatorsIncorrect == false) //Checks if no indicators were incorrectly identified
+            if (encounterResults.indicatorResults.indicatorsIncorrect == false) //Checks if no indicators were incorrectly identified (the player identified all the indicators without mistake)
             {
                 feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.AllIndicatorsCorrect.ChipModel, allFeedback.indicatorsGeneral.AllIndicatorsCorrect.FeedbackText)); //Adds the corresponding feedback dialogue to the Feedback List
-                //Within here - searches through the indicator results and adds the correct indicator's dialogue when a correct indicator result is found (loops until the incorrect dialogue count reaches zero - this will increment)
+                DetermineCorrectIndicatorFeedback(); //Determines and assigns the feedback to display for each correct indicator result
             }
 
-            else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //Checks if one or more indicators were incorrectly identified 
+            else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //Checks if one or more indicators were incorrectly identified (the player identified all the indicators, but made mistakes)
             {
                 feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.AllIndicatorsCorrectI.ChipModel, allFeedback.indicatorsGeneral.AllIndicatorsCorrectI.FeedbackText));
-                //Within here - searches through the indicator results and adds the incorrect indicator's dialogue when an incorrect indicator result is found (loops until the incorrect dialogue count reaches zero - this will increment)
+                DetermineCorrectIndicatorFeedback();
+                DetermineIncorrectIndicatorFeedback();
             }
         }
 
 
         else if (encounterResults.indicatorResults.indicatorGrade == Grade.Some) //Checks if the indicators grade is Some (the player identified some indicators and missed some indicators)
         {
-            //Process continues for all grades
+            if (encounterResults.indicatorResults.indicatorsIncorrect == false) //Checks if no indicators were incorrectly identified (the player identified some and missed some indicators, but did not incorrectly identify any indicators)
+            {
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.SomeIndicatorsCorrect.ChipModel, allFeedback.indicatorsGeneral.SomeIndicatorsCorrect.FeedbackText));
+                DetermineCorrectIndicatorFeedback();
+                DetermineMissedIndicatorFeedback();
+            }
+
+            else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //Checks if one or more indicators were incorrectly identified (the player identifed some, missed some, and incorrecetly identified some indicators)
+            {
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.SomeIndicatorsCorrectI.ChipModel, allFeedback.indicatorsGeneral.SomeIndicatorsCorrectI.FeedbackText));
+                DetermineCorrectIndicatorFeedback();
+                DetermineMissedIndicatorFeedback();
+                DetermineIncorrectIndicatorFeedback();
+            }
+        }
+
+
+        else if (encounterResults.indicatorResults.indicatorGrade == Grade.None) //Checks if the indicators grade is None (the player missed all the indicators)
+        {
+            if (encounterResults.indicatorResults.indicatorsIncorrect == false) // (the player missed all the indicators, but did not incorrectly identify any)
+            {
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.NoIndicatorsCorrect.ChipModel, allFeedback.indicatorsGeneral.NoIndicatorsCorrect.FeedbackText));
+                DetermineMissedIndicatorFeedback();
+            }
+
+            else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //(the player missed all the indicators and incorrectly identified some)
+            {
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.NoIndicatorsCorrectI.ChipModel, allFeedback.indicatorsGeneral.NoIndicatorsCorrectI.FeedbackText));
+                DetermineMissedIndicatorFeedback();
+                DetermineIncorrectIndicatorFeedback();
+            }
+        }
+
+
+        else if (encounterResults.indicatorResults.indicatorGrade == Grade.Unrequired) //Checks if the indicators grade is Unrequired (therer were no indicators for the player to identify)
+        {
+            if (encounterResults.indicatorResults.indicatorsIncorrect == false) //(the player correctly avoided selecting any indicators when there weren't any)
+            {
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.IndicatorsCorrectlyAvoided.ChipModel, allFeedback.indicatorsGeneral.IndicatorsCorrectlyAvoided.FeedbackText));
+            }
+
+            else if (encounterResults.indicatorResults.indicatorsIncorrect == true) //(the player incorrectly selected indicators when there weren't any)
+            {
+                feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsGeneral.IndicatorsIncorrectlyAvoided.ChipModel, allFeedback.indicatorsGeneral.IndicatorsIncorrectlyAvoided.FeedbackText));
+                DetermineIncorrectIndicatorFeedback();
+            }
         }
     }
 
@@ -93,9 +141,235 @@ public class Feedback_Determining : MonoBehaviour
 
 
 
-    public void DetermineSpecificIndicatorFeedback() //Determines all the specific feedback dialogue to display and adds it to the Feedback Dialogue List
+    public void DetermineResponseFeedback() //Determines the general and specific response feedback to display, adding them to the Feedback Dialogue List
     {
+        feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesGeneral.Intro.ChipModel, allFeedback.responsesGeneral.Intro.FeedbackText));
 
+
+        if (encounterResults.responseResults.responseCorrect == true) //Checks if the player provided a correct response
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesGeneral.ResponseCorrect.ChipModel, allFeedback.responsesGeneral.ResponseCorrect.FeedbackText));
+            DetermineCorrectResponseFeedback();
+        }
+
+        else if (encounterResults.responseResults.responseCorrect == false) //Checks if the player provided an incorrect response
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesGeneral.ResponseIncorrect.ChipModel, allFeedback.responsesGeneral.ResponseIncorrect.FeedbackText));
+            DetermineIncorrectResponseFeedback();
+            SuggestResponseFeedback();
+        }
+    }
+
+
+
+
+
+    public void DetermineCorrectIndicatorFeedback() //Determines and assigns the feedback to display for correct indicators
+    {
+        if (encounterResults.indicatorResults.subjectResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SubjectCorrect.ChipModel, allFeedback.indicatorsSpecific.SubjectCorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.senderResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SenderCorrect.ChipModel, allFeedback.indicatorsSpecific.SenderCorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.introductionResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.IntroductionCorrect.ChipModel, allFeedback.indicatorsSpecific.IntroductionCorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.mainbodyResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.MainBodyCorrect.ChipModel, allFeedback.indicatorsSpecific.MainBodyCorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.linkResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.LinkCorrect.ChipModel, allFeedback.indicatorsSpecific.LinkCorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.endResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.EndCorrect.ChipModel, allFeedback.indicatorsSpecific.EndCorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.fileResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.FileCorrect.ChipModel, allFeedback.indicatorsSpecific.FileCorrect.FeedbackText));
+        }
+    }
+
+
+
+
+
+    public void DetermineIncorrectIndicatorFeedback() //Determines and assigns the feedback to display for incorrect indicators
+    {
+        if (encounterResults.indicatorResults.subjectResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SubjectIncorrect.ChipModel, allFeedback.indicatorsSpecific.SubjectIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.senderResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SenderIncorrect.ChipModel, allFeedback.indicatorsSpecific.SenderIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.introductionResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.IntroductionIncorrect.ChipModel, allFeedback.indicatorsSpecific.IntroductionIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.mainbodyResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.MainBodyIncorrect.ChipModel, allFeedback.indicatorsSpecific.MainBodyIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.linkResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.LinkIncorrect.ChipModel, allFeedback.indicatorsSpecific.LinkIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.endResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.EndIncorrect.ChipModel, allFeedback.indicatorsSpecific.EndIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.fileResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.FileIncorrect.ChipModel, allFeedback.indicatorsSpecific.FileIncorrect.FeedbackText));
+        }
+    }
+
+
+
+
+
+    public void DetermineMissedIndicatorFeedback() //Determines and assigns the feedback to display for missed indicators
+    {
+        if (encounterResults.indicatorResults.subjectResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SubjectMissed.ChipModel, allFeedback.indicatorsSpecific.SubjectMissed.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.senderResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.SenderMissed.ChipModel, allFeedback.indicatorsSpecific.SenderMissed.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.introductionResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.IntroductionMissed.ChipModel, allFeedback.indicatorsSpecific.IntroductionMissed.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.mainbodyResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.MainBodyMissed.ChipModel, allFeedback.indicatorsSpecific.MainBodyMissed.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.linkResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.LinkMissed.ChipModel, allFeedback.indicatorsSpecific.LinkMissed.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.endResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.EndMissed.ChipModel, allFeedback.indicatorsSpecific.EndMissed.FeedbackText));
+        }
+
+        if (encounterResults.indicatorResults.fileResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.indicatorsSpecific.FileMissed.ChipModel, allFeedback.indicatorsSpecific.FileMissed.FeedbackText));
+        }
+    }
+
+
+
+
+
+    public void DetermineCorrectResponseFeedback()
+    {
+        if (encounterResults.responseResults.linkResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.OpenLinkCorrect.ChipModel, allFeedback.responsesSpecific.OpenLinkCorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.fileResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DownloadFileCorrect.ChipModel, allFeedback.responsesSpecific.DownloadFileCorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.replyResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReplyCorrect.ChipModel, allFeedback.responsesSpecific.ReplyCorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.deleteResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DeleteCorrect.ChipModel, allFeedback.responsesSpecific.DeleteCorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.reportResult == Result.TruePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReportCorrect.ChipModel, allFeedback.responsesSpecific.ReportCorrect.FeedbackText));
+        }
+    }
+
+
+
+
+
+    public void DetermineIncorrectResponseFeedback()
+    {
+        if (encounterResults.responseResults.linkResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.OpenLinkIncorrect.ChipModel, allFeedback.responsesSpecific.OpenLinkIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.fileResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DownloadFileIncorrect.ChipModel, allFeedback.responsesSpecific.DownloadFileIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.replyResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReplyIncorrect.ChipModel, allFeedback.responsesSpecific.ReplyIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.deleteResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DeleteIncorrect.ChipModel, allFeedback.responsesSpecific.DeleteIncorrect.FeedbackText));
+        }
+
+        if (encounterResults.responseResults.reportResult == Result.FalsePositive)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReportIncorrect.ChipModel, allFeedback.responsesSpecific.ReportIncorrect.FeedbackText));
+        }
+    }
+
+
+
+
+
+    public void SuggestResponseFeedback()
+    {
+        if (encounterResults.responseResults.replyResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReplySuggest.ChipModel, allFeedback.responsesSpecific.ReplyIncorrect.FeedbackText));
+        }
+
+        else if (encounterResults.responseResults.deleteResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.DeleteIncorrect.ChipModel, allFeedback.responsesSpecific.DeleteIncorrect.FeedbackText));
+        }
+
+        else if (encounterResults.responseResults.reportResult == Result.FalseNegative)
+        {
+            feedbackDialogues.Add(new FeedbackDialogue(allFeedback.responsesSpecific.ReportIncorrect.ChipModel, allFeedback.responsesSpecific.ReportIncorrect.FeedbackText));
+        }
     }
 }
 
@@ -116,7 +390,7 @@ public class AllFeedback //Stores all the feedback data from the JSON Feedback f
 
 
 [System.Serializable]
-public class IndicatorsGeneral //Stores all the feedback data for general indicator feedback
+public class IndicatorsGeneral //Stores the feedback data for general indicator feedback
 {
     public Feedback Intro;
     public Feedback AllIndicatorsCorrect;
@@ -133,7 +407,7 @@ public class IndicatorsGeneral //Stores all the feedback data for general indica
 
 
 [System.Serializable]
-public class IndicatorsSpecific //Stores all the feedback data for specific indicator feedback
+public class IndicatorsSpecific //Stores the feedback data for specific indicator feedback
 {
     public Feedback SubjectCorrect;
     public Feedback SubjectIncorrect;
@@ -161,7 +435,7 @@ public class IndicatorsSpecific //Stores all the feedback data for specific indi
 
 
 [System.Serializable]
-public class ResponsesGeneral //Stores all the feedback data for general response feedback
+public class ResponsesGeneral //Stores the feedback data for general response feedback
 {
     public Feedback Intro;
     public Feedback ResponseCorrect;
@@ -171,7 +445,7 @@ public class ResponsesGeneral //Stores all the feedback data for general respons
 
 
 [System.Serializable]
-public class ResponsesSpecific //Stores all the feedback data for specific response feedback
+public class ResponsesSpecific //Stores the feedback data for specific response feedback
 {
     public Feedback ReplyCorrect;
     public Feedback ReplyIncorrect;
