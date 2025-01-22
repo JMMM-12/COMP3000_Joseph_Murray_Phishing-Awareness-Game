@@ -15,10 +15,13 @@ MonoBehaviour:
   gameState: 0
   dialogueStage: 0
   encounterState: 0
-  feedbackState: 3
+  feedbackState: 0
   EncounterNum: 0
   dialogueActive: 0
   encounterActive: 0
   emailDisplayed: 0
   emailContentsDisplayed: 0
   highlightersReady: 0
+  instructionsDisplayed: 0
+  helpButtonActive: 0
+  instructionsTextRequired: 0

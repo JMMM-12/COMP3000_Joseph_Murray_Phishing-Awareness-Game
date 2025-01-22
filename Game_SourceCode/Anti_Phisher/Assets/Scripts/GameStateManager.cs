@@ -13,7 +13,10 @@ public class GameStateManager : ScriptableObject //Manages the state of the game
     public bool encounterActive; //Determines whether the encounter is active or inactive
     public bool emailDisplayed; //Determines whether the email UI elements are active and displayed
     public bool emailContentsDisplayed; //Determines whether the email contents are displayed
-    public bool highlightersReady; //Determined whether the indicator highlighter images are ready
+    public bool highlightersReady; //Determines whether the indicator highlighter images are ready
+    public bool instructionsDisplayed; //Determines whether the instructions box is displayed
+    public bool helpButtonActive; //Determines whether the help button is active
+    public bool instructionsTextRequired; //Determines whether the instructions text must be displayed
 }
 
 
