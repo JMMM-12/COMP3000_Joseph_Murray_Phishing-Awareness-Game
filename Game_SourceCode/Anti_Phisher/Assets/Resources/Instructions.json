@@ -1,0 +1,9 @@
+{
+	"Indicator": {
+		"Text": "Select any phishing indicators by pressing on the corresponding area within the email. Once complete, press on the 'Confirm selection' button."
+	},
+	
+	"Response": {
+		"Text": "Choose a suitable response to the email by pressing on any of the avaliable response buttons (Reply, Delete, or Report), or by interacting with the email's link or attached file if present"
+	}
+}
