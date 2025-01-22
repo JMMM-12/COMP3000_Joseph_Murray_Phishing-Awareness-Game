@@ -64,6 +64,7 @@
     <Compile Include="Assets\EndClick.cs" />
     <Compile Include="Assets\Email_Display_Logic.cs" />
     <Compile Include="Assets\Scripts\FeedbackDialogues.cs" />
+    <Compile Include="Assets\Instructions_Display_Logic.cs" />
     <Compile Include="Assets\ReplyClick.cs" />
     <Compile Include="Assets\GameQuit_Logic.cs" />
     <Compile Include="Assets\Feedback_Determining.cs" />
@@ -78,11 +79,13 @@
     <Compile Include="Assets\EmailContents_Display_Logic.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\GameStateManager.cs" />
+    <Compile Include="Assets\Instructions_TextDisplay_Logic.cs" />
     <Compile Include="Assets\IntroductionClick.cs" />
     <Compile Include="Assets\SubjectClick.cs" />
     <Compile Include="Assets\ChangeState.cs" />
     <Compile Include="Assets\Scripts\GameData.cs" />
     <Compile Include="Assets\Scripts\EncounterResults.cs" />
+    <Compile Include="Assets\HelpClick.cs" />
     <Compile Include="Assets\FileClick.cs" />
     <Compile Include="Assets\ReportClick.cs" />
   </ItemGroup>

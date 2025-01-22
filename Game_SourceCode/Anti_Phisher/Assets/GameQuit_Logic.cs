@@ -21,11 +21,15 @@ public class GameQuit_Logic : MonoBehaviour //Performs game state and selection 
         gameStateManager.emailDisplayed = false;
         gameStateManager.emailContentsDisplayed = false;
         gameStateManager.highlightersReady = false;
+        gameStateManager.instructionsDisplayed = false;
+        gameStateManager.helpButtonActive = false;
+        gameStateManager.instructionsTextRequired = false;
         selectionData.indicatorSelection = new IndicatorSelection();
         selectionData.responseSelection = new ResponseSelection();
         encounterResults.indicatorResults = new IndicatorResults();
         encounterResults.responseResults = new ResponseResults();
         fDialogues.feedbackDialogues = new List<FDialogues>();
+
 
     }
 }
