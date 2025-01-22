@@ -9,6 +9,8 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
     public GameData gameData;
 
     public Image fileImage;
+    public Text fileText;
+    private bool noFile;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -18,18 +20,28 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
             {
                 if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true && gameStateManager.highlightersReady == true) //Checks that the email UI elements & contents have been displayed
                 {
-                    if (selectionData.indicatorSelection.fileSelected == false) //Checks if the file indicator is not already selected
+                    noFile = CheckFileExistence(); //Checks if the email contains a file
+                    if (noFile == false) //If the email does contain a file
                     {
-                        fileImage.color = gameData.selectedColor;
-                        selectionData.indicatorSelection.fileSelected = true; //Marks the file indicator as selected
-                        Debug.Log("File indicator was selected");
+                        if (selectionData.indicatorSelection.fileSelected == false) //Checks if the file indicator is not already selected
+                        {
+                            fileImage.color = gameData.selectedColor;
+                            selectionData.indicatorSelection.fileSelected = true; //Marks the file indicator as selected
+                            Debug.Log("File indicator was selected");
+                        }
+                        else
+                        {
+                            fileImage.color = gameData.transparentColor;
+                            selectionData.indicatorSelection.fileSelected = false; //Marks the file indicator as unselected
+                            Debug.Log("File indicator was deselected");
+                        }
                     }
+
                     else
                     {
-                        fileImage.color = gameData.transparentColor;
-                        selectionData.indicatorSelection.fileSelected = false; //Marks the file indicator as unselected
-                        Debug.Log("File indicator was deselected");
+                        Debug.Log("File area was clicked on, but this email does not contain any files");
                     }
+                    
 
                 }
             }
@@ -46,5 +58,26 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
             }
         }
 
+    }
+
+    private bool CheckFileExistence() //Checks if the email has not attached files
+    {
+        fileText = GetComponent<Text>();
+        if (fileText != null)
+        {
+            if (fileText.text.ToString() == "No attached files")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            Debug.LogError("Email file text could not be read");
+            return false;
+        }
     }
 }
