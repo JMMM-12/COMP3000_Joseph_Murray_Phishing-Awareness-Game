@@ -452,4 +452,12 @@ public class AllDialogues //Contains the entire game's dialogue values
     public EncounterDialogues Tutorial;
     public EncounterDialogues Encounter1;
     public EncounterDialogues Encounter2;
+    public EncounterDialogues Encounter3;
+    public EncounterDialogues Encounter4;
+    public EncounterDialogues Encounter5;
+    public EncounterDialogues Encounter6;
+    public EncounterDialogues Encounter7;
+    public EncounterDialogues Encounter8;
+    public EncounterDialogues Encounter9;
+    public EncounterDialogues Encounter10;
 }
