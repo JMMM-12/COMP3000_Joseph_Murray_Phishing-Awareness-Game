@@ -37,7 +37,7 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
                         }
                     }
 
-                    else
+                    else //If the email does not contain a file
                     {
                         Debug.Log("File area was clicked on, but this email does not contain any files");
                     }
@@ -50,11 +50,21 @@ public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the f
             {
                 if (gameStateManager.emailDisplayed == true && gameStateManager.emailContentsDisplayed == true) //Checks that the email UI elements & contents have been displayed
                 {
-                    selectionData.responseSelection.fileDownloaded = true;
-                    Debug.Log("Response - File was downloaded");
-                    gameStateManager.encounterState = EncounterState.Feedback;
-                    gameStateManager.feedbackState = FeedbackState.AnswersCheck;
+                    if (noFile == false) //If the email does contain a file
+                    {
+                        selectionData.responseSelection.fileDownloaded = true;
+                        Debug.Log("Response - File was downloaded");
+                        gameStateManager.encounterState = EncounterState.Feedback;
+                        gameStateManager.feedbackState = FeedbackState.AnswersCheck;
+                    }
+
+                    else //If the email does not contain a file
+                    {
+                        Debug.Log("File area was clicked on, but this email does not contain any files");
+                    }
                 }
+
+                
             }
         }
 
