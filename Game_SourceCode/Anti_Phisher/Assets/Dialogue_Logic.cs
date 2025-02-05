@@ -161,6 +161,13 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
                         }
                     }
 
+                    else if (dialogueText.text != dialogue) //If the dialogue has finished but there is still a text crawl in progress
+                    {
+                        StopCoroutine(TextCrawl); //Stops the text crawl coroutine
+                        dialogueText.text = dialogue; //displays the full dialogue to the player
+                        Debug.Log("Text Crawl was stopped and full dialogue was displayed");
+                    }
+
                     else //If the dialogue has finished
                     {
                         gameStateManager.dialogueActive = false; //Deactivates the dialogue until future requirement
