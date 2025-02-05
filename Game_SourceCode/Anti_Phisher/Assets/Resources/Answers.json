@@ -9,7 +9,7 @@
 			"End": false,
 			"File": false
 		},
-		
+
 		"Response": {
 			"OpenLink": false,
 			"OpenFile": false,
@@ -18,7 +18,7 @@
 			"Report": true
 		}
 	},
-	
+
 	"Encounter1": {
 		"Indicators": {
 			"Subject": false,
@@ -29,7 +29,7 @@
 			"End": true,
 			"File": false
 		},
-		
+
 		"Response": {
 			"OpenLink": false,
 			"OpenFile": false,
@@ -38,7 +38,7 @@
 			"Report": true
 		}
 	},
-	
+
 	"Encounter2": {
 		"Indicators": {
 			"Subject": false,
@@ -49,13 +49,33 @@
 			"End": false,
 			"File": false
 		},
-		
+
 		"Response": {
 			"OpenLink": false,
 			"OpenFile": false,
 			"Reply": true,
 			"Delete": false,
 			"Report": false
+		}
+	},
+
+	"Encounter3": {
+		"Indicators": {
+			"Subject": true,
+			"Sender": false,
+			"Introduction": true,
+			"MainBody": true,
+			"Link": false,
+			"End": true,
+			"File": false
+		},
+
+		"Response": {
+			"OpenLink": false,
+			"OpenFile": false,
+			"Reply": false,
+			"Delete": true,
+			"Report": true
 		}
 	}
 }

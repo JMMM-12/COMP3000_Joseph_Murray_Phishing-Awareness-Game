@@ -9,7 +9,7 @@
 		"End": "Thank you,\nMargaret",
 		"File": "No attached files"
 	},
-	
+
 	"Encounter1": {
 		"id": 2,
 		"Subject": "Game Subscription Payment",
@@ -20,7 +20,7 @@
 		"End": "Please send it as soon as possible.\nJohn doe",
 		"File": "No attached files"
 	},
-	
+
 	"Encounter2": {
 		"id": 3,
 		"Subject": "Extra Maths Session",
@@ -29,6 +29,17 @@
 		"MainBody": "I would like to set up an extra math session for this weekend.\nLet me know what you think.",
 		"Link": "None",
 		"End": "David",
+		"File": "No attached files"
+	},
+
+	"Encounter3": {
+		"id": 4,
+		"Subject": "URGENT! You Win BIG Price!!!",
+		"Sender": "lotteryclaims@bigwinnnerz.com",
+		"Introduction": "Congratulashuns!",
+		"MainBody": "You have winned a BIG PRICE! Claim now or lose foreever.",
+		"Link": "None",
+		"End": "Send us ur full name and birth day NOW to collect.",
 		"File": "No attached files"
 	}
 }

@@ -75,6 +75,9 @@ public class Answers_Checking : MonoBehaviour
             case 2:
                 encounterAnswers = allAnswers.Encounter2;
                 break;
+            case 3:
+                encounterAnswers = allAnswers.Encounter3;
+                break;
             default:
                 Debug.LogError("Next Email could not be loaded, since it was unknown");
                 break;
@@ -495,6 +498,7 @@ public class AllAnswers //Stores all the answers data from the JSON Answers file
     public EncounterAnswers Tutorial;
     public EncounterAnswers Encounter1;
     public EncounterAnswers Encounter2;
+    public EncounterAnswers Encounter3;
 }
 
 
