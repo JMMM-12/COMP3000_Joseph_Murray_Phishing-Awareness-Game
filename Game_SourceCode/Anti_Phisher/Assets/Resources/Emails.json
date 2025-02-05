@@ -41,5 +41,82 @@
 		"Link": "None",
 		"End": "Send us ur full name and birth day NOW to collect.",
 		"File": "No attached files"
+	},
+
+	"Encounter4": {
+		"id": 5,
+		"Subject": "Pls Send Your Homework Now!",
+		"Sender": "homeworkchecker@randommail.xyz",
+		"Introduction": "Hello student,",
+		"MainBody": "we need all students to send their homework to us so we can check it.",
+		"Link": "None",
+		"End": "Even if teacher not say so, do it now.",
+		"File": "No attached files"
+	},
+
+	"Encounter5": {
+		"id": 6,
+		"Subject": "Your School Account Update Required",
+		"Sender": "support@schoolsystems.com",
+		"Introduction": "Dear Student,",
+		"MainBody": "We are updating our system and need you to confirm your school login. Please use the secure link below.",
+		"Link": "http://update-sch00l-secure.com",
+		"End": "If you do not verify, your account may be locked.",
+		"File": "Update_Instructions.pdf.exe"
+	},
+
+	"Encounter6": {
+		"id": 7,
+		"Subject": "Important Notice from Principal",
+		"Sender": "principal.office@school-updates.net",
+		"Introduction": "Hello Student,",
+		"MainBody": "You have been selected for a special school program! Please reply with your full name and student ID to confirm your spot.",
+		"Link": "None",
+		"End": "This is a limited-time opportunity!",
+		"File": "No attached files"
+	},
+
+	"Encounter7": {
+		"id": 8,
+		"Subject": "Reminder: School Trip Permission Slip Due",
+		"Sender": "teacher.mrsmith@school.edu",
+		"Introduction": "Dear Student,",
+		"MainBody": "Just a reminder that the permission slips for the upcoming school trip are due by Friday. Please submit them to the office or bring them to class.",
+		"Link": "None",
+		"End": "Let me know if you have any questions!",
+		"File": "School_Trip_Form.pdf"
+	},
+
+	"Encounter8": {
+		"id": 9,
+		"Subject": "Mysterious Gift for You!",
+		"Sender": "gift-giver@unknownrewards.com",
+		"Introduction": "Hey there!",
+		"MainBody": "Someone sent you a surprise gift! But we can't deliver it without your confirmation.",
+		"Link": "http://mysteryprize-now.com",
+		"End": "Click below to claim your gift before it expires!",
+		"File": "No attached files"
+	},
+
+	"Encounter9": {
+		"id": 10,
+		"Subject": "Hey, quick favor?",
+		"Sender": "chip123@friendlychat.net",
+		"Introduction": "Hey, it's Chip!",
+		"MainBody": "I need your help real quick. My phone is broken, and I can't log in to my account. Can you send me your login details so I can check something? Just use this quick helper link below to send it securely.",
+		"Link": "http://help-chip-logins.com",
+		"End": "Thanks, you're a lifesaver!",
+		"File": "No attached files"
+	},
+
+	"Encounter10": {
+		"id": 11,
+		"Subject": "Important: Your Account Has Been Suspended!",
+		"Sender": "support@security-alerts.com",
+		"Introduction": "Dear User,",
+		"MainBody": "Your account has been temporarily suspended due to suspicious activity. To regain access, please verify your details immediately.",
+		"Link": "http://secure-account-check.com",
+		"End": "Failure to do so may result in permanent deactivation.",
+		"File": "No attached files"
 	}
 }

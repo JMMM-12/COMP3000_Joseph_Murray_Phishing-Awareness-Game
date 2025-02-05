@@ -107,6 +107,27 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
             case 3:
                 nextEmail = allEmails.Encounter3;
                 break;
+            case 4:
+                nextEmail = allEmails.Encounter4;
+                break;
+            case 5:
+                nextEmail = allEmails.Encounter5;
+                break;
+            case 6:
+                nextEmail = allEmails.Encounter6;
+                break;
+            case 7:
+                nextEmail = allEmails.Encounter7;
+                break;
+            case 8:
+                nextEmail = allEmails.Encounter8;
+                break;
+            case 9:
+                nextEmail = allEmails.Encounter9;
+                break;
+            case 10:
+                nextEmail = allEmails.Encounter10;
+                break;
             default:
                 Debug.LogError("Next Email could not be loaded, since it was unknown");
                 break;
@@ -154,6 +175,13 @@ public class AllEmails //For storing the entire JSON file contents
     public Email Encounter1;
     public Email Encounter2;
     public Email Encounter3;
+    public Email Encounter4;
+    public Email Encounter5;
+    public Email Encounter6;
+    public Email Encounter7;
+    public Email Encounter8;
+    public Email Encounter9;
+    public Email Encounter10;
 }
 
 
