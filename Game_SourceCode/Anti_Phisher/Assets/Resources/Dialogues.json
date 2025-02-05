@@ -1,19 +1,71 @@
 {
 	"Tutorial": {
 		"Start": [
-		{"id": 1, "ChipModel": "S", "DialogueText": "Hello there friend and welcome to Cyber World! It’s a pleasure to meet you!"},
-		{"id": 2, "ChipModel": "S", "DialogueText": "There's plenty you need to know before we begin."},
-		{"id": 3, "ChipModel": "T", "DialogueText": "Are your ready to begin your journey in defeating the phishing foe?"},
-		{"id": 4, "ChipModel": "E", "DialogueText": "Excellent! Then let’s get started."},
-		{"id": 5, "ChipModel": "T", "DialogueText": "Phishing foes are evil people who often send phishing emails to the residents of Cyber World."},
-		{"id": 6, "ChipModel": "T", "DialogueText": "These phishing emails are messages that try to steal something from their target or try to get them to do something dangerous."},
-		{"id": 7, "ChipModel": "T", "DialogueText": "Falling for these phishing emails is very easy and can have serious consequences."},
-		{"id": 8, "ChipModel": "T", "DialogueText": "Therefore, it is very important to be able to recognize these nasty emails and take the right actions to protect against them."},
-		{"id": 9, "ChipModel": "S", "DialogueText": "Your mission is to defend against these phishing foes by recognizing and dealing with their nasty emails."},
-		{"id": 10, "ChipModel": "T", "DialogueText": "To do this, you must find all parts of the email that indicate a phishing attack and respond to it appropriately."},
-		{"id": 11, "ChipModel": "S", "DialogueText": "You’ll learn about all the potential indicators and responses as you progress, so don’t worry if you’re not sure about this right away."},
-		{"id": 12, "ChipModel": "S", "DialogueText": "Failure is an important part of learning."},
-		{"id": 13, "ChipModel": "E", "DialogueText": "I’ll be here to support you and guide you throughout your journey. I believe you can do it!"}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "Hello there friend and welcome to Cyber World! It’s a pleasure to meet you!"
+			},
+			{
+				"id": 2,
+				"ChipModel": "S",
+				"DialogueText": "There's plenty you need to know before we begin."
+			},
+			{
+				"id": 3,
+				"ChipModel": "T",
+				"DialogueText": "Are your ready to begin your journey in defeating the phishing foe?"
+			},
+			{
+				"id": 4,
+				"ChipModel": "E",
+				"DialogueText": "Excellent! Then let’s get started."
+			},
+			{
+				"id": 5,
+				"ChipModel": "T",
+				"DialogueText": "Phishing foes are evil people who often send phishing emails to the residents of Cyber World."
+			},
+			{
+				"id": 6,
+				"ChipModel": "T",
+				"DialogueText": "These phishing emails are messages that try to steal something from their target or try to get them to do something dangerous."
+			},
+			{
+				"id": 7,
+				"ChipModel": "T",
+				"DialogueText": "Falling for these phishing emails is very easy and can have serious consequences."
+			},
+			{
+				"id": 8,
+				"ChipModel": "T",
+				"DialogueText": "Therefore, it is very important to be able to recognize these nasty emails and take the right actions to protect against them."
+			},
+			{
+				"id": 9,
+				"ChipModel": "S",
+				"DialogueText": "Your mission is to defend against these phishing foes by recognizing and dealing with their nasty emails."
+			},
+			{
+				"id": 10,
+				"ChipModel": "T",
+				"DialogueText": "To do this, you must find all parts of the email that indicate a phishing attack and respond to it appropriately."
+			},
+			{
+				"id": 11,
+				"ChipModel": "S",
+				"DialogueText": "You’ll learn about all the potential indicators and responses as you progress, so don’t worry if you’re not sure about this right away."
+			},
+			{
+				"id": 12,
+				"ChipModel": "S",
+				"DialogueText": "Failure is an important part of learning."
+			},
+			{
+				"id": 13,
+				"ChipModel": "E",
+				"DialogueText": "I’ll be here to support you and guide you throughout your journey. I believe you can do it!"
+			}
 		]
 	},
 
@@ -22,11 +74,31 @@
 
 	"Encounter1": {
 		"Start": [
-		{"id": 1, "ChipModel": "S", "DialogueText": "Good job on the last encounter."},
-		{"id": 2, "ChipModel": "S", "DialogueText": "It can be a lot to take in at first, but we’ll gradually go through all of this throughout the game."},
-		{"id": 3, "ChipModel": "S", "DialogueText": "I’m going to give you a new email to tackle, like the last one."},
-		{"id": 4, "ChipModel": "S", "DialogueText": "Same as before, select the indicators and then choose a response."},
-		{"id": 5, "ChipModel": "S", "DialogueText": "Remember that spelling mistakes are a great indicator to check for! "}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "Good job on the last encounter."
+			},
+			{
+				"id": 2,
+				"ChipModel": "S",
+				"DialogueText": "It can be a lot to take in at first, but we’ll gradually go through all of this throughout the game."
+			},
+			{
+				"id": 3,
+				"ChipModel": "S",
+				"DialogueText": "I’m going to give you a new email to tackle, like the last one."
+			},
+			{
+				"id": 4,
+				"ChipModel": "S",
+				"DialogueText": "Same as before, select the indicators and then choose a response."
+			},
+			{
+				"id": 5,
+				"ChipModel": "S",
+				"DialogueText": "Remember that spelling mistakes are a great indicator to check for! "
+			}
 		]
 	},
 
@@ -35,10 +107,26 @@
 
 	"Encounter2": {
 		"Start": [
-		{"id": 1, "ChipModel": "S", "DialogueText": "Let’s have a go at another email."},
-		{"id": 2, "ChipModel": "S", "DialogueText": "Same thing as before, but this time the indicators might not be so obvious."},
-		{"id": 3, "ChipModel": "S", "DialogueText": "Give the email a really good read and go with what you think is right."},
-		{"id": 4, "ChipModel": "S", "DialogueText": "You’ve got this!"}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "Let’s have a go at another email."
+			},
+			{
+				"id": 2,
+				"ChipModel": "S",
+				"DialogueText": "Same thing as before, but this time the indicators might not be so obvious."
+			},
+			{
+				"id": 3,
+				"ChipModel": "S",
+				"DialogueText": "Give the email a really good read and go with what you think is right."
+			},
+			{
+				"id": 4,
+				"ChipModel": "S",
+				"DialogueText": "You’ve got this!"
+			}
 		]
 	},
 
@@ -47,9 +135,21 @@
 
 	"Encounter3": {
 		"Start": [
-			{"id": 1, "ChipModel": "S", "DialogueText": "Onto the next email!"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "For this one, take a close look at the email's grammar"}
-			{"id": 2, "ChipModel": "S", "DialogueText": "Don't forget that spelling mistakes can be suspicious!'"}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "Onto the next email!"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "For this one, take a close look at the email's grammar"
+			},
+			{
+				"id": 2,
+				"ChipModel": "S",
+				"DialogueText": "Don't forget that spelling mistakes can be suspicious!'"
+			}
 		]
 	},
 
@@ -58,8 +158,16 @@
 
 	"Encounter4": {
 		"Start": [
-			{"id": 1, "ChipModel": "S", "DialogueText": "This next email has a strange request..."},
-			{"id": 2, "ChipModel": "T", "DialogueText": "But is it phishing?"}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "This next email has a strange request..."
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "But is it phishing?"
+			}
 		]
 	},
 
@@ -68,8 +176,16 @@
 
 	"Encounter5": {
 		"Start": [
-			{"id": 1, "ChipModel": "S", "DialogueText": "Brace yourself! This next one is going to be tricky."},
-			{"id": 2, "ChipModel": "S", "DialogueText": "Take your time with this one, you've got this!"}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "Brace yourself! This next one is going to be tricky."
+			},
+			{
+				"id": 2,
+				"ChipModel": "S",
+				"DialogueText": "Take your time with this one, you've got this!"
+			}
 		]
 	},
 
@@ -78,8 +194,16 @@
 
 	"Encounter6": {
 		"Start": [
-			{"id": 1, "ChipModel": "S", "DialogueText": "Another tricky one for your to solve"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "A key hint for you: Sometimes phishers will try to rush your decision..."}
+			{
+				"id": 1,
+				"ChipModel": "S",
+				"DialogueText": "Another tricky one for your to solve"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "A key hint for you: Sometimes phishers will try to rush your decision..."
+			}
 		]
 	},
 
@@ -88,8 +212,16 @@
 
 	"Encounter7": {
 		"Start": [
-			{"id": 1, "ChipModel": "E", "DialogueText": "Got another email here for you!"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "Could this be another phishing email?"}
+			{
+				"id": 1,
+				"ChipModel": "E",
+				"DialogueText": "Got another email here for you!"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "Could this be another phishing email?"
+			}
 		]
 	},
 
@@ -98,8 +230,16 @@
 
 	"Encounter8": {
 		"Start": [
-			{"id": 1, "ChipModel": "E", "DialogueText": "Looks like this next email is giving you a gift."},
-			{"id": 2, "ChipModel": "T", "DialogueText": "But wait...aren't some things too good to be true?"}
+			{
+				"id": 1,
+				"ChipModel": "E",
+				"DialogueText": "Looks like this next email is giving you a gift."
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "But wait...aren't some things too good to be true?"
+			}
 		]
 	},
 
@@ -108,8 +248,16 @@
 
 	"Encounter9": {
 		"Start": [
-			{"id": 1, "ChipModel": "T", "DialogueText": "Looks like the next email is from...Me?"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "Hold on...I don't remember sending this!"}
+			{
+				"id": 1,
+				"ChipModel": "T",
+				"DialogueText": "Looks like the next email is from...Me?"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "Hold on...I don't remember sending this!"
+			}
 		]
 	},
 
@@ -119,11 +267,31 @@
 
 	"Encounter10": {
 		"Start": [
-			{"id": 1, "ChipModel": "E", "DialogueText": "You've made fantastic progress so far, friend!"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "If you ever feel like you need to take a break, please do so!"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "It can help you to process everything you're learning and recharge your brain."},
-			{"id": 2, "ChipModel": "T", "DialogueText": "Whenever you are ready, let's continue on to the next email"},
-			{"id": 2, "ChipModel": "T", "DialogueText": "Many phishing emails will try to scare you into acting...Be wary of this"}
+			{
+				"id": 1,
+				"ChipModel": "E",
+				"DialogueText": "You've made fantastic progress so far, friend!"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "If you ever feel like you need to take a break, please do so!"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "It can help you to process everything you're learning and recharge your brain."
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "Whenever you are ready, let's continue on to the next email"
+			},
+			{
+				"id": 2,
+				"ChipModel": "T",
+				"DialogueText": "Many phishing emails will try to scare you into acting...Be wary of this"
+			}
 		]
 	}
 }

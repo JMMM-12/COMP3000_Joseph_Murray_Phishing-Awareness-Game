@@ -318,6 +318,46 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             encounterDialogues = allDialoguesObj.Encounter2;
         }
 
+        else if (encounterNumber == 3)
+        {
+            encounterDialogues = allDialoguesObj.Encounter3;
+        }
+
+        else if (encounterNumber == 4)
+        {
+            encounterDialogues = allDialoguesObj.Encounter4;
+        }
+
+        else if (encounterNumber == 5)
+        {
+            encounterDialogues = allDialoguesObj.Encounter5;
+        }
+
+        else if (encounterNumber == 6)
+        {
+            encounterDialogues = allDialoguesObj.Encounter6;
+        }
+
+        else if (encounterNumber == 7)
+        {
+            encounterDialogues = allDialoguesObj.Encounter7;
+        }
+
+        else if (encounterNumber == 8)
+        {
+            encounterDialogues = allDialoguesObj.Encounter8;
+        }
+
+        else if (encounterNumber == 9)
+        {
+            encounterDialogues = allDialoguesObj.Encounter9;
+        }
+
+        else if (encounterNumber == 10)
+        {
+            encounterDialogues = allDialoguesObj.Encounter10;
+        }
+
         return encounterDialogues;
     }
 
