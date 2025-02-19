@@ -57,6 +57,7 @@ public class VisualResults_Logic : MonoBehaviour //Highlights the part of the em
                 linkImg.color = DetermineColor(indicatorResults.linkResult);
                 endImg.color = DetermineColor(indicatorResults.endResult);
                 fileImg.color = DetermineColor(indicatorResults.fileResult);
+                highlightingDone = true;
             }
         }
 

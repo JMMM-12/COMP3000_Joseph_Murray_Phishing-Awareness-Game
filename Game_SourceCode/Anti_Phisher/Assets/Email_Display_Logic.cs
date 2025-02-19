@@ -31,6 +31,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject LinkImg;
     public GameObject EndImg;
     public GameObject FileImg;
+    public GameObject ScoreDisplay;
 
     private int textOffset = 70;
     private RectTransform textRectTransform;
@@ -51,6 +52,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         LinkTxt.SetActive(false);
         EndTxt.SetActive(false);
         FileTxt.SetActive(false);
+        ScoreDisplay.SetActive(false);
 
         //Deactivates all the Buttons upon game start
         ReplyButton.SetActive(false);
@@ -105,6 +107,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     EndImg.SetActive(true);
                     FileImg.SetActive(true);
                     ContinueButton.SetActive(false);
+                    ScoreDisplay.SetActive(false);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Indicator state were activated");
                 }
@@ -117,6 +120,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 {
                     IndicatorsConfirmButton.SetActive(false);
                     ContinueButton.SetActive(true);
+                    ScoreDisplay.SetActive(true);
                     gameStateManager.emailDisplayed = true;
                 }
             }
@@ -139,6 +143,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     DeleteButton.SetActive(true);
                     ReportButton.SetActive(true);
                     ContinueButton.SetActive(false);
+                    ScoreDisplay.SetActive(false);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Response state were activated");
                 }
@@ -150,6 +155,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 if (gameStateManager.emailDisplayed == false)
                 {
                     ContinueButton.SetActive(true);
+                    ScoreDisplay.SetActive(true);
                     gameStateManager.emailDisplayed = true;
                 }
             }
@@ -179,6 +185,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReportButton.SetActive(false);
                     IndicatorsConfirmButton.SetActive(false);
                     ContinueButton.SetActive(false);
+                    ScoreDisplay.SetActive(false);
                     gameStateManager.emailDisplayed = false;
                     gameStateManager.emailContentsDisplayed = false;
                     Debug.LogWarning("Encounter State was Unknown. Email Contents were deactivated");
@@ -210,8 +217,9 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 DeleteButton.SetActive(false);
                 ReportButton.SetActive(false);
                 IndicatorsConfirmButton.SetActive(false);
-                gameStateManager.emailDisplayed = false;
                 ContinueButton.SetActive(false);
+                ScoreDisplay.SetActive(false);
+                gameStateManager.emailDisplayed = false;
                 gameStateManager.emailContentsDisplayed = false;
             }
             
