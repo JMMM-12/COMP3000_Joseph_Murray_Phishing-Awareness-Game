@@ -23,6 +23,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject DeleteButton;
     public GameObject ReportButton;
     public GameObject IndicatorsConfirmButton;
+    public GameObject ContinueButton;
     public GameObject SubjectImg;
     public GameObject SenderImg;
     public GameObject IntroductionImg;
@@ -57,6 +58,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         ReportButton.SetActive(false);
         IndicatorsConfirmButton.SetActive(false);
         gameStateManager.emailDisplayed = false;
+        ContinueButton.SetActive(false);
 
         //Deactivates all the images upon game start
         SubjectImg.SetActive(false);
@@ -102,10 +104,21 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     LinkImg.SetActive(true);
                     EndImg.SetActive(true);
                     FileImg.SetActive(true);
+                    ContinueButton.SetActive(false);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Indicator state were activated");
                 }
                 
+            }
+
+            else if (gameStateManager.encounterState == EncounterState.IFeedback)
+            {
+                if (gameStateManager.emailDisplayed == false)
+                {
+                    IndicatorsConfirmButton.SetActive(false);
+                    ContinueButton.SetActive(true);
+                    gameStateManager.emailDisplayed = true;
+                }
             }
 
             else if (gameStateManager.encounterState == EncounterState.Response)
@@ -125,41 +138,20 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReplyButton.SetActive(true);
                     DeleteButton.SetActive(true);
                     ReportButton.SetActive(true);
+                    ContinueButton.SetActive(false);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Response state were activated");
                 }
                 
             }
 
-            else if (gameStateManager.encounterState == EncounterState.Feedback)
+            else if (gameStateManager.encounterState == EncounterState.RFeedback)
             {
-                if (gameStateManager.emailDisplayed == true)
+                if (gameStateManager.emailDisplayed == false)
                 {
-                    emailContainerRenderer.sprite = null;
-                    emailContainerRenderer.sprite = null;
-                    SubjectTxt.SetActive(false);
-                    SenderTxt.SetActive(false);
-                    IntroductionTxt.SetActive(false);
-                    MainBodyTxt.SetActive(false);
-                    LinkTxt.SetActive(false);
-                    EndTxt.SetActive(false);
-                    FileTxt.SetActive(false);
-                    SubjectImg.SetActive(false);
-                    SenderImg.SetActive(false);
-                    IntroductionImg.SetActive(false);
-                    MainBodyImg.SetActive(false);
-                    LinkImg.SetActive(false);
-                    EndImg.SetActive(false);
-                    FileImg.SetActive(false);
-                    ReplyButton.SetActive(false);
-                    DeleteButton.SetActive(false);
-                    ReportButton.SetActive(false);
-                    IndicatorsConfirmButton.SetActive(false);
-                    gameStateManager.emailDisplayed = false;
-                    gameStateManager.emailContentsDisplayed = false;
-                    Debug.Log("Email Contents were deactivated as part of the Feedback state");
+                    ContinueButton.SetActive(true);
+                    gameStateManager.emailDisplayed = true;
                 }
-                
             }
 
             else if (gameStateManager.encounterState == EncounterState.Unknown)
@@ -186,6 +178,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     DeleteButton.SetActive(false);
                     ReportButton.SetActive(false);
                     IndicatorsConfirmButton.SetActive(false);
+                    ContinueButton.SetActive(false);
                     gameStateManager.emailDisplayed = false;
                     gameStateManager.emailContentsDisplayed = false;
                     Debug.LogWarning("Encounter State was Unknown. Email Contents were deactivated");
@@ -218,6 +211,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                 ReportButton.SetActive(false);
                 IndicatorsConfirmButton.SetActive(false);
                 gameStateManager.emailDisplayed = false;
+                ContinueButton.SetActive(false);
                 gameStateManager.emailContentsDisplayed = false;
             }
             
@@ -245,6 +239,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
             textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
             textRectTransform = FileTxt.GetComponent<RectTransform>();
             textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y - textOffset, textRectTransform.position.z);
+            Debug.Log("Email Text Contents were moved");
         }
 
         else if (gameStateManager.encounterState == EncounterState.Response)
@@ -263,6 +258,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
             textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
             textRectTransform = FileTxt.GetComponent<RectTransform>();
             textRectTransform.position = new Vector3(textRectTransform.position.x, textRectTransform.position.y + textOffset, textRectTransform.position.z);
+            Debug.Log("Email Text Contents were moved");
         }
     }
 }

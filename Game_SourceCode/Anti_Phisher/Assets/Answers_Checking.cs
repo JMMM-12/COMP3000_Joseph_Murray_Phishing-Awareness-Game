@@ -48,13 +48,25 @@ public class Answers_Checking : MonoBehaviour
 
     void Update()
     {
-        if (gameStateManager.encounterState == EncounterState.Feedback && gameStateManager.feedbackState == FeedbackState.AnswersCheck) //Checks that the game is in the answers checking stage of the feedback phase 
+        if (gameStateManager.answerCheckRequired == true)
         {
-            LoadNextAnswers(); //Loads the answers for the current scenario
-            IndicatorsCheck(); //Checks all the selected indicators against the correct indicator answers, determining the indicator results
-            ResponsesCheck(); //Checks all the selected responses against the correct response answers, determining the response results
-            IndicatorsGrading(); //Checks the total, correct, and missed indicator counts to give the indicator results a grade
-            gameStateManager.feedbackState = FeedbackState.FeedbackDetermine; //Once indicator & response answers have been checked and the results have been calculated, the game starts determining the feedback to display
+            if (gameStateManager.encounterState == EncounterState.IFeedback)
+            {
+                LoadNextAnswers(); //Loads the answers for the current scenario
+                IndicatorsCheck(); //Checks all the selected indicators against the correct indicator answers, determining the indicator results
+                IndicatorsGrading(); //Checks the total, correct, and missed indicator counts to give the indicator results a grade
+                gameStateManager.answerCheckRequired = false;
+            }
+
+            else if (gameStateManager.encounterState == EncounterState.RFeedback)
+            {
+                ResponsesCheck(); //Checks all the selected responses against the correct response answers, determining the response results
+                gameStateManager.answerCheckRequired = false;
+            }
+            
+            
+            
+            
         }
     }
 

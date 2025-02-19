@@ -6,7 +6,6 @@ public class GameQuit_Logic : MonoBehaviour //Performs game state and selection 
     public GameStateManager gameStateManager;
     public SelectionData selectionData;
     public EncounterResults encounterResults;
-    public FeedbackDialogues fDialogues;
 
     private void OnApplicationQuit()
     {
@@ -16,7 +15,6 @@ public class GameQuit_Logic : MonoBehaviour //Performs game state and selection 
         gameStateManager.dialogueActive = false;
         gameStateManager.encounterState = EncounterState.Unknown;
         gameStateManager.dialogueStage = DialogueStage.Unknown;
-        gameStateManager.feedbackState = FeedbackState.Inactive;
         gameStateManager.EncounterNum = 0;
         gameStateManager.emailDisplayed = false;
         gameStateManager.emailContentsDisplayed = false;
@@ -24,12 +22,11 @@ public class GameQuit_Logic : MonoBehaviour //Performs game state and selection 
         gameStateManager.instructionsDisplayed = false;
         gameStateManager.helpButtonActive = false;
         gameStateManager.instructionsTextRequired = false;
+        gameStateManager.highlightersTransparent = false;
+        gameStateManager.answerCheckRequired = false;
         selectionData.indicatorSelection = new IndicatorSelection();
         selectionData.responseSelection = new ResponseSelection();
         encounterResults.indicatorResults = new IndicatorResults();
         encounterResults.responseResults = new ResponseResults();
-        fDialogues.feedbackDialogues = new List<FDialogues>();
-
-
     }
 }

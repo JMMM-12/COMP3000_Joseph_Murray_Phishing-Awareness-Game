@@ -7,12 +7,9 @@ public class Instructions_Display_Logic : MonoBehaviour //Controls the activatio
     public GameObject instructionsbox;
     public GameObject helpButton;
 
-    private bool instructionsAlreadyDeactivated;
-
 
     void Start()
     {
-        instructionsAlreadyDeactivated = false;
         helpButton.SetActive(false); //Both are deactivated upon game start
         instructionsbox.SetActive(false);
     }
@@ -34,11 +31,10 @@ public class Instructions_Display_Logic : MonoBehaviour //Controls the activatio
             }
             else if (gameStateManager.encounterState == EncounterState.Response)
             {
-                if (gameStateManager.instructionsDisplayed == true && instructionsAlreadyDeactivated == false)
+                if (gameStateManager.helpButtonActive == false)
                 {
-                    instructionsbox.SetActive(false);
-                    gameStateManager.instructionsDisplayed = false;
-                    instructionsAlreadyDeactivated = true;
+                    helpButton.SetActive(true);
+                    gameStateManager.helpButtonActive = true;
                 }
             }
             else
@@ -53,7 +49,6 @@ public class Instructions_Display_Logic : MonoBehaviour //Controls the activatio
                 {
                     instructionsbox.SetActive(false);
                     gameStateManager.instructionsDisplayed = false;
-                    instructionsAlreadyDeactivated = false;
                 }
             }
         }

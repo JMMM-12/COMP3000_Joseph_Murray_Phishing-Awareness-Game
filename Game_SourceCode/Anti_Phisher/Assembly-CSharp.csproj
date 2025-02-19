@@ -67,7 +67,6 @@
     <Compile Include="Assets\Instructions_Display_Logic.cs" />
     <Compile Include="Assets\ReplyClick.cs" />
     <Compile Include="Assets\GameQuit_Logic.cs" />
-    <Compile Include="Assets\Feedback_Determining.cs" />
     <Compile Include="Assets\DeleteClick.cs" />
     <Compile Include="Assets\LinkClick.cs" />
     <Compile Include="Assets\Scripts\SelectionData.cs" />
@@ -83,6 +82,7 @@
     <Compile Include="Assets\IntroductionClick.cs" />
     <Compile Include="Assets\SubjectClick.cs" />
     <Compile Include="Assets\ChangeState.cs" />
+    <Compile Include="Assets\Continue.cs" />
     <Compile Include="Assets\Scripts\GameData.cs" />
     <Compile Include="Assets\Scripts\EncounterResults.cs" />
     <Compile Include="Assets\HelpClick.cs" />

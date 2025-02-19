@@ -34,13 +34,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
     //Class objects for deserializing and handling JSON dialogue data
     private AllDialogues allDialoguesObj;
     private EncounterDialogues currentEncounterDialogues;
-    private Dialogue dialogueObj;
 
     public GameStateManager gameStateManager;
-    public FeedbackDialogues feedbackDialoguesAsset;
-    public SelectionData selectionData;
     public EncounterResults encounterResults;
-    public FeedbackDialogues fDialogues;
 
     private bool dialoguesLoaded;
 
@@ -213,22 +209,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
         {
             if (dialoguesLoaded == false)
             {
-                if (gameStateManager.encounterState == EncounterState.Feedback && gameStateManager.dialogueStage == DialogueStage.Feedback && gameStateManager.feedbackState == FeedbackState.FeedbackDisplay)
-                {
-                    foreach(var d in feedbackDialoguesAsset.feedbackDialogues)
-                    {
-                        currentEncounterDialogues.Feedback.Add(new Dialogue(d.ChipModel, d.FeedbackText));
-                    }
-
-                    DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
-                    chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
-                    dialogues = new string[DialoguesCount];
-                    AssignDialogue(); //Assigns the next dialogues to display, and the Chip Model Indicators to use
-                    dialoguesLoaded = true;
-                    gameStateManager.dialogueActive = true;
-                }
-
-                else if (gameStateManager.encounterState == EncounterState.Unknown && gameStateManager.dialogueStage == DialogueStage.Beginning && gameStateManager.feedbackState == FeedbackState.Inactive)
+                if (gameStateManager.encounterState == EncounterState.Unknown && gameStateManager.dialogueStage == DialogueStage.Beginning)
                 {
                     DialoguesCount = CountDialogues(currentEncounterDialogues); //Counts the number of dialouges in the current encounter's specific part (start, middle, or feedback).
                     chipModelIndicators = new string[DialoguesCount]; //Initializes the 2D arrays to contain the size for the required number of dialogues
@@ -410,28 +391,9 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
     {
         if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
-            gameStateManager.dialogueStage = DialogueStage.Feedback;
+            currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum + 1); //Pre-loads the next set of encounter dialogues
             gameStateManager.encounterState = EncounterState.Indicators;
-        }
-
-        else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
-        {
-            gameStateManager.dialogueStage = DialogueStage.Beginning;
-            gameStateManager.encounterState = EncounterState.Unknown;
-            gameStateManager.feedbackState = FeedbackState.Inactive;
-            gameStateManager.encounterActive = false;
-            gameStateManager.emailDisplayed = false;
-            gameStateManager.emailContentsDisplayed = false;
-            gameStateManager.highlightersReady = false;
-            selectionData.indicatorSelection = new IndicatorSelection();
-            selectionData.responseSelection = new ResponseSelection();
-            encounterResults.indicatorResults = new IndicatorResults();
-            encounterResults.responseResults = new ResponseResults();
-            fDialogues.feedbackDialogues = new List<FDialogues>();
-            int newEncounterNum = gameStateManager.EncounterNum + 1;
-            gameStateManager.EncounterNum = newEncounterNum; //Increments to the next encounter's dialogue once the final dialogue part of the previous encounter has finished
-            currentEncounterDialogues = LoadEncounterDialogues(gameStateManager.EncounterNum); //Loads the next set of encounter dialogues
-            Debug.Log("Game State was Updated to the beginning of the next encounter & dialogue was reactivated");
+            gameStateManager.dialogueStage = DialogueStage.Inactive;
         }
     }
 
@@ -450,14 +412,6 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             }
         }
 
-        else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
-        {
-            foreach (var d in dialoguesToCount.Feedback)
-            {
-                count++;
-            }
-        }
-
         else if (gameStateManager.dialogueStage == DialogueStage.Unknown)
         {
             Debug.LogError("GameState was Unknown");
@@ -473,17 +427,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
         int z = 0;
         if (gameStateManager.dialogueStage == DialogueStage.Beginning)
         {
-            foreach (var d in currentEncounterDialogues.Start) //Loop to assign the Tutorial Start dialogues and chip model indicators to their respective arrays
-            {
-                dialogues[z] = d.DialogueText.ToString();
-                chipModelIndicators[z] = d.ChipModel.ToString();
-                z++;
-            }
-        }
-
-        else if (gameStateManager.dialogueStage == DialogueStage.Feedback)
-        {
-            foreach (var d in currentEncounterDialogues.Feedback)
+            foreach (var d in currentEncounterDialogues.Start) //Loop to assign the Start dialogues and chip model indicators to their respective arrays
             {
                 dialogues[z] = d.DialogueText.ToString();
                 chipModelIndicators[z] = d.ChipModel.ToString();

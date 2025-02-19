@@ -406,7 +406,6 @@ MonoBehaviour:
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
   encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
-  fDialogues: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!4 &176420404
 Transform:
   m_ObjectHideFlags: 0
@@ -1160,6 +1159,7 @@ RectTransform:
   - {fileID: 801197866}
   - {fileID: 2085567069}
   - {fileID: 2110107605}
+  - {fileID: 1177780311}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1167,6 +1167,85 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &708974473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708974474}
+  - component: {fileID: 708974476}
+  - component: {fileID: 708974475}
+  m_Layer: 5
+  m_Name: Continue_Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &708974474
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708974473}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1177780311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &708974475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708974473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Continue
+--- !u!222 &708974476
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708974473}
+  m_CullTransparentMesh: 1
 --- !u!1 &746273491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1335,6 @@ GameObject:
   m_Component:
   - component: {fileID: 751638064}
   - component: {fileID: 751638065}
-  - component: {fileID: 751638066}
   m_Layer: 0
   m_Name: FeedbackLogic
   m_TagString: Untagged
@@ -1294,167 +1372,6 @@ MonoBehaviour:
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
   encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
---- !u!114 &751638066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751638063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2babf43bd5802c49a31f4bdee086716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allFeedback:
-    IndicatorsGeneral:
-      Intro:
-        ChipModel: 
-        FeedbackText: 
-      AllIndicatorsCorrect:
-        ChipModel: 
-        FeedbackText: 
-      AllIndicatorsCorrectI:
-        ChipModel: 
-        FeedbackText: 
-      IndicatorsCorrectlyAvoided:
-        ChipModel: 
-        FeedbackText: 
-      IndicatorsIncorrectlyAvoided:
-        ChipModel: 
-        FeedbackText: 
-      SomeIndicatorsCorrect:
-        ChipModel: 
-        FeedbackText: 
-      SomeIndicatorsCorrectI:
-        ChipModel: 
-        FeedbackText: 
-      NoIndicatorsCorrect:
-        ChipModel: 
-        FeedbackText: 
-      NoIndicatorsCorrectI:
-        ChipModel: 
-        FeedbackText: 
-      Score:
-        ChipModel: 
-        FeedbackText: 
-    IndicatorsSpecific:
-      SubjectCorrect:
-        ChipModel: 
-        FeedbackText: 
-      SubjectIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      SubjectMissed:
-        ChipModel: 
-        FeedbackText: 
-      SenderCorrect:
-        ChipModel: 
-        FeedbackText: 
-      SenderIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      SenderMissed:
-        ChipModel: 
-        FeedbackText: 
-      IntroductionCorrect:
-        ChipModel: 
-        FeedbackText: 
-      IntroductionIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      IntroductionMissed:
-        ChipModel: 
-        FeedbackText: 
-      MainBodyCorrect:
-        ChipModel: 
-        FeedbackText: 
-      MainBodyIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      MainBodyMissed:
-        ChipModel: 
-        FeedbackText: 
-      LinkCorrect:
-        ChipModel: 
-        FeedbackText: 
-      LinkIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      LinkMissed:
-        ChipModel: 
-        FeedbackText: 
-      EndCorrect:
-        ChipModel: 
-        FeedbackText: 
-      EndIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      EndMissed:
-        ChipModel: 
-        FeedbackText: 
-      FileCorrect:
-        ChipModel: 
-        FeedbackText: 
-      FileIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      FileMissed:
-        ChipModel: 
-        FeedbackText: 
-    ResponsesGeneral:
-      Intro:
-        ChipModel: 
-        FeedbackText: 
-      ResponseCorrect:
-        ChipModel: 
-        FeedbackText: 
-      ResponseIncorrect:
-        ChipModel: 
-        FeedbackText: 
-    ResponsesSpecific:
-      ReplyCorrect:
-        ChipModel: 
-        FeedbackText: 
-      ReplyIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      ReplySuggest:
-        ChipModel: 
-        FeedbackText: 
-      DeleteCorrect:
-        ChipModel: 
-        FeedbackText: 
-      DeleteIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      DeleteSuggest:
-        ChipModel: 
-        FeedbackText: 
-      ReportCorrect:
-        ChipModel: 
-        FeedbackText: 
-      ReportIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      ReportSuggest:
-        ChipModel: 
-        FeedbackText: 
-      OpenLinkCorrect:
-        ChipModel: 
-        FeedbackText: 
-      OpenLinkIncorrect:
-        ChipModel: 
-        FeedbackText: 
-      DownloadFileCorrect:
-        ChipModel: 
-        FeedbackText: 
-      DownloadFileIncorrect:
-        ChipModel: 
-        FeedbackText: 
-  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
-  encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
-  feedbackDialoguesAsset: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!1 &801197865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1774,7 @@ MonoBehaviour:
   DeleteButton: {fileID: 996067110}
   ReportButton: {fileID: 1593700953}
   IndicatorsConfirmButton: {fileID: 801197865}
+  ContinueButton: {fileID: 1177780310}
   SubjectImg: {fileID: 1011520606}
   SenderImg: {fileID: 1550544285}
   IntroductionImg: {fileID: 1799759103}
@@ -2385,6 +2303,144 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1177780310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1177780311}
+  - component: {fileID: 1177780315}
+  - component: {fileID: 1177780314}
+  - component: {fileID: 1177780313}
+  - component: {fileID: 1177780312}
+  m_Layer: 5
+  m_Name: Continue_Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1177780311
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177780310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 708974474}
+  m_Father: {fileID: 669931673}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 678, y: -444.29}
+  m_SizeDelta: {x: 459.05, y: 101.41}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1177780312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177780310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a0e110c47426e4dadf2f5ab90f527d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
+  encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
+  continueButton: {fileID: 0}
+--- !u!114 &1177780313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177780310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.4039216, g: 0.7411765, b: 0.43137258, a: 1}
+    m_HighlightedColor: {r: 0.28034878, g: 0.8490566, b: 0.32663897, a: 1}
+    m_PressedColor: {r: 0.14343172, g: 0.9622642, b: 0.21073297, a: 1}
+    m_SelectedColor: {r: 0.4039216, g: 0.7411765, b: 0.43137258, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1177780314}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1177780314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177780310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1177780315
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177780310}
+  m_CullTransparentMesh: 1
 --- !u!1 &1357704900
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,10 +3623,7 @@ MonoBehaviour:
   ChipExcited: {fileID: 7914054831802253391, guid: 2d1cfe3f3bd741f469e273b347d254b7, type: 3}
   ChipThinking: {fileID: -839363022963490085, guid: 3d987ec212178d241ac6b52078d23a04, type: 3}
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
-  feedbackDialoguesAsset: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
-  selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
   encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
-  fDialogues: {fileID: 11400000, guid: 333b78b9d04fb8c49aa5895bca1874f3, type: 2}
 --- !u!1 &2110107604
 GameObject:
   m_ObjectHideFlags: 0

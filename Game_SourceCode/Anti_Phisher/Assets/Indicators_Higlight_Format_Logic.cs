@@ -33,6 +33,7 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
     private void Start()
     {
         gameStateManager.highlightersReady = false;
+        gameStateManager.highlightersTransparent = false;
         transparentImage = gameData.transparentColor;
     }
 
@@ -55,15 +56,26 @@ public class Indicators_Higlight_Format_Logic : MonoBehaviour //Matches the size
                 }
             }
 
+            else if (gameStateManager.encounterState == EncounterState.IFeedback)
+            {
+                if (gameStateManager.highlightersTransparent == false)
+                {
+                    SetImagesAsTransparent();
+                    gameStateManager.highlightersTransparent = true;
+                }
+            }
+
             else
             {
                 gameStateManager.highlightersReady = false;
+                gameStateManager.highlightersTransparent = false;
             }
         }
 
         else
         {
             gameStateManager.highlightersReady = false;
+            gameStateManager.highlightersTransparent = false;
         }
     }
 

@@ -27,10 +27,15 @@ public class ReplyClick : MonoBehaviour //Buton logic to change the response sel
 
     void OnButtonClick()
     {
-        selectionData.responseSelection.emailReply = true;
-        Debug.Log("Response - Email was replied to");
-        gameStateManager.encounterState = EncounterState.Feedback;
-        gameStateManager.feedbackState = FeedbackState.AnswersCheck;
+        if (gameStateManager.encounterState == EncounterState.Response)
+        {
+            selectionData.responseSelection.emailReply = true;
+            Debug.Log("Response - Email was replied to");
+            gameStateManager.encounterState = EncounterState.RFeedback;
+            gameStateManager.emailDisplayed = false;
+            gameStateManager.answerCheckRequired = true;
+        }
+        
     }
 
     

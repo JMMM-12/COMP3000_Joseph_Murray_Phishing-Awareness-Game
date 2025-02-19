@@ -7,7 +7,6 @@ public class GameStateManager : ScriptableObject //Manages the state of the game
     public GameState gameState; //High-level game state of the entire game
     public DialogueStage dialogueStage; //State of the current encounter's dialogue
     public EncounterState encounterState; //State of the current encounter
-    public FeedbackState feedbackState; //state of the current encounter's feedback phase
     public int EncounterNum; //Indicates the encounter the game is currently on
     public bool dialogueActive; //Determines whether the dialogue is active or inactive
     public bool encounterActive; //Determines whether the encounter is active or inactive
@@ -17,6 +16,8 @@ public class GameStateManager : ScriptableObject //Manages the state of the game
     public bool instructionsDisplayed; //Determines whether the instructions box is displayed
     public bool helpButtonActive; //Determines whether the help button is active
     public bool instructionsTextRequired; //Determines whether the instructions text must be displayed
+    public bool highlightersTransparent; //Determines whether the email highlighters are set to transparent
+    public bool answerCheckRequired; //Determines whether answer checking is required
 }
 
 
@@ -35,8 +36,7 @@ public enum GameState
 public enum DialogueStage
 {
     Beginning,
-    Middle,
-    Feedback,
+    Inactive,
     Unknown
 }
 
@@ -46,16 +46,7 @@ public enum EncounterState
 {
     Indicators,
     Response,
-    Feedback,
+    IFeedback,
+    RFeedback,
     Unknown
-}
-
-
-
-public enum FeedbackState
-{
-    AnswersCheck,
-    FeedbackDetermine,
-    FeedbackDisplay,
-    Inactive
 }
