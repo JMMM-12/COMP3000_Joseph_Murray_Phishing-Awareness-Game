@@ -27,8 +27,10 @@ public class ChangeState : MonoBehaviour //Button OnClick logic to change to the
 
     void OnButtonClick()
     {
-        gameStateManager.encounterState = EncounterState.IFeedback;
-        gameStateManager.emailDisplayed = false;
         gameStateManager.answerCheckRequired = true;
+        gameStateManager.emailDisplayed = false;
+        gameStateManager.encounterState = EncounterState.IFeedback;
+        
+        
     }
 }

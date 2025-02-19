@@ -1335,6 +1335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 751638064}
   - component: {fileID: 751638065}
+  - component: {fileID: 751638066}
   m_Layer: 0
   m_Name: FeedbackLogic
   m_TagString: Untagged
@@ -1372,6 +1373,28 @@ MonoBehaviour:
   gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
   selectionData: {fileID: 11400000, guid: b16fd62da4f69f448a9265f4f5999d36, type: 2}
   encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
+--- !u!114 &751638066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751638063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a28a9e7beb1e84a9155737431416a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateManager: {fileID: 11400000, guid: ce485e9894ed05047898b60b2618ea3c, type: 2}
+  encounterResults: {fileID: 11400000, guid: 248210c1b23ee3c4cba80c7b66c2b16c, type: 2}
+  gameData: {fileID: 11400000, guid: e474515b54ad83d4dadc652879e28421, type: 2}
+  subjectImg: {fileID: 1011520608}
+  senderImg: {fileID: 1550544287}
+  introductionImg: {fileID: 1799759105}
+  mainbodyImg: {fileID: 1514909374}
+  linkImg: {fileID: 887636607}
+  endImg: {fileID: 1357704902}
+  fileImg: {fileID: 496338233}
 --- !u!1 &801197865
 GameObject:
   m_ObjectHideFlags: 0
