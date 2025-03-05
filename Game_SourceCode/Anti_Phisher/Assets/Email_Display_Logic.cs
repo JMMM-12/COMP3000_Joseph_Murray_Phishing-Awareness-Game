@@ -32,6 +32,20 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject EndImg;
     public GameObject FileImg;
     public GameObject ScoreDisplay;
+    public GameObject SubjectFeedbackTxt;
+    public GameObject SenderFeedbackTxt;
+    public GameObject IntroductionFeedbackTxt;
+    public GameObject MainBodyFeedbackTxt;
+    public GameObject LinkFeedbackTxt;
+    public GameObject EndFeedbackTxt;
+    public GameObject FileFeedbackTxt;
+    public GameObject SubjectFeedbackIcon;
+    public GameObject SenderFeedbackIcon;
+    public GameObject IntroductionFeedbackIcon;
+    public GameObject MainBodyFeedbackIcon;
+    public GameObject LinkFeedbackIcon;
+    public GameObject EndFeedbackIcon;
+    public GameObject FileFeedbackIcon;
 
     private int textOffset = 70;
     private RectTransform textRectTransform;
@@ -53,6 +67,13 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         EndTxt.SetActive(false);
         FileTxt.SetActive(false);
         ScoreDisplay.SetActive(false);
+        SubjectFeedbackTxt.SetActive(false);
+        SenderFeedbackTxt.SetActive(false);
+        IntroductionFeedbackTxt.SetActive(false);
+        MainBodyFeedbackTxt.SetActive(false);
+        LinkFeedbackTxt.SetActive(false);
+        EndFeedbackTxt.SetActive(false);
+        FileFeedbackTxt.SetActive(false);
 
         //Deactivates all the Buttons upon game start
         ReplyButton.SetActive(false);
@@ -70,6 +91,13 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
         LinkImg.SetActive(false);
         EndImg.SetActive(false);
         FileImg.SetActive (false);
+        SubjectFeedbackIcon.SetActive(false);
+        SenderFeedbackIcon.SetActive(false);
+        IntroductionFeedbackIcon.SetActive(false);
+        MainBodyFeedbackIcon.SetActive(false);
+        LinkFeedbackIcon.SetActive(false);
+        EndFeedbackIcon.SetActive(false);
+        FileFeedbackIcon.SetActive(false);
     }
 
 
@@ -121,6 +149,20 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     IndicatorsConfirmButton.SetActive(false);
                     ContinueButton.SetActive(true);
                     ScoreDisplay.SetActive(true);
+                    SubjectFeedbackTxt.SetActive(true);
+                    SenderFeedbackTxt.SetActive(true);
+                    IntroductionFeedbackTxt.SetActive(true);
+                    MainBodyFeedbackTxt.SetActive(true);
+                    LinkFeedbackTxt.SetActive(true);
+                    EndFeedbackTxt.SetActive(true);
+                    FileFeedbackTxt.SetActive(true);
+                    SubjectFeedbackIcon.SetActive(true);
+                    SenderFeedbackIcon.SetActive(true);
+                    IntroductionFeedbackIcon.SetActive(true);
+                    MainBodyFeedbackIcon.SetActive(true);
+                    LinkFeedbackIcon.SetActive(true);
+                    EndFeedbackIcon.SetActive(true);
+                    FileFeedbackIcon.SetActive(true);
                     gameStateManager.emailDisplayed = true;
                 }
             }
@@ -144,6 +186,20 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
                     ReportButton.SetActive(true);
                     ContinueButton.SetActive(false);
                     ScoreDisplay.SetActive(false);
+                    SubjectFeedbackIcon.SetActive(false);
+                    SenderFeedbackIcon.SetActive(false);
+                    IntroductionFeedbackIcon.SetActive(false);
+                    MainBodyFeedbackIcon.SetActive(false);
+                    LinkFeedbackIcon.SetActive(false);
+                    EndFeedbackIcon.SetActive(false);
+                    FileFeedbackIcon.SetActive(false);
+                    SubjectFeedbackTxt.SetActive(false);
+                    SenderFeedbackTxt.SetActive(false);
+                    IntroductionFeedbackTxt.SetActive(false);
+                    MainBodyFeedbackTxt.SetActive(false);
+                    LinkFeedbackTxt.SetActive(false);
+                    EndFeedbackTxt.SetActive(false);
+                    FileFeedbackTxt.SetActive(false);
                     gameStateManager.emailDisplayed = true;
                     Debug.Log("Email Contents for the Response state were activated");
                 }
