@@ -2,13 +2,13 @@
 ## Author: Joseph Murray
 ## Supervisor: Hai-Van Dang
 
-### Project Title: Anti_Phisher
+### Project Title: Anti Phisher
 
 ### Project Vision
-With the ever-increasing threat and effectiveness of phishing attacks, combined with the rise in access to technology, particularly for younger ages, children are much more prone to these attacks.
+Children are becoming increasingly exposed to phishing emails, which attempt to trick them into divulging sensitive information, performing financial transfers, or downloading malware. Unfortunately, children are especially susceptible to phishing due to their limited cybersecurity awareness, curiosity, and naivety, making them a favourable target for social engineers.
 
-My phishing awareness game, ‘Anti-Phisher’, aims to protect children between the ages of 8-13 from the dangers of phishing attacks. This will be delivered as a highly interactive and engaging learning platform, whereby users would play through levels of increasingly difficult decision-based phishing challenges and minigames that teach them how to spot phishing attacks, how to deal with them, and the consequences of falling for such an attack. Within this, users will be tested on their phishing knowledge through a series of simulated phishing scenarios. Accompanying these features will be a reward system with various reward methods to keep users incentivized.
+Anti Phisher aims to solve this problem by providing children (ages 8-13) with an engaging mobile-based learning game where they are taught how to recognize and respond to phishing emails. This is achieved through satisfying gameplay whereby players interact with simulated emails to identify phishing indicators and select suitable responses. Additionally, this gameplay is supported with dialogue teachings and visual feedback to aid the player’s learning.
 
-By educating children about this key cybersecurity issue, both academically and practically, they will be more equipped to defend themselves from phishing attacks now and in the future. Moreover, by making this educational process engaging and enjoyable through gamification, children are more likely to engage with the game’s content.
+This game equips children with essential practical skills in phishing awareness and mitigation to minimize their exposure to phishing. This ensures that children are much safer when interacting with email platforms and that parents can be assured that their children are better protected from the dangers of phishing. Moreover, having obtained this fundamental knowledge during childhood, children will be much more capable of defending themselves against phishing emails in the future.
 
-Unlike one existing alternative Interland, my game will feature simulated phishing scenarios, giving the user practice against phishing attacks that can be applied to real-world scenarios. My game also differs from another key competition Cyber Games UK, since it features a variety of reward aspects to incentivize users who are uninterested in cybersecurity before playing the game. 
+In comparison to existing internet safety games such as Interland and Cyber Land, Anti Phisher exclusively focuses on phishing, opting for a more specialized and tailored educational approach rather than one that considers all cornerstones of internet safety.
