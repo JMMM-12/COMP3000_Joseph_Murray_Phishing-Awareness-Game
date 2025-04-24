@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class VisualResults_Logic : MonoBehaviour //Highlights the part of the email where the player got answers correct, incorrect, and missed correct answers (using colors)
 {
 
-    public GameStateManager gameStateManager;
-    public EncounterResults encounterResults;
-    public GameData gameData;
+    GameStateManager gameStateManager;
+    EncounterResults encounterResults;
+    GameData gameData;
 
     public Image subjectImg;
     public Image senderImg;
@@ -53,6 +53,10 @@ public class VisualResults_Logic : MonoBehaviour //Highlights the part of the em
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        encounterResults = GameManager.Instance.encounterResults;
+        gameData = GameManager.Instance.gameData;
+
         //Defines the colors
         correctColor = Color.green;
         incorrectColor = Color.red;

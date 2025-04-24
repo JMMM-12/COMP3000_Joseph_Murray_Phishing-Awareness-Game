@@ -3,12 +3,14 @@ using UnityEngine.UI;
 
 public class ChangeState : MonoBehaviour //Button OnClick logic to change to the Response phase once the Confirm Selection button is pressed
 {
-    public GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
 
     public Button confirmButton;
 
     private void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+
         confirmButton = GetComponent<Button>();
 
         if (confirmButton != null)

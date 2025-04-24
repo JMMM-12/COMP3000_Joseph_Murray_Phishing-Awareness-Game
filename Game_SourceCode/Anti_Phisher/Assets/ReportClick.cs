@@ -3,13 +3,16 @@ using UnityEngine.UI;
 
 public class ReportClick : MonoBehaviour
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
 
     public Button reportButton;
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+
         reportButton = GetComponent<Button>();
 
         if (reportButton != null)

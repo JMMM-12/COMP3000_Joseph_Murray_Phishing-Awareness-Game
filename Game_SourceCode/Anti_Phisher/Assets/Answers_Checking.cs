@@ -12,12 +12,16 @@ public class Answers_Checking : MonoBehaviour
     private ResponseAnswers responseAnswers;
 
 
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
-    public EncounterResults encounterResults;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
+    EncounterResults encounterResults;
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+        encounterResults = GameManager.Instance.encounterResults;
+
         ReadAnswers = new TextAsset();
 
         try

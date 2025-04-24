@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Instructions_Display_Logic : MonoBehaviour //Controls the activation and deactivation of the instructions box and the help button
 {
-    public GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
 
     public GameObject instructionsbox;
     public GameObject helpButton;
@@ -10,6 +10,7 @@ public class Instructions_Display_Logic : MonoBehaviour //Controls the activatio
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
         helpButton.SetActive(false); //Both are deactivated upon game start
         instructionsbox.SetActive(false);
     }

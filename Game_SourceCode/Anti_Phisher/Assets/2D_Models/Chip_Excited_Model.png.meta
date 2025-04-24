@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Chip_Excited_Model_0: 7914054831802253391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

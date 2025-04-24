@@ -1,16 +1,18 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ReplyClick : MonoBehaviour //Buton logic to change the response selection value once clicked
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
 
     public Button replyButton;
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+
         replyButton = GetComponent<Button>();
 
         if (replyButton != null)

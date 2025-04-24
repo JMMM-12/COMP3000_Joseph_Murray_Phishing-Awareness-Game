@@ -4,13 +4,20 @@ using UnityEngine.UI;
 
 public class FileClick : MonoBehaviour, IPointerClickHandler //Tracks when the file is clicked on and changes the indicator or response selection value accordingly
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
-    public GameData gameData;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
+    GameData gameData;
 
     public Image fileImage;
     public Text fileText;
     private bool noFile;
+
+    void Start()
+    {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+        gameData = GameManager.Instance.gameData;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -4,11 +4,18 @@ using UnityEngine.UI;
 
 public class SubjectClick : MonoBehaviour, IPointerClickHandler //Tracks when the subject indicator is clicked on and changes the selection value accordingly
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
-    public GameData gameData;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
+    GameData gameData;
 
     public Image subjectImage;
+
+    void Start()
+    {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        gameData = GameManager.Instance.gameData;
+        selectionData = GameManager.Instance.selectionData;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     { 

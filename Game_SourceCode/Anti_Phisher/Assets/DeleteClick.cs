@@ -3,13 +3,16 @@ using UnityEngine.UI;
 
 public class DeleteClick : MonoBehaviour //Buton logic to change the response selection value once clicked
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
 
     public Button deleteButton;
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+
         deleteButton = GetComponent<Button>();
 
         if (deleteButton != null)

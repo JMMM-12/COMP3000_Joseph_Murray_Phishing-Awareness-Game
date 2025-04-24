@@ -35,14 +35,16 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
     private AllDialogues allDialoguesObj;
     private EncounterDialogues currentEncounterDialogues;
 
-    public GameStateManager gameStateManager;
-    public EncounterResults encounterResults;
+    GameStateManager gameStateManager;
+    EncounterResults encounterResults;
 
     private bool dialoguesLoaded;
 
 
     void Start()
     {
+        encounterResults = GameManager.Instance.encounterResults;
+        gameStateManager = GameManager.Instance.gameStateManager;
         gameStateManager.gameState = GameState.Start;
         gameStateManager.dialogueStage = DialogueStage.Beginning;
         Readdialogues = new TextAsset();
@@ -126,7 +128,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
             
             if (firstDialogueDisplayed == true) //Checks if the first dilaogue entry for this encounter has already been displayed
             {
-                if (Input.touchCount == 1 || Input.anyKeyDown == true) //Checks if player touch is detected (anyKeyDown input for testing purposes)
+                if (Input.touchCount == 1) //Checks if player touch is detected (anyKeyDown input for testing purposes)
                 {
                     if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
                     {

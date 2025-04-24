@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class GameQuit_Logic : MonoBehaviour //Performs game state and selection data resets upon game quit
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
-    public EncounterResults encounterResults;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
+    EncounterResults encounterResults;
+
+    private void Start()
+    {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+        encounterResults = GameManager.Instance.encounterResults;
+    }
 
     private void OnApplicationQuit()
     {

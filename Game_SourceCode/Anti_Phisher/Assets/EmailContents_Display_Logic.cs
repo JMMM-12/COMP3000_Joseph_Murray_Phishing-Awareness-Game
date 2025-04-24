@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic loading & display of the current encounter's email contents
 {
     private string fileName = "Emails"; //Declares the file name for the stored email contents
-    
+
     //For tracking the game states
-    public GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
 
     //For reading from and storing the email contents
     private TextAsset ReadEmails;
@@ -28,6 +28,8 @@ public class EmailContents_Display_Logic : MonoBehaviour //Handles the dynamic l
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+
         ReadEmails = new TextAsset();
 
         try

@@ -3,14 +3,18 @@ using UnityEngine.UI;
 
 public class Continue : MonoBehaviour
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
-    public EncounterResults encounterResults;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
+    EncounterResults encounterResults;
 
     public Button continueButton;
 
     private void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+        encounterResults = GameManager.Instance.encounterResults;
+
         continueButton = GetComponent<Button>();
 
         if (continueButton != null)

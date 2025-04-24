@@ -11,13 +11,15 @@ public class Instructions_TextDisplay_Logic : MonoBehaviour //Displays game inst
     private AllInstructions allInstructions;
     private Instruction instruction;
 
-    public GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
 
     public Text instructionsText;
 
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+
         ReadInstructions = new TextAsset();
 
         try

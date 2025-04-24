@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HelpClick : MonoBehaviour //Triggers the instructions to display once the help button is clicked
 {
-    public GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
 
     public GameObject instrcutionsbox;
 
@@ -12,11 +12,14 @@ public class HelpClick : MonoBehaviour //Triggers the instructions to display on
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+
         helpButton = GetComponent<Button>();
 
         if (helpButton != null)
         {
             helpButton.onClick.AddListener(OnButtonClick);
+            Debug.Log("Help Button OnButtonClick Listener was successfully added");
         }
 
         else
@@ -27,6 +30,7 @@ public class HelpClick : MonoBehaviour //Triggers the instructions to display on
 
     public void OnButtonClick()
     {
+        Debug.Log("Help Button was clicked");
         instrcutionsbox.SetActive(true);
         gameStateManager.instructionsDisplayed = true;
         gameStateManager.instructionsTextRequired = true;

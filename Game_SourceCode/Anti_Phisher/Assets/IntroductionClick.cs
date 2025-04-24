@@ -4,11 +4,18 @@ using UnityEngine.UI;
 
 public class IntroductionClick : MonoBehaviour, IPointerClickHandler //Tracks when the introduction indicator is clicked on and changes the selection value accordingly
 {
-    public GameStateManager gameStateManager;
-    public SelectionData selectionData;
-    public GameData gameData;
+    GameStateManager gameStateManager;
+    SelectionData selectionData;
+    GameData gameData;
 
     public Image introductionImage;
+
+    void Start()
+    {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        selectionData = GameManager.Instance.selectionData;
+        gameData = GameManager.Instance.gameData;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class ScoreDisplay_Logic : MonoBehaviour
 {
-    public GameStateManager gameStateManager;
-    public EncounterResults encounterResults;
+    GameStateManager gameStateManager;
+    EncounterResults encounterResults;
     public Text scoreTxt;
 
     private int correctindicators;
@@ -22,6 +22,9 @@ public class ScoreDisplay_Logic : MonoBehaviour
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+        encounterResults = GameManager.Instance.encounterResults;
+
         scoreTextToDisplay = string.Empty;
         LoadNewEncounterResults();
     }

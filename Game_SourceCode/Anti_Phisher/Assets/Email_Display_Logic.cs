@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class Email_Display_Logic : MonoBehaviour //Handles the activation/deactivation of the email's container, text, and buttons
 {
-    public GameStateManager gameStateManager;
+    GameStateManager gameStateManager;
 
     //Holds the two email container sprites for display
     public Sprite indicatorContainer;
@@ -53,6 +53,8 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
 
     void Start()
     {
+        gameStateManager = GameManager.Instance.gameStateManager;
+
         Debug.Log("Email Display Logic has started");
 
         emailContainerRenderer = GetComponent<SpriteRenderer>(); //Retrieves the Sprite Renderer for this GameObject
