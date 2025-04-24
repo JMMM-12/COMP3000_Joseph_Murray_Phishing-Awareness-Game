@@ -132,7 +132,7 @@ public class Dialogue_Logic : MonoBehaviour //Script to handle dynamic dialogue,
                 {
                     Touch touch = Input.GetTouch(0);
                     
-                    if (touch.phase == TouchPhase.Began)
+                    if (touch.phase == TouchPhase.Ended)
                     {
                         if (currentDialogueIndex <= DialoguesCount - 1) //Checks if the current dialogue index is lower than the total number of dialogues 
                         {
