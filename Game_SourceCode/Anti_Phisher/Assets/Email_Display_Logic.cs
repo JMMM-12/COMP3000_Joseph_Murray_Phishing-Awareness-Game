@@ -47,7 +47,7 @@ public class Email_Display_Logic : MonoBehaviour //Handles the activation/deacti
     public GameObject EndFeedbackIcon;
     public GameObject FileFeedbackIcon;
 
-    private int textOffset = 70;
+    private int textOffset = 90;
     private RectTransform textRectTransform;
 
 
