@@ -15,16 +15,16 @@ In comparison to existing internet safety games such as Interland and Cyber Land
 
 
 ### Features
-* Interactions with Simulated Emails - Players are given the ability to interact with simulated emails to learn how to effectively identify and respond to phishing attempts.
+* **Interactions with Simulated Emails** - Players are given the ability to interact with simulated emails to learn how to effectively identify and respond to phishing attempts.
 
-* Linear Progression System - Players will play through a series of increasingly challenging levels that introduce more sophisticated emails as they progress.
+* **Linear Progression System** - Players will play through a series of increasingly challenging levels that introduce more sophisticated emails as they progress.
 
-* Visual Feedback - Players are provided with visually clear, colour-coded feedback, and are given scores for their performance.
+* **Visual Feedback** - Players are provided with visually clear, colour-coded feedback, and are given scores for their performance.
 
 
 ### Technology Stack
-* Unity 6 Editor & Game Engine
+* **Unity 6 Editor & Game Engine**
 
-* C#
+* **C#**
 
-* Android Build Support module
+* **Android Build Support module**
