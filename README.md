@@ -4,6 +4,22 @@
 
 ### Project Title: Anti Phisher
 
+### Installation & Play Instructions
+To install and run the game within the Unity Editor, follow these instructions:
+1) Open a Command Prompt and navigate to the directory you wish to install the project to.
+2) In the command prompt, run the command: *git clone https://github.com/JMMM-12/COMP3000_Joseph_Murray_Phishing-Awareness-Game.git*
+3) Next, open the Unity Hub app, then press *Add > Add project from disk*.
+4) Navigate to the directory where the repository was cloned
+5) Navigate into the *Game_SourceCode* folder.
+6) Select the *Anti_Phisher* folder and press *Open*.
+7) Return to the Unity Hub app - a new project titled *Anti_Phisher* should appear under the projects menu.
+8) Open the Project. This may take some time to load.
+9) Once the project is open - in the project window (at the bottom), navigate to *Assets > Scenes*.
+10) Double-click the *Level1* Scene.
+11) Run the game by pressing the play button at the top of the screen.
+12) Press on the *Game* dropdown and change this value to *Simulator*.
+
+
 ### Project Vision
 Children are becoming increasingly exposed to phishing emails, which attempt to trick them into divulging sensitive information, performing financial transfers, or downloading malware. Unfortunately, children are especially susceptible to phishing due to their limited cybersecurity awareness, curiosity, and naivety, making them a favourable target for social engineers.
 
