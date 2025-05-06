@@ -1,8 +1,0 @@
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/CMakeFiles/edit_cache.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/CMakeFiles/rebuild_cache.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/GameActivity/CMakeFiles/game.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
-C:/Users/joem1/COMP3000(V2)/COMP3000_Joseph_Murray_Phishing-Awareness-Game/Game_SourceCode/Anti_Phisher/.utmp/Debug/491s2d36/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
